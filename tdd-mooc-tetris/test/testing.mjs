@@ -1,7 +1,15 @@
 import { Assertion } from "chai";
 
+function escapeRegExp(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+}
+
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(escapeRegExp(find), "g"), replace);
+}
+
 export function normalize(s) {
-  return s.replaceAll(" ", "").trim() + "\n";
+  return replaceAll(s, " ", "").trim() + "\n";
 }
 
 Assertion.addMethod("equalShape", function (expected) {
