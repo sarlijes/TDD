@@ -2,7 +2,7 @@ export class Board {
   width;
   height;
   board;
-  hasFalling;
+  hasFallingBlock;
 
   constructor(width, height) {
     this.width = width;
@@ -17,7 +17,11 @@ export class Board {
     }
     //console.log("board now:")
     //console.log(this.board)
-    this.hasFalling = false;
+    this.hasFallingBlock = false;
+  }
+
+  hasFalling() {
+    return this.hasFallingBlock;
   }
 
   toString() {
@@ -33,12 +37,12 @@ export class Board {
   }
 
   drop() {
-    if (this.hasFalling) {
+    if (this.hasFallingBlock) {
       throw "already falling";
     }
     this.board[0][Math.floor(this.width / 2)] = "x";
     // lowercase char is considered as a moving block
-    this.hasFalling = true;
+    this.hasFallingBlock = true;
     //console.log("board after dropping:")
     //console.log(this.board)
   }
@@ -56,12 +60,19 @@ export class Board {
         }
       }
     }
-    // console.log("x", x)
-    // console.log("y", y)
     // Remove the block from it's previous row
     this.board[y][x] = ".";
-    // Add the block to the row below
-    this.board[y + 1][x] = "x";
+    // Check if the block has reached the bottom, stop it if yes
+    if (typeof this.board[y + 1] === "undefined") {
+      this.board[y][x] = "x";
+      this.hasFallingBlock = false;
+    } else {
+      // Add the block to the row below
+      this.board[y + 1][x] = "x";
+    }
+
+    // console.log("x", x)
+    // console.log("y", y)
   }
 }
 /*
