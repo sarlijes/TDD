@@ -36,27 +36,32 @@ export class Board {
     return result;
   }
 
-  drop() {
+  drop(block) {
     if (this.hasFallingBlock) {
       throw "already falling";
     }
-    this.board[0][Math.floor(this.width / 2)] = "x";
+    this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     // lowercase char is considered as a moving block
     this.hasFallingBlock = true;
     //console.log("board after dropping:")
     //console.log(this.board)
   }
+  // TODO tests for helper function
+  isLowerCase = (str) => str === str.toLowerCase() && str !== ".";
 
+  // TODO refactor to be shorter
   tick() {
     // Find the currently falling block's coordinates
     let x = -1;
     let y = -1;
+    let char = "";
 
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        if (this.board[i][j] === "x") {
+        if (this.isLowerCase(this.board[i][j])) {
           y = i;
           x = j;
+          char = this.board[i][j];
         }
       }
     }
@@ -64,17 +69,20 @@ export class Board {
     this.board[y][x] = ".";
     // Check if the block has reached the bottom, stop it if yes
     if (typeof this.board[y + 1] === "undefined") {
-      this.board[y][x] = "x";
+      this.board[y][x] = char.toUpperCase();
       this.hasFallingBlock = false;
+    }
+    // Check if the block can drop (the space is free)
+    else if (this.board[y + 1][x] !== ".") {
+      this.board[y][x] = char.toUpperCase();
+      this.hasFallingBlock = false;
+      //TODO duplicate code
     } else {
       // Add the block to the row below
-      this.board[y + 1][x] = "x";
+      this.board[y + 1][x] = char;
     }
 
-    // console.log("x", x)
-    // console.log("y", y)
+    // console.log("board after dropping:")
+    // console.log(this.toString())
   }
 }
-/*
-
-*/
