@@ -36,10 +36,8 @@ export class RotatingShape {
     let rows = this.shape.length;
     let cols = this.shape[0].length;
 
-    // console.log("rows", rows);
-    // console.log("cols", cols);
     let rotated = Array.from({ length: rows }, () => Array(cols).fill("."));
-    // console.log("dimension", dimension)
+
     // console.log("rotated before", rotated);
     // console.log("this.shape before", this.shape)
     for (let row = 0; row < rows; row++) {
@@ -49,13 +47,6 @@ export class RotatingShape {
         rotated[col][rows - 1 - row] = this.shape[row][col];
       }
     }
-    // console.log("rotated after", rotated);
-    // console.log("--------", "----------")
-    // console.log("this.shape", this.shape)
-    // console.log("this.toString()", this.toString())
-    // console.log("--------", "----------")
-    // this.twoDimensionalArraytoString(this.shape)
     return new RotatingShape(twoDimensionalArraytoString(rotated).trim());
   }
-  // TODO remove extra console.logs
 }

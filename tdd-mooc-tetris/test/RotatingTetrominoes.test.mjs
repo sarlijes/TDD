@@ -61,7 +61,7 @@ describe("The I shape", () => {
     );
   });
 
-  xit("can be rotated right/clockwise", () => {
+  it("can be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
       `..I..
        ..I..
@@ -70,7 +70,12 @@ describe("The I shape", () => {
        .....`
     );
   });
-
+  // TODO below, last rotation leaves it like this:
+  // `.....
+  //  ..I..
+  //  ..I..
+  //  ..I..
+  //  ..I..`
   xit("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `..I..
@@ -86,7 +91,6 @@ describe("The I shape", () => {
   });
 });
 
-/*
 describe("The O shape", () => {
   const shape = Tetromino.O_SHAPE;
 
@@ -118,4 +122,3 @@ describe("The O shape", () => {
     expect(distinctOrientations(shape).size).to.equal(1);
   });
 });
-*/

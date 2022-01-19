@@ -1,4 +1,3 @@
-import { Block } from "../src/Block.mjs";
 import { RotatingShape } from "./RotatingShape.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
@@ -8,6 +7,21 @@ export class Tetromino extends RotatingShape {
     ["t", "t", "t"],
     [".", ".", "."],
   ]);
+
+  static I_SHAPE = new Tetromino([
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+    ["i", "i", "i", "i", "."],
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+  ]);
+
+  static O_SHAPE = new Tetromino([
+    [".", "o", "o"],
+    [".", "o", "o"],
+    [".", ".", "."],
+  ]);
+
   tetromino_shape;
 
   constructor(shape) {
