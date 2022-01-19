@@ -15,8 +15,10 @@ export class RotatingShape {
         temp.push(part[j]);
         this.width = this.width + 1;
       }
-      this.shape.push(temp);
-      this.height = this.height + 1;
+      if (temp.length > 0) {
+        this.shape.push(temp);
+        this.height = this.height + 1;
+      }
     }
   }
 
@@ -31,7 +33,7 @@ export class RotatingShape {
   rotateRight() {
     console.log("Starting to rotate this.shape: ", this.shape);
 
-    let rows = this.shape.length - 1;
+    let rows = this.shape.length;
     let cols = this.shape[0].length;
 
     console.log("rows", rows);
@@ -42,7 +44,7 @@ export class RotatingShape {
     // console.log("this.shape before", this.shape)
     for (let row = 0; row < rows; row++) {
       // console.log("---row now: ", row)
-      for (let col = 0; col < this.shape[row].length; col++) {
+      for (let col = 0; col < cols; col++) {
         // console.log("col now: ", col)
         rotated[col][rows - 1 - row] = this.shape[row][col];
       }
