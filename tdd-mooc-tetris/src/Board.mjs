@@ -1,3 +1,5 @@
+import { twoDimensionalArraytoString } from "./Utils.mjs";
+
 export class Board {
   width;
   height;
@@ -25,22 +27,14 @@ export class Board {
   }
 
   toString() {
-    let result = "";
-    for (let i = 0; i < this.height; i++) {
-      let temp = "";
-      for (let j = 0; j < this.width; j++) {
-        temp = temp.concat("", this.board[i][j].toUpperCase());
-      }
-      result = result.concat("", temp + "\n");
-    }
-    return result;
+    return twoDimensionalArraytoString(this.board);
   }
 
   drop(block) {
     if (this.hasFallingBlock) {
       throw "already falling";
     }
-    console.log("block ", block);
+    // console.log("block ", block);
     this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     // lowercase char is considered as a moving block
     this.hasFallingBlock = true;

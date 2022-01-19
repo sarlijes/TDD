@@ -11,7 +11,7 @@ export class Tetromino extends RotatingShape {
   tetromino_shape;
 
   constructor(shape) {
-    super(twoDimensionalArraytoString(this.tetromino_shape));
+    super(twoDimensionalArraytoString(shape));
     this.tetromino_shape = shape;
 
     // this.shape = options.option

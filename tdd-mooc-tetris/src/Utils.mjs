@@ -9,7 +9,8 @@ function twoDimensionalArraytoString(arr) {
     }
     result = result.concat("", temp + "\n");
   }
-  return result;
+  console.log("util: result.toUpperCase()", result.toUpperCase());
+  return result.toUpperCase();
 }
 
 export { twoDimensionalArraytoString };
