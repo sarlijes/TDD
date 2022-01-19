@@ -18,45 +18,47 @@ export class RotatingShape {
     }
   }
 
-  toString() {
+  twoDimensionalArraytoString(arr) {
     let result = "";
     for (let i = 0; i < this.height; i++) {
       let temp = "";
-      for (let j = 0; j < this.shape[i].length; j++) {
-        temp = temp.concat("", this.shape[i][j]);
+      for (let j = 0; j < arr[i].length; j++) {
+        temp = temp.concat("", arr[i][j]);
       }
       result = result.concat("", temp + "\n");
     }
     return result;
   }
 
+  toString() {
+    return this.twoDimensionalArraytoString(this.shape);
+  }
+
   rotateLeft() {
-    // Transpose matrix, source: https://bit.ly/3Af8xFT (Medium)
-    for (let y = 0; y < this.shape.length; ++y) {
-      for (let x = 0; x < y; ++x) {
-        [this.shape[x][y], this.shape[y][x]] = [
-          this.shape[y][x],
-          this.shape[x][y],
-        ];
-      }
-    }
-    // Reverse the order of the columns
-    this.shape.forEach((row) => row.reverse());
-    return this.toString();
+    return this.rotateRight().rotateRight().rotateRight();
   }
 
   rotateRight() {
-    // Transpose matrix, source: https://bit.ly/3Af8xFT (Medium)
-    for (let y = 0; y < this.shape.length; ++y) {
-      for (let x = 0; x < y; ++x) {
-        [this.shape[x][y], this.shape[y][x]] = [
-          this.shape[y][x],
-          this.shape[x][y],
-        ];
+    let dimension = this.shape.length;
+    let rotated = Array.from({ length: dimension }, () =>
+      Array(dimension).fill(0)
+    );
+    // console.log("dimension", dimension)
+    // console.log("rotated before", rotated)
+    // console.log("this.shape before", this.shape)
+    for (let row = 0; row < dimension; row++) {
+      // console.log("---row now: ", row)
+      for (let col = 0; col < this.shape[row].length; col++) {
+        // console.log("col now: ", col)
+        rotated[col][dimension - 1 - row] = this.shape[row][col];
       }
     }
-    // Reverse the order of the columns
-    this.shape.forEach((row) => row.reverse());
-    return this.toString();
+    // console.log("rotated after", rotated)
+    // console.log("--------", "----------")
+    // console.log("this.shape", this.shape)
+    // console.log("this.toString()", this.toString())
+    // console.log("--------", "----------")
+    // this.twoDimensionalArraytoString(this.shape)
+    return new RotatingShape(this.twoDimensionalArraytoString(rotated).trim());
   }
 }
