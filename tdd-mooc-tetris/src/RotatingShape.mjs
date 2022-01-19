@@ -61,4 +61,5 @@ export class RotatingShape {
     // this.twoDimensionalArraytoString(this.shape)
     return new RotatingShape(this.twoDimensionalArraytoString(rotated).trim());
   }
+  // TODO remove extra console.logs
 }
