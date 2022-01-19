@@ -40,6 +40,7 @@ export class Board {
     if (this.hasFallingBlock) {
       throw "already falling";
     }
+    console.log("block ", block);
     this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     // lowercase char is considered as a moving block
     this.hasFallingBlock = true;

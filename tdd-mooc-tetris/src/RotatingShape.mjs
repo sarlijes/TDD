@@ -1,3 +1,5 @@
+import { twoDimensionalArraytoString } from "./Utils.mjs";
+
 export class RotatingShape {
   shape = [];
   height = 0;
@@ -18,20 +20,8 @@ export class RotatingShape {
     }
   }
 
-  twoDimensionalArraytoString(arr) {
-    let result = "";
-    for (let i = 0; i < this.height; i++) {
-      let temp = "";
-      for (let j = 0; j < arr[i].length; j++) {
-        temp = temp.concat("", arr[i][j]);
-      }
-      result = result.concat("", temp + "\n");
-    }
-    return result;
-  }
-
   toString() {
-    return this.twoDimensionalArraytoString(this.shape);
+    return twoDimensionalArraytoString(this.shape);
   }
 
   rotateLeft() {
@@ -59,7 +49,7 @@ export class RotatingShape {
     // console.log("this.toString()", this.toString())
     // console.log("--------", "----------")
     // this.twoDimensionalArraytoString(this.shape)
-    return new RotatingShape(this.twoDimensionalArraytoString(rotated).trim());
+    return new RotatingShape(twoDimensionalArraytoString(rotated).trim());
   }
   // TODO remove extra console.logs
 }
