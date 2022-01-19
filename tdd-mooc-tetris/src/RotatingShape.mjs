@@ -36,7 +36,7 @@ export class RotatingShape {
     let rows = this.shape.length;
     let cols = this.shape[0].length;
 
-    let rotated = Array.from({ length: rows }, () => Array(cols).fill("."));
+    let rotated = Array.from({ length: rows }, () => Array(cols).fill("_"));
 
     // console.log("rotated before", rotated);
     // console.log("this.shape before", this.shape)
@@ -47,6 +47,6 @@ export class RotatingShape {
         rotated[col][rows - 1 - row] = this.shape[row][col];
       }
     }
-    return new RotatingShape(twoDimensionalArraytoString(rotated).trim());
+    return new RotatingShape(twoDimensionalArraytoString(rotated));
   }
 }
