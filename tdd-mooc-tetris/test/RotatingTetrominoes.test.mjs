@@ -5,6 +5,7 @@ function distinctOrientations(shape) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
+  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 8 ~ distinctOrientations ~ goingLeft", goingLeft)
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
     goingRight = goingRight.rotateRight();
@@ -16,8 +17,6 @@ function distinctOrientations(shape) {
 
 describe("The T shape", () => {
   const shape = Tetromino.T_SHAPE;
-  // console.log("test: shape ", shape);
-  // console.log("test: shape.toString(): ", shape.toString());
 
   it("initial orientation", () => {
     expect(shape.toString()).to.equalShape(
@@ -70,12 +69,7 @@ describe("The I shape", () => {
        .....`
     );
   });
-  // TODO below, last rotation leaves it like this:
-  // `.....
-  //  ..I..
-  //  ..I..
-  //  ..I..
-  //  ..I..`
+
   it("can be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `..I..
@@ -86,7 +80,7 @@ describe("The I shape", () => {
     );
   });
 
-  xit("has 2 distinct orientations", () => {
+  it("has 2 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(2);
   });
 });
@@ -101,11 +95,8 @@ describe("The O shape", () => {
        ...`
     );
   });
-  // TODO below, this returns:
-  // `...
-  //  .OO
-  //  .OO`
-  xit("cannot be rotated right/clockwise", () => {
+
+  it("cannot be rotated right/clockwise", () => {
     expect(shape.rotateRight().toString()).to.equalShape(
       `.OO
        .OO
@@ -113,7 +104,7 @@ describe("The O shape", () => {
     );
   });
 
-  xit("cannot be rotated left/counter-clockwise", () => {
+  it("cannot be rotated left/counter-clockwise", () => {
     expect(shape.rotateLeft().toString()).to.equalShape(
       `.OO
        .OO
@@ -121,7 +112,7 @@ describe("The O shape", () => {
     );
   });
 
-  xit("has 1 distinct orientations", () => {
+  it("has 1 distinct orientations", () => {
     expect(distinctOrientations(shape).size).to.equal(1);
   });
 });

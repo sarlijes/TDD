@@ -31,19 +31,18 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    // console.log("Starting to rotate this.shape: ", this.shape);
+
+    if (this.shape_enum != 'undefined' && this.shape_enum === "O_SHAPE") {
+      return new RotatingShape(twoDimensionalArraytoString(this.shape));
+    }
 
     let rows = this.shape.length;
     let cols = this.shape[0].length;
 
     let rotated = Array.from({ length: rows }, () => Array(cols).fill("_"));
 
-    // console.log("rotated before", rotated);
-    // console.log("this.shape before", this.shape)
     for (let row = 0; row < rows; row++) {
-      // console.log("---row now: ", row)
       for (let col = 0; col < cols; col++) {
-        // console.log("col now: ", col)
         rotated[col][rows - 1 - row] = this.shape[row][col];
       }
     }

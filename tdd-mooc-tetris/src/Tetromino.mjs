@@ -1,14 +1,6 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
-/*
-"You will need to parameterize Tetromino with how many orientations it has. 
-If we just rotate the I piece 360 degrees around a single block, it would move 
-left/right and up/down by one block, even if it was staying in place. 
-
-So we need to limit it to 2 orientations instead of the default 4."
-*/
-
 export class Tetromino extends RotatingShape {
   static T_SHAPE = new Tetromino([
     [".", "t", "."],
@@ -36,10 +28,10 @@ export class Tetromino extends RotatingShape {
     [".", "o", "o"],
     [".", "o", "o"],
     [".", ".", "."],
-  ], 0, 2, "O_SHAPE"); // TODO what should these be? 0 and 1?
+  ], 0, 1, "O_SHAPE");
 
   tetromino_shape;
-  #shape_enum;
+  shape_enum;
   #currentOrientation;
   #orientations;
 
@@ -55,17 +47,22 @@ export class Tetromino extends RotatingShape {
       this.rotateRight().rotateRight(),
       this.rotateRight().rotateRight().rotateRight()
     ].slice(0, orientations)
-    this.#shape_enum = shape_enum;
-
+    this.shape_enum = shape_enum;
   }
 
+
+
   rotateLeft() {
-    if (this.#shape_enum === "I_SHAPE") {
+    if (this.shape_enum === "I_SHAPE") {
+      // TODO not ideal
       const rotated = Tetromino.ROTATED_I_SHAPE;
       return twoDimensionalArraytoString(rotated.shape);
-    } else {
-      return this.rotateRight().rotateRight().rotateRight();
+    } else if (this.shape_enum === "O_SHAPE") {
+      const rotated = Tetromino.O_SHAPE;
+      return twoDimensionalArraytoString(rotated.shape);
     }
+
+    return this.rotateRight().rotateRight().rotateRight();
   }
 
   toString() {
