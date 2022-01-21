@@ -31,12 +31,9 @@ export class RotatingShape {
   }
 
   rotateRight() {
-
-    if (this.shape_enum != 'undefined' && this.shape_enum === "O_SHAPE") {
+    if (this.shape_enum != "undefined" && this.shape_enum === "O_SHAPE") {
       return new RotatingShape(twoDimensionalArraytoString(this.shape));
     }
-    console.log("🚀 ~ file: RotatingShape.mjs ~ line 40 ~ RotatingShape ~ rotateRight ~ this", this)
-    console.log("🚀 ~ file: RotatingShape.mjs ~ line 40 ~ RotatingShape ~ rotateRight ~ this.shape", this.shape)
     let rows = this.shape.length;
 
     let cols = this.shape[0].length;

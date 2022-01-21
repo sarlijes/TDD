@@ -8,8 +8,6 @@ function distinctOrientationsRotatingLeft(shape) {
     distinct.add(goingLeft.toString());
     goingLeft = goingLeft.rotateLeft();
   }
-  // console.log("after rotating left:")
-  // console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
   return distinct;
 }
 
@@ -18,13 +16,10 @@ function distinctOrientationsRotatingRight(shape) {
   let goingRight = shape;
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
-    goingRight = goingRight.rotateRight();
+    goingRight = goingRight.rotateTetrominoRight();
   }
-  console.log("after rotating Right:")
-  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
   return distinct;
 }
-
 
 describe("The T shape", () => {
   const shape = Tetromino.T_SHAPE;
@@ -60,7 +55,6 @@ describe("The T shape", () => {
   it("has 4 distinct orientations when rotating right", () => {
     expect(distinctOrientationsRotatingRight(shape).size).to.equal(4);
   });
-
 });
 
 describe("The I shape", () => {
