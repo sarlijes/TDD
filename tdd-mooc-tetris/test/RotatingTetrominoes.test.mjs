@@ -1,21 +1,26 @@
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
 
-function distinctOrientations(shape) {
+function distinctOrientationsRotatingLeft(shape) {
   const distinct = new Set();
-  let goingRight = shape;
   let goingLeft = shape;
-  for (let i = 0; i < 10; i++) {
-    distinct.add(goingRight.toString());
-    goingRight = goingRight.rotateRight();
-  }
-  console.log("without rotating right:")
-  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
   for (let i = 0; i < 10; i++) {
     distinct.add(goingLeft.toString());
     goingLeft = goingLeft.rotateLeft();
   }
-  console.log("after rotating left:")
+  // console.log("after rotating left:")
+  // console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
+  return distinct;
+}
+
+function distinctOrientationsRotatingRight(shape) {
+  const distinct = new Set();
+  let goingRight = shape;
+  for (let i = 0; i < 10; i++) {
+    distinct.add(goingRight.toString());
+    goingRight = goingRight.rotateRight();
+  }
+  console.log("after rotating Right:")
   console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
   return distinct;
 }
@@ -48,9 +53,14 @@ describe("The T shape", () => {
     );
   });
 
-  it("has 4 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(4);
+  it("has 4 distinct orientations when rotating left", () => {
+    expect(distinctOrientationsRotatingLeft(shape).size).to.equal(4);
   });
+
+  it("has 4 distinct orientations when rotating right", () => {
+    expect(distinctOrientationsRotatingRight(shape).size).to.equal(4);
+  });
+
 });
 
 describe("The I shape", () => {
@@ -86,8 +96,12 @@ describe("The I shape", () => {
     );
   });
 
-  it("has 2 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(2);
+  it("has 2 distinct orientations when rotating left", () => {
+    expect(distinctOrientationsRotatingLeft(shape).size).to.equal(2);
+  });
+
+  it("has 2 distinct orientations when rotating right", () => {
+    expect(distinctOrientationsRotatingRight(shape).size).to.equal(2);
   });
 });
 
@@ -118,7 +132,11 @@ describe("The O shape", () => {
     );
   });
 
-  it("has 1 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(1);
+  it("has 1 distinct orientations when rotating left", () => {
+    expect(distinctOrientationsRotatingLeft(shape).size).to.equal(1);
+  });
+
+  it("has 1 distinct orientations when rotating right", () => {
+    expect(distinctOrientationsRotatingRight(shape).size).to.equal(1);
   });
 });
