@@ -5,15 +5,21 @@ function distinctOrientations(shape) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
-  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 8 ~ distinctOrientations ~ goingLeft", goingLeft)
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
     goingRight = goingRight.rotateRight();
+  }
+  console.log("without rotating right:")
+  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
+  for (let i = 0; i < 10; i++) {
     distinct.add(goingLeft.toString());
     goingLeft = goingLeft.rotateLeft();
   }
+  console.log("after rotating left:")
+  console.log("🚀 ~ file: RotatingTetrominoes.test.mjs ~ line 16 ~ distinctOrientations ~ distinct", distinct)
   return distinct;
 }
+
 
 describe("The T shape", () => {
   const shape = Tetromino.T_SHAPE;
