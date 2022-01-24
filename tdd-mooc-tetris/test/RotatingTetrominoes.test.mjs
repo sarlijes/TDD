@@ -1,6 +1,19 @@
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
 
+function distinctOrientations(shape) {
+  const distinct = new Set();
+  let goingRight = shape;
+  let goingLeft = shape;
+  for (let i = 0; i < 10; i++) {
+    distinct.add(goingRight.toString());
+    goingRight = goingRight.rotateRight();
+    distinct.add(goingLeft.toString());
+    goingLeft = goingLeft.rotateLeft();
+  }
+  return distinct;
+}
+
 function distinctOrientationsRotatingLeft(shape) {
   const distinct = new Set();
   let goingLeft = shape;
@@ -55,6 +68,10 @@ describe("The T shape", () => {
   it("has 4 distinct orientations when rotating right", () => {
     expect(distinctOrientationsRotatingRight(shape).size).to.equal(4);
   });
+
+  it("has 4 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(4);
+  });
 });
 
 describe("The I shape", () => {
@@ -97,6 +114,10 @@ describe("The I shape", () => {
   it("has 2 distinct orientations when rotating right", () => {
     expect(distinctOrientationsRotatingRight(shape).size).to.equal(2);
   });
+
+  it("has 2 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(2);
+  });
 });
 
 describe("The O shape", () => {
@@ -132,5 +153,9 @@ describe("The O shape", () => {
 
   it("has 1 distinct orientations when rotating right", () => {
     expect(distinctOrientationsRotatingRight(shape).size).to.equal(1);
+  });
+
+  it("has 1 distinct orientations", () => {
+    expect(distinctOrientations(shape).size).to.equal(1);
   });
 });
