@@ -55,6 +55,10 @@ function createApp(database) {
     return date.getDay() === 1;
   }
 
+  function isMondayNew(date) {
+    return date.weekday === 1;
+  }
+
   function isHoliday(date) {
     const holidays = database.getHolidays();
     for (let row of holidays) {
