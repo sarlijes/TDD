@@ -52,9 +52,6 @@ function createApp(database) {
   }
 
   function isMonday(date) {
-    if (date instanceof Date) {
-      return date.getDay() === 1;
-    }
     return date.dayOfWeek === 1;
   }
 
