@@ -71,6 +71,22 @@ function createApp(database) {
     return false;
   }
 
+  function isHolidayNew(date) {
+    const holidays = database.getHolidays();
+    for (let row of holidays) {
+      let holiday = new Temporal.PlainDate.from(row.holiday);
+      if (
+        date &&
+        date.year === holiday.year &&
+        date.month === holiday.month &&
+        date.day === holiday.day
+      ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   function parseDate(dateString) {
     if (dateString) {
       return new Date(dateString);
