@@ -69,8 +69,6 @@ function createApp(database) {
       }
     }
     return false;
-
-
   }
 
   function parseDate(dateString) {
