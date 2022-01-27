@@ -76,6 +76,11 @@ function createApp(database) {
       return new Date(dateString);
     }
   }
+  function parseDateNew(dateString) {
+    if (dateString) {
+      return new Temporal.PlainDate(dateString);
+    }
+  }
 
   const app = express();
 
