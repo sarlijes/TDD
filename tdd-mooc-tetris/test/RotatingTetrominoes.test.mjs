@@ -5,6 +5,7 @@ function distinctOrientations(shape) {
   const distinct = new Set();
   let goingRight = shape;
   let goingLeft = shape;
+
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
     goingRight = goingRight.rotateRight();
@@ -12,6 +13,7 @@ function distinctOrientations(shape) {
     goingLeft = goingLeft.rotateLeft();
   }
   return distinct;
+
 }
 
 function distinctOrientationsRotatingLeft(shape) {

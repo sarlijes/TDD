@@ -18,8 +18,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^8.4.0",
-    "prettier": "^2.3.0"
+    "eslint": "^8.7.0",
+    "mocha": "^8.4.0"
   },
   "engines": {
     "node": ">=16.0.0",
@@ -31,6 +31,6 @@
   "scripts": {
     "test": "mocha --require test/testing.mjs 'test/**/*.test.mjs'",
     "autotest": "npm run test -- --watch",
-    "format": "prettier --write ."
+    "format": "npx eslint . --fix"
   }
 }
