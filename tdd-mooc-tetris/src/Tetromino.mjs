@@ -50,14 +50,12 @@ export class Tetromino extends RotatingShape {
     "O_SHAPE"
   );
 
-  tetromino_shape;
   shape_enum;
   currentOrientation;
   orientations;
 
   constructor(shape, currentOrientation, orientations, shape_enum) {
     super(twoDimensionalArraytoString(shape));
-    this.tetromino_shape = shape;
 
     this.currentOrientation = currentOrientation;
     this.orientations = orientations;
@@ -83,33 +81,12 @@ export class Tetromino extends RotatingShape {
       const result = new Tetromino(rotated.shape, 0, 1, "O_SHAPE");
       return result;
     }
+    // console.log("🚀 ~ calling rotateRight 3 for", this.shape_enum);
+
     return this.rotateRight().rotateRight().rotateRight();
   }
 
-  rotateTetrominoRight() {
-    if (this.shape_enum === "I_SHAPE") {
-      // TODO not ideal
-      const rotated = Tetromino.ROTATED_I_SHAPE;
-      const result = new Tetromino(rotated.shape, 0, 2, "ROTATED_I_SHAPE");
-      return result;
-    }
-    if (this.shape_enum === "ROTATED_I_SHAPE") {
-      // TODO not ideal
-      const rotated = Tetromino.I_SHAPE;
-      const result = new Tetromino(rotated.shape, 0, 2, "I_SHAPE");
-      return result;
-    }
-
-    if (this.shape_enum === "O_SHAPE") {
-      const rotated = Tetromino.O_SHAPE;
-      const result = new Tetromino(rotated.shape, 0, 1, "O_SHAPE");
-      return result;
-    }
-    let result = this.rotateRight().shape;
-    return new Tetromino(result, 0, 4, "T_SHAPE");
-  }
-
   toString() {
-    return twoDimensionalArraytoString(this.tetromino_shape);
+    return twoDimensionalArraytoString(this.shape);
   }
 }

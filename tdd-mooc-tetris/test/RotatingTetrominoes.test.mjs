@@ -31,7 +31,7 @@ function distinctOrientationsRotatingRight(shape) {
   let goingRight = shape;
   for (let i = 0; i < 10; i++) {
     distinct.add(goingRight.toString());
-    goingRight = goingRight.rotateTetrominoRight();
+    goingRight = goingRight.rotateRight();
   }
   return distinct;
 }

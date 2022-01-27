@@ -1,9 +1,10 @@
+import { Tetromino } from "./Tetromino.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
 export class RotatingShape {
   shape = [];
   height = 0;
-  width = 0;
+  width = -1;
 
   constructor(str) {
     let parts = str.split("\n");
@@ -13,12 +14,13 @@ export class RotatingShape {
       let temp = [];
       for (let j = 0; j < part.length; j++) {
         temp.push(part[j]);
-        this.width = this.width + 1;
+
       }
       if (temp.length > 0) {
         this.shape.push(temp);
         this.height = this.height + 1;
       }
+      this.width = this.width + 1;
     }
   }
 
@@ -31,8 +33,20 @@ export class RotatingShape {
   }
 
   rotateRight() {
-    if (this.shape_enum != "undefined" && this.shape_enum === "O_SHAPE") {
-      return new RotatingShape(twoDimensionalArraytoString(this.shape));
+    if (this.shape_enum !== "undefined") {
+      if (this.shape_enum === "ROTATED_I_SHAPE") {
+        const rotated = Tetromino.I_SHAPE;
+        const result = new Tetromino(rotated.shape, 0, 2, "I_SHAPE");
+        return result;
+      }
+      if (this.shape_enum === "I_SHAPE") {
+        const rotated = Tetromino.ROTATED_I_SHAPE;
+        const result = new Tetromino(rotated.shape, 0, 2, "ROTATED_I_SHAPE");
+        return result;
+      }
+      if (this.shape_enum === "O_SHAPE") {
+        return new Tetromino(this.shape, 0, 1, "O_SHAPE");
+      }
     }
     let rows = this.shape.length;
 
