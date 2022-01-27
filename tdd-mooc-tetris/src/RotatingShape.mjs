@@ -29,6 +29,28 @@ export class RotatingShape {
   }
 
   rotateLeft() {
+    if (this.shape_enum !== "undefined") {
+      if (this.shape_enum === "I_SHAPE") {
+        // TODO not ideal
+        const rotated = Tetromino.ROTATED_I_SHAPE;
+        const result = new Tetromino(rotated.shape, 0, 2, "ROTATED_I_SHAPE");
+        return result;
+      }
+      if (this.shape_enum === "ROTATED_I_SHAPE") {
+        // TODO not ideal
+        const rotated = Tetromino.I_SHAPE;
+        const result = new Tetromino(rotated.shape, 0, 2, "I_SHAPE");
+        return result;
+      }
+
+      if (this.shape_enum === "O_SHAPE") {
+        const rotated = Tetromino.O_SHAPE;
+        const result = new Tetromino(rotated.shape, 0, 1, "O_SHAPE");
+        return result;
+      }
+      // console.log("🚀 ~ calling rotateRight 3 for", this.shape_enum);
+
+    }
     return this.rotateRight().rotateRight().rotateRight();
   }
 
