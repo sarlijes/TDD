@@ -157,7 +157,7 @@ describe("The O shape", () => {
     expect(distinctOrientationsRotatingRight(shape).size).to.equal(1);
   });
 
-  it("has 1 distinct orientations", () => {
+  it("has 1 distinct orientation", () => {
     expect(distinctOrientations(shape).size).to.equal(1);
   });
 });
