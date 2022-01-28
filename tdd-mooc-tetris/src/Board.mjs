@@ -48,22 +48,25 @@ export class Board {
     if (block instanceof Tetromino) {
       const clearance = 3;
       const startingYPosition = 0;
-      console.log("🚀 ~ file: Board.mjs ~ line 42 ~ Board ~ drop ~ blockshape:", block.shape);
+
       // Draw the Tetromino on the board
       for (let i = 0; i < block.height; i++) {
         for (let j = 0; j < block.width; j++) {
           if (block.shape[i][j] !== ".") {
-            this.board[startingYPosition][clearance + j] = block.color;
+
+            if (block.shape_enum === "T_SHAPE") {
+              this.board[i][clearance + j] = block.color;
+            }
+
+            if (block.shape_enum === "I_SHAPE") {
+              this.board[startingYPosition][clearance + j] = block.color;
+            }
+
+
           }
-
         }
-        // this.board.push(this.temp);
       }
-      // console.log("🚀 ~ file: Board.mjs ~ line 56 ~ Board ~ drop ~ this.board", this.board);
     }
-
-
-
   }
   // TODO tests for helper function
   isLowerCase = (str) => str === str.toLowerCase() && str !== ".";

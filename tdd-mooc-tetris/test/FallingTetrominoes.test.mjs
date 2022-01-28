@@ -14,10 +14,16 @@ describe("Falling tetrominoes - Tetromino T_SHAPE", () => {
     board = new Board(10, 6);
   });
 
-  xit("start from the top middle", () => {
+  it("start from the top middle", () => {
     board.drop(Tetromino.T_SHAPE);
 
     const result = board.toString();
+
+    const splitted = result.split("\n");
+
+    for (let row in splitted) {
+      console.log(splitted[row]);
+    }
 
     expect(result).to.equalShape(
       `....T.....
@@ -71,13 +77,6 @@ describe("Falling tetrominoes - Tetromino I_SHAPE", () => {
     board.drop(Tetromino.I_SHAPE);
 
     const result = board.toString();
-    console.log("🚀 ~ file: FallingTetrominoes.test.mjs ~ line 74 ~ it ~ result\n");
-
-    const splitted = result.split("\n");
-
-    for (let row in splitted) {
-      console.log(splitted[row]);
-    }
 
     expect(result).to.equalShape(
       `...IIII...
