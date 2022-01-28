@@ -1,4 +1,5 @@
 import { Block } from "./Block.mjs";
+import { Tetromino } from "./Tetromino.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
 export class Board {
@@ -38,9 +39,28 @@ export class Board {
     }
 
     if (block instanceof Block) {
+      // Simply place the Block to the middle of the first row
       this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
       this.hasFallingBlock = true;
     }
+
+    if (block instanceof Tetromino) {
+      console.log("Tetromino was dropped");
+      // Draw the Tetromino on the board
+      for (let i = 0; i < block.height; i++) {
+        // this.temp = [];
+        for (let j = 0; j < block.width; j++) {
+          // this.temp.push(".");
+          if (block.shape[i][j] !== ".") {
+            this.board[i][j] = "Å";
+          }
+
+        }
+        // this.board.push(this.temp);
+      }
+      console.log("🚀 ~ file: Board.mjs ~ line 56 ~ Board ~ drop ~ this.board", this.board);
+    }
+
 
 
   }
