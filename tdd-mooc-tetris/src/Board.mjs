@@ -74,7 +74,7 @@ export class Board {
   // TODO tests for helper function
   isLowerCase = (str) => str === str.toLowerCase() && str !== ".";
 
-  // TODO refactor to be shorter
+  // TODO refactor to be shorter (divide into smaller functions)
   tick() {
     // Find the currently falling block's coordinates
     let x = -1;
@@ -90,6 +90,23 @@ export class Board {
         }
       }
     }
+    console.log("");
+    console.log("");
+    // eslint-disable-next-line for-direction
+    for (let x_axis = this.height - 1; x_axis >= 0; x_axis--) {
+      // eslint-disable-next-line for-direction
+      for (let y_axis = this.width - 1; y_axis >= 0; y_axis--) {
+        // console.log(this.board[x_axis]);
+        // console.log("?+");
+        if (this.isLowerCase(this.board[x_axis][y_axis])) {
+
+        }
+      }
+    }
+    console.log("");
+    console.log("");
+
+
     // Remove the block from it's previous row
     this.board[y][x] = ".";
     // Check if the block has reached the bottom, stop it if yes
@@ -101,7 +118,7 @@ export class Board {
     else if (this.board[y + 1][x] !== ".") {
       this.board[y][x] = char.toUpperCase();
       this.hasFallingBlock = false;
-      //TODO duplicate code
+      // TODO duplicate code
     } else {
       // Add the block to the row below
       this.board[y + 1][x] = char;
