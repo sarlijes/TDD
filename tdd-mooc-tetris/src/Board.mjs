@@ -51,7 +51,7 @@ export class Board {
       for (let i = 0; i < block.height; i++) {
         for (let j = 0; j < block.width; j++) {
           if (block.shape[i][j] !== ".") {
-            this.board[i][clearance + j] = "T";
+            this.board[i][clearance + j] = block.color;
           }
 
         }
