@@ -45,20 +45,19 @@ export class Board {
     }
 
     if (block instanceof Tetromino) {
-      console.log("Tetromino was dropped");
+      const clearance = 3;
+
       // Draw the Tetromino on the board
       for (let i = 0; i < block.height; i++) {
-        // this.temp = [];
         for (let j = 0; j < block.width; j++) {
-          // this.temp.push(".");
           if (block.shape[i][j] !== ".") {
-            this.board[i][j] = "Å";
+            this.board[i][clearance + j] = "T";
           }
 
         }
         // this.board.push(this.temp);
       }
-      console.log("🚀 ~ file: Board.mjs ~ line 56 ~ Board ~ drop ~ this.board", this.board);
+      // console.log("🚀 ~ file: Board.mjs ~ line 56 ~ Board ~ drop ~ this.board", this.board);
     }
 
 
