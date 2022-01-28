@@ -39,6 +39,7 @@ export class Board {
     }
 
     if (block instanceof Block) {
+
       // Simply place the Block to the middle of the first row
       this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
       this.hasFallingBlock = true;
@@ -46,12 +47,13 @@ export class Board {
 
     if (block instanceof Tetromino) {
       const clearance = 3;
-
+      const startingYPosition = 0;
+      console.log("🚀 ~ file: Board.mjs ~ line 42 ~ Board ~ drop ~ blockshape:", block.shape);
       // Draw the Tetromino on the board
       for (let i = 0; i < block.height; i++) {
         for (let j = 0; j < block.width; j++) {
           if (block.shape[i][j] !== ".") {
-            this.board[i][clearance + j] = block.color;
+            this.board[startingYPosition][clearance + j] = block.color;
           }
 
         }

@@ -8,7 +8,7 @@ function fallToBottom(board) {
   }
 }
 
-describe("Falling tetrominoes", () => {
+describe("Falling tetrominoes - Tetromino T_SHAPE", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
@@ -17,7 +17,9 @@ describe("Falling tetrominoes", () => {
   xit("start from the top middle", () => {
     board.drop(Tetromino.T_SHAPE);
 
-    expect(board.toString()).to.equalShape(
+    const result = board.toString();
+
+    expect(result).to.equalShape(
       `....T.....
        ...TTT....
        ..........
@@ -54,6 +56,36 @@ describe("Falling tetrominoes", () => {
        ...TTT....
        ....T.....
        ...TTT....`
+    );
+  });
+});
+
+
+describe("Falling tetrominoes - Tetromino I_SHAPE", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.I_SHAPE);
+
+    const result = board.toString();
+    console.log("🚀 ~ file: FallingTetrominoes.test.mjs ~ line 74 ~ it ~ result\n");
+
+    const splitted = result.split("\n");
+
+    for (let row in splitted) {
+      console.log(splitted[row]);
+    }
+
+    expect(result).to.equalShape(
+      `...IIII...
+       ..........
+       ..........
+       ..........
+       ..........
+       ..........`
     );
   });
 });
