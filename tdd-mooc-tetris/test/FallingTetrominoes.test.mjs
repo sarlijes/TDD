@@ -8,7 +8,7 @@ function fallToBottom(board) {
   }
 }
 
-describe("Falling tetrominoes - Tetromino T_SHAPE", () => {
+describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
@@ -67,7 +67,7 @@ describe("Falling tetrominoes - Tetromino T_SHAPE", () => {
 });
 
 
-describe("Falling tetrominoes - Tetromino I_SHAPE", () => {
+describe("I_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
@@ -81,6 +81,28 @@ describe("Falling tetrominoes - Tetromino I_SHAPE", () => {
     expect(result).to.equalShape(
       `...IIII...
        ..........
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+});
+
+describe("O_SHAPE Tetromino: Falling tetrominoes", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.O_SHAPE);
+
+    const result = board.toString();
+
+    expect(result).to.equalShape(
+      `....OO....
+       ....OO....
        ..........
        ..........
        ..........

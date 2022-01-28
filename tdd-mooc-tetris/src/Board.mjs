@@ -62,6 +62,9 @@ export class Board {
               this.board[startingYPosition][clearance + j] = block.color;
             }
 
+            if (block.shape_enum === "O_SHAPE") {
+              this.board[i][clearance + j] = block.color;
+            }
 
           }
         }
