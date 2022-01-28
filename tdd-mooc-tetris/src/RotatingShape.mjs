@@ -5,6 +5,7 @@ export class RotatingShape {
   shape = [];
   height = 0;
   width = -1;
+  color = "t";
 
   constructor(str) {
     let parts = str.split("\n");

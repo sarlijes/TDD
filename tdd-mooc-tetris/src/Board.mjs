@@ -1,3 +1,4 @@
+import { Block } from "./Block.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
 export class Board {
@@ -30,16 +31,18 @@ export class Board {
     return twoDimensionalArraytoString(this.board);
   }
 
+  // lowercase char is considered as a moving block
   drop(block) {
     if (this.hasFallingBlock) {
       throw "already falling";
     }
-    // console.log("block ", block);
-    this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
-    // lowercase char is considered as a moving block
-    this.hasFallingBlock = true;
-    //console.log("board after dropping:")
-    //console.log(this.board)
+
+    if (block instanceof Block) {
+      this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
+      this.hasFallingBlock = true;
+    }
+
+
   }
   // TODO tests for helper function
   isLowerCase = (str) => str === str.toLowerCase() && str !== ".";
