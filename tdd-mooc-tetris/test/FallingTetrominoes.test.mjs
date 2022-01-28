@@ -8,6 +8,16 @@ function fallToBottom(board) {
   }
 }
 
+// TODO remove after everything works
+// eslint-disable-next-line no-unused-vars
+function printHelper(result) {
+  const splitted = result.split("\n");
+
+  for (let row in splitted) {
+    console.log(splitted[row]);
+  }
+}
+
 describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;
   beforeEach(() => {
@@ -18,12 +28,6 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
     board.drop(Tetromino.T_SHAPE);
 
     const result = board.toString();
-
-    const splitted = result.split("\n");
-
-    for (let row in splitted) {
-      console.log(splitted[row]);
-    }
 
     expect(result).to.equalShape(
       `....T.....
