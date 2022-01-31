@@ -107,7 +107,7 @@ describe("Tetrominoes - list occupied Points", () => {
     expect(occupied.length).to.equal(0);
   });
 
-  xit("One Tetromino has been dropped to the bottom - correct amount of Points", () => {
+  it("One T_SHAPE Tetromino has been dropped to the bottom - correct amount of Points", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
@@ -115,15 +115,28 @@ describe("Tetrominoes - list occupied Points", () => {
     expect(occupied.length).to.equal(4);
   });
 
-  // it("One Tetromino has been dropped to the bottom - correct coordinates", () => {
-  //   let board = new Board(3, 3);
-  //   board.drop(new Block("xs"));
-  //   fallToBottom(board);
+  it("One T_SHAPE Tetromino has been dropped to the bottom - correct coordinates", () => {
+    let board = new Board(3, 3);
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
 
-  //   const occupied = listOccupied(board);
-  //   expect(occupied[0].x).to.equal(1);
-  //   expect(occupied[0].y).to.equal(2);
-  // });
+    // ...
+    // .T.
+    // TTT
+
+    const occupied = listOccupied(board);
+    expect(occupied[0].x).to.equal(1);
+    expect(occupied[0].y).to.equal(1);
+
+    expect(occupied[1].x).to.equal(0);
+    expect(occupied[1].y).to.equal(2);
+
+    expect(occupied[2].x).to.equal(1);
+    expect(occupied[2].y).to.equal(2);
+
+    expect(occupied[3].x).to.equal(2);
+    expect(occupied[3].y).to.equal(2);
+  });
 });
 
 

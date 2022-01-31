@@ -45,7 +45,10 @@ export class Board {
     }
 
     if (block instanceof Tetromino) {
-      const clearance = 3;
+      let clearance = Math.floor(this.width / 3);
+      if (clearance === 1) {
+        clearance = 0;
+      }
       const startingYPosition = 0;
 
       // Draw the Tetromino on the board

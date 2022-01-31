@@ -53,7 +53,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
     );
   });
 
-  xit("stop when they land on another block", () => {
+  it("stop when they land on another block", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
     board.drop(Tetromino.T_SHAPE);
@@ -113,4 +113,35 @@ describe("O_SHAPE Tetromino: Falling tetrominoes", () => {
        ..........`
     );
   });
+});
+
+describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(3, 3);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.T_SHAPE);
+
+    const result = board.toString();
+    expect(result).to.equalShape(
+      `.T.
+       TTT
+       ...`
+    );
+  });
+
+  xit("stop when they hit the bottom", () => {
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+
+    const result = board.toString();
+    expect(result).to.equalShape(
+      `...
+      .T.
+      TTT`
+    );
+  });
+
 });
