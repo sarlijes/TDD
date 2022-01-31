@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { listOccupied, listMoving, twoDimensionalArraytoString } from "../src/Utils.mjs";
+import { listOccupied, listMoving, twoDimensionalArraytoString, overlaps } from "../src/Utils.mjs";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
@@ -166,4 +166,52 @@ describe("List Points of moving items on a board", () => {
   //   expect(occupied[0].x).to.equal(1);
   //   expect(occupied[0].y).to.equal(2);
   // });
+});
+
+describe("Points list overlaps", () => {
+
+  let list1;
+  let list2;
+
+  beforeEach(() => {
+    list1 = [];
+    list2 = [];
+  });
+
+  it("Empty", () => {
+    const overlap = overlaps(list1, list2);
+    expect(overlap).to.equal(false);
+  });
+
+  it("Different Points in both", () => {
+    list1.push({ x: 0, y: 0 });
+    list2.push({ x: 55, y: 55 });
+
+    const overlap = overlaps(list1, list2);
+    expect(overlap).to.equal(false);
+  });
+
+  it("Two same Points in both", () => {
+    list1.push({ x: 0, y: 0 });
+    list2.push({ x: 0, y: 0 });
+    list2.push({ x: 55, y: 55 });
+
+    const overlap = overlaps(list1, list2);
+    expect(overlap).to.equal(true);
+  });
+
+  it("Several same Points in both", () => {
+    list1.push({ x: 0, y: 0 });
+    list2.push({ x: 0, y: 0 });
+
+    list1.push({ x: 3, y: 9 });
+    list2.push({ x: 3, y: 9 });
+
+    list1.push({ x: 2, y: 5 });
+    list2.push({ x: 0, y: 5 });
+
+    const overlap = overlaps(list1, list2);
+    expect(overlap).to.equal(true);
+  });
+
 });

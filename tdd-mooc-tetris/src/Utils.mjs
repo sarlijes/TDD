@@ -49,4 +49,18 @@ function listMoving(obj) {
   return moving;
 }
 
-export { twoDimensionalArraytoString, listOccupied, isUpperCase, isLowerCase, listMoving };
+function overlaps(list1, list2) {
+  return findOverlappingPoints(list1, list2).length > 0;
+}
+
+function findOverlappingPoints(list1, list2) {
+  let comparator = function (a, b) {
+    return a.x === b.x && a.y === b.y;
+  };
+  return list1.filter(a => list2.some(b => comparator(a, b)));
+}
+
+export {
+  twoDimensionalArraytoString, listOccupied, isUpperCase,
+  isLowerCase, listMoving, overlaps
+};
