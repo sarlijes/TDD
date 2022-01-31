@@ -260,6 +260,43 @@ describe("New potential positions of moving items", () => {
     // ..........
     // ..........
     // ..........
+  });
+});
 
+describe("New potential positions of moving items - corner cases regarding the bottom of the board", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(5, 5);
+  });
+
+  it("Basic X block", () => {
+    board.drop(new Block("x"));
+    board.tick();
+    board.tick();
+    board.tick();
+    board.tick();
+    // .....
+    // .....
+    // .....
+    // .....
+    // ..X..
+    let newPosition = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    expect(newPosition.length).to.equal(0);
+  });
+
+  // TODO pending implementation
+  xit("T tetramino", () => {
+    board = new Board(10, 6);
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+    let newPosition = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    expect(newPosition.length).to.equal(0);
+
+    // ..........
+    // ..........
+    // ..........
+    // ..........
+    // ....T.....
+    // ...TTT....
   });
 });

@@ -60,13 +60,18 @@ function findOverlappingPoints(list1, list2) {
   return list1.filter(a => list2.some(b => comparator(a, b)));
 }
 
-// This does not take other blocks into account - only the potential
-function getPotentialNewPositionOfMovingItem(coordinatesOfMovingItem, board) {
+// This does not take other blocks into account -
+// only the potential
+function getPotentialNewPositionOfMovingItem(
+  coordinatesOfMovingItem, board) {
   let potentialNewPositionOfMovingItem = [];
 
   coordinatesOfMovingItem.forEach((point) => {
-    console.log(point);
-    potentialNewPositionOfMovingItem.push({ x: point.x, y: point.y + 1 });
+    // Check the bottom of the board - item cannot go beneath it
+    if (point.y + 1 < board.height) {
+      potentialNewPositionOfMovingItem.push({ x: point.x, y: point.y + 1 });
+    }
+
   });
   return potentialNewPositionOfMovingItem;
 }
