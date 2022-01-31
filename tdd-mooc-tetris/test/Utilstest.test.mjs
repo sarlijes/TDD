@@ -1,7 +1,10 @@
 import { expect } from "chai";
 import {
-  listOccupied, listMoving, twoDimensionalArraytoString,
-  overlaps, getPotentialNewPositionOfMovingItem
+  listOccupied,
+  listMoving,
+  twoDimensionalArraytoString,
+  overlaps,
+  getPotentialNewCoordinatesOfMovingItem
 } from "../src/Utils.mjs";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
@@ -239,7 +242,7 @@ describe("New potential positions of moving items", () => {
 
   it("Basic X block", () => {
     board.drop(new Block("x"));
-    let tickedOnce = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
     expect(tickedOnce.length).to.equal(1);
     expect(tickedOnce[0].x).to.equal(2);
     expect(tickedOnce[0].y).to.equal(1);
@@ -248,7 +251,7 @@ describe("New potential positions of moving items", () => {
   it("T tetramino", () => {
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
-    let tickedOnce = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
     expect(tickedOnce.length).to.equal(4);
 
     expect(tickedOnce[0].x).to.equal(4);
@@ -292,7 +295,7 @@ describe("New potential positions of moving items - corner cases regarding the b
     // .....
     // .....
     // ..X..
-    let newPosition = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    let newPosition = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
     expect(newPosition.length).to.equal(0);
   });
 
@@ -301,7 +304,7 @@ describe("New potential positions of moving items - corner cases regarding the b
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
-    let newPosition = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    let newPosition = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
     expect(newPosition.length).to.equal(0);
 
     // ..........

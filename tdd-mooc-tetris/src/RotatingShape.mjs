@@ -45,4 +45,9 @@ export class RotatingShape {
     }
     return new RotatingShape(twoDimensionalArraytoString(rotated));
   }
+
+  moveLeft() {
+
+  }
+
 }

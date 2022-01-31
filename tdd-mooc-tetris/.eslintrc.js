@@ -33,6 +33,7 @@ module.exports = {
     ],
     "arrow-spacing": [
       "error", { "before": true, "after": true }
-    ]
+    ],
+    "max-len": ["error", { "code": 80, "tabWidth": 2 }]
   }
 };

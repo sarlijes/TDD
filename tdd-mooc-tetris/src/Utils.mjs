@@ -62,7 +62,7 @@ function findOverlappingPoints(list1, list2) {
 
 // This does not take other blocks into account -
 // only the potential
-function getPotentialNewPositionOfMovingItem(
+function getPotentialNewCoordinatesOfMovingItem(
   coordinatesOfMovingItem, board) {
   let potentialNewPositionOfMovingItem = [];
 
@@ -77,6 +77,11 @@ function getPotentialNewPositionOfMovingItem(
 }
 
 export {
-  twoDimensionalArraytoString, listOccupied, isUpperCase,
-  isLowerCase, listMoving, overlaps, getPotentialNewPositionOfMovingItem
+  twoDimensionalArraytoString,
+  listOccupied,
+  isUpperCase,
+  isLowerCase,
+  listMoving,
+  overlaps,
+  getPotentialNewCoordinatesOfMovingItem
 };

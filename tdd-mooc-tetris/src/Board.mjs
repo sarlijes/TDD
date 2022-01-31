@@ -1,6 +1,13 @@
 import { Block } from "./Block.mjs";
 import { Tetromino } from "./Tetromino.mjs";
-import { twoDimensionalArraytoString, isLowerCase, listOccupied, listMoving, overlaps, getPotentialNewPositionOfMovingItem } from "./Utils.mjs";
+import {
+  twoDimensionalArraytoString,
+  isLowerCase,
+  listOccupied,
+  listMoving,
+  overlaps,
+  getPotentialNewCoordinatesOfMovingItem
+} from "./Utils.mjs";
 
 export class Board {
   width;
@@ -81,13 +88,16 @@ export class Board {
     // 1. Find the coordinates of the already occupied spaces of the board
     const occupied = listOccupied(this);
 
-    // 2. Investigate whether the current block or Tetramino could be ticked or not
-    const potentialNewPositionOfMovingItem =
-      getPotentialNewPositionOfMovingItem(coordinatesOfMovingItems, this);
+    // 2. Investigate whether the current moving item could be ticked or not
+    const potentialNewCoordinatesOfMovingItem =
+      getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this);
 
-    const newPotentialPositionWasFound = potentialNewPositionOfMovingItem.length > 0;
-    const newPotentialPositionIsSafe = !overlaps(potentialNewPositionOfMovingItem, occupied);
-    const allItemsCanBeRepositioned = potentialNewPositionOfMovingItem.length === coordinatesOfMovingItems.length;
+    const newPotentialPositionWasFound =
+      potentialNewCoordinatesOfMovingItem.length > 0;
+    const newPotentialPositionIsSafe =
+      !overlaps(potentialNewCoordinatesOfMovingItem, occupied);
+    const allItemsCanBeRepositioned = potentialNewCoordinatesOfMovingItem.length
+      === coordinatesOfMovingItems.length;
 
     const couldBeTicked = newPotentialPositionWasFound &&
       newPotentialPositionIsSafe &&
@@ -108,16 +118,16 @@ export class Board {
     }
 
     if (couldBeTicked) {
-      for (let i in potentialNewPositionOfMovingItem) {
-        let point = potentialNewPositionOfMovingItem[i];
+      for (let i in potentialNewCoordinatesOfMovingItem) {
+        let point = potentialNewCoordinatesOfMovingItem[i];
         let new_y = point.y;
         let new_x = point.x;
         // Remove the block from it's current place
         this.board[new_y - 1][new_x] = ".";
       }
 
-      for (let i in potentialNewPositionOfMovingItem) {
-        let point = potentialNewPositionOfMovingItem[i];
+      for (let i in potentialNewCoordinatesOfMovingItem) {
+        let point = potentialNewCoordinatesOfMovingItem[i];
         let new_y = point.y;
         let new_x = point.x;
         // Add the block to the new position
