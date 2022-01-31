@@ -35,7 +35,7 @@ export class Board {
   // lowercase char is considered as a moving block
   drop(block) {
     if (this.hasFallingBlock) {
-      throw "already falling";
+      throw new Error("already falling");
     }
 
     if (block instanceof Block) {
@@ -74,18 +74,13 @@ export class Board {
 
   // TODO refactor to be shorter
   tick() {
-
     // 0. Find the coordinates of the items currently moving
-
     const coordinatesOfMovingItems = listMoving(this);
 
-
     // 1. Find the coordinates of the already occupied spaces of the board
-
     const occupied = listOccupied(this);
 
     // 2. Investigate whether the current block or Tetramino could be ticked or not
-
     const potentialNewPositionOfMovingItem =
       getPotentialNewPositionOfMovingItem(coordinatesOfMovingItems, this);
 
@@ -133,7 +128,5 @@ export class Board {
       this.board[y + 1][x] = char;
     }
 
-    // console.log("board after dropping:")
-    // console.log(this.toString())
   }
 }
