@@ -77,20 +77,20 @@ export class Board {
 
     // 0. Find the coordinates of the items currently moving
 
-    const coordinatesOfMovingItem = listMoving(this.board);
+    const coordinatesOfMovingItems = listMoving(this);
 
 
     // 1. Find the coordinates of the already occupied spaces of the board
 
-    const occupied = listOccupied(this.board);
+    const occupied = listOccupied(this);
 
     // 2. Investigate whether the current block or Tetramino could be ticked or not
 
-    // const potentialNewPositionOfMovingItem =
-    //   getPotentialNewPositionOfMovingItem(coordinatesOfMovingItem, this);
+    const potentialNewPositionOfMovingItem =
+      getPotentialNewPositionOfMovingItem(coordinatesOfMovingItems, this);
 
-    // const couldBeTicked = !overlaps(potentialNewPositionOfMovingItem, occupied);
-    // console.log("🚀 ~ file: Board.mjs ~ line 90 ~ Board ~ tick ~ couldBeTicked", couldBeTicked);
+    const couldBeTicked = !overlaps(potentialNewPositionOfMovingItem, occupied);
+    console.log("🚀 ~ file: Board.mjs ~ line 90 ~ Board ~ tick ~ couldBeTicked", couldBeTicked);
 
     // 3b. If yes, tick
 
