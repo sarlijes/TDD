@@ -8,16 +8,28 @@ function fallToBottom(board) {
   }
 }
 
-describe("Falling tetrominoes", () => {
+// TODO remove after everything works
+// eslint-disable-next-line no-unused-vars
+function printHelper(result) {
+  const splitted = result.split("\n");
+
+  for (let row in splitted) {
+    console.log(splitted[row]);
+  }
+}
+
+describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;
   beforeEach(() => {
     board = new Board(10, 6);
   });
 
-  xit("start from the top middle", () => {
+  it("start from the top middle", () => {
     board.drop(Tetromino.T_SHAPE);
 
-    expect(board.toString()).to.equalShape(
+    const result = board.toString();
+
+    expect(result).to.equalShape(
       `....T.....
        ...TTT....
        ..........
@@ -26,8 +38,8 @@ describe("Falling tetrominoes", () => {
        ..........`
     );
   });
-
-  xit("stop when they hit the bottom", () => {
+  // IN PROGRESS
+  it("stop when they hit the bottom", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
@@ -41,7 +53,7 @@ describe("Falling tetrominoes", () => {
     );
   });
 
-  xit("stop when they land on another block", () => {
+  it("stop when they land on another block", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
     board.drop(Tetromino.T_SHAPE);
@@ -56,4 +68,80 @@ describe("Falling tetrominoes", () => {
        ...TTT....`
     );
   });
+});
+
+
+describe("I_SHAPE Tetromino: Falling tetrominoes", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.I_SHAPE);
+
+    const result = board.toString();
+
+    expect(result).to.equalShape(
+      `...IIII...
+       ..........
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+});
+
+describe("O_SHAPE Tetromino: Falling tetrominoes", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.O_SHAPE);
+
+    const result = board.toString();
+
+    expect(result).to.equalShape(
+      `....OO....
+       ....OO....
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+});
+
+describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(3, 3);
+  });
+
+  it("start from the top middle", () => {
+    board.drop(Tetromino.T_SHAPE);
+
+    const result = board.toString();
+    expect(result).to.equalShape(
+      `.T.
+       TTT
+       ...`
+    );
+  });
+
+  it("stop when they hit the bottom", () => {
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+
+    const result = board.toString();
+    expect(result).to.equalShape(
+      `...
+      .T.
+      TTT`
+    );
+  });
+
 });

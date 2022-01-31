@@ -1,10 +1,10 @@
-import { Tetromino } from "./Tetromino.mjs";
+import { Tetromino } from "./Tetromino.mjs"; // TODO this seems to cause issues as Tetromino extends RotatingShape
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
 export class RotatingShape {
   shape = [];
   height = 0;
-  width = -1;
+  width = -1; // TODO
 
   constructor(str) {
     let parts = str.split("\n");
