@@ -1,6 +1,6 @@
 import { Block } from "./Block.mjs";
 import { Tetromino } from "./Tetromino.mjs";
-import { twoDimensionalArraytoString, isLowerCase, isUpperCase } from "./Utils.mjs";
+import { twoDimensionalArraytoString, isLowerCase, isUpperCase, listOccupied } from "./Utils.mjs";
 
 export class Board {
   width;
@@ -74,6 +74,19 @@ export class Board {
 
   // TODO refactor to be shorter
   tick() {
+
+    // 0. Find the coordinates of the items currently moving
+
+    // 1. Find the coordinates of the already occupied spaces of the board
+
+    const occupied = listOccupied(this.board);
+
+    // 2. Investigate whether the current block or Tetramino could be ticked or not
+
+    // 3b. If yes, tick
+
+    // 3b. If not, stop the item
+
     // Find the currently falling block's coordinates
     let x = -1;
     let y = -1;

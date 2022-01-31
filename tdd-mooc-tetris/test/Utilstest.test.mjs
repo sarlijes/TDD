@@ -99,12 +99,10 @@ describe("Tetrominoes - list occupied Points", () => {
     board = new Board(10, 6);
   });
 
-  xit("No Tetromino has been dropped", () => {
+  it("No Tetromino has been dropped", () => {
     const occupied = listOccupied(board);
     expect(occupied.length).to.equal(0);
   });
-
-
 
   xit("One Tetromino has been dropped to the bottom - correct amount of Points", () => {
     board.drop(Tetromino.T_SHAPE);
