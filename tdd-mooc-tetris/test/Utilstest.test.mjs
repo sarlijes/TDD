@@ -166,22 +166,21 @@ describe("List Points of moving items on a board", () => {
     expect(moving.length).to.equal(0);
   });
 
-  xit("One Tetramino has been dropped to the bottom - correct amount of moving Points", () => {
+  it("One Tetramino has been dropped to the bottom - correct amount of moving Points", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
     const moving = listMoving(board);
     expect(moving.length).to.equal(0);
   });
 
-  // it("One Tetromino has been dropped to the bottom - correct coordinates", () => {
-  //   let board = new Board(3, 3);
-  //   board.drop(new Block("xs"));
-  //   fallToBottom(board);
+  it("One Tetromino has been dropped to the bottom - correct coordinates", () => {
+    let board = new Board(3, 3);
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
 
-  //   const occupied = listOccupied(board);
-  //   expect(occupied[0].x).to.equal(1);
-  //   expect(occupied[0].y).to.equal(2);
-  // });
+    const moving = listMoving(board);
+    expect(moving.length).to.equal(0);
+  });
 });
 
 describe("Points list overlaps", () => {
@@ -298,7 +297,7 @@ describe("New potential positions of moving items - corner cases regarding the b
   });
 
   // TODO pending implementation
-  xit("T tetramino", () => {
+  it("T tetramino", () => {
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
