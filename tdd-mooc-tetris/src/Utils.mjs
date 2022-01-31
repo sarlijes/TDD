@@ -15,6 +15,11 @@ function twoDimensionalArraytoString(arr) {
 function isUpperCase(str) {
   return str === str.toUpperCase() && str !== ".";
 }
+// TODO tests for helper functions
+
+function isLowerCase(str) {
+  return str === str.toLowerCase() && str !== ".";
+}
 
 function listOccupied(obj) {
 
@@ -30,4 +35,4 @@ function listOccupied(obj) {
   return occupied;
 }
 
-export { twoDimensionalArraytoString, listOccupied };
+export { twoDimensionalArraytoString, listOccupied, isUpperCase, isLowerCase };

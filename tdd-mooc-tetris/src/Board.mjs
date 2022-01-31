@@ -1,6 +1,6 @@
 import { Block } from "./Block.mjs";
 import { Tetromino } from "./Tetromino.mjs";
-import { twoDimensionalArraytoString } from "./Utils.mjs";
+import { twoDimensionalArraytoString, isLowerCase, isUpperCase } from "./Utils.mjs";
 
 export class Board {
   width;
@@ -71,8 +71,6 @@ export class Board {
       }
     }
   }
-  // TODO tests for helper function
-  isLowerCase = (str) => str === str.toLowerCase() && str !== ".";
 
   // TODO refactor to be shorter
   tick() {
@@ -83,7 +81,7 @@ export class Board {
 
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
-        if (this.isLowerCase(this.board[i][j])) {
+        if (isLowerCase(this.board[i][j])) {
           y = i;
           x = j;
           char = this.board[i][j];
