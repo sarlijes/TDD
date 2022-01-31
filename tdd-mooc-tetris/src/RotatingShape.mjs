@@ -48,8 +48,6 @@ export class RotatingShape {
         const result = new Tetromino(rotated.shape, 0, 1, "O_SHAPE");
         return result;
       }
-      // console.log("🚀 ~ calling rotateRight 3 for", this.shape_enum);
-
     }
     return this.rotateRight().rotateRight().rotateRight();
   }

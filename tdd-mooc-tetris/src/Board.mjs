@@ -17,8 +17,6 @@ export class Board {
       }
       this.board.push(this.temp);
     }
-    //console.log("board now:")
-    //console.log(this.board)
     this.hasFallingBlock = false;
   }
 
@@ -34,12 +32,9 @@ export class Board {
     if (this.hasFallingBlock) {
       throw "already falling";
     }
-    // console.log("block ", block);
     this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     // lowercase char is considered as a moving block
     this.hasFallingBlock = true;
-    //console.log("board after dropping:")
-    //console.log(this.board)
   }
   // TODO tests for helper function
   isLowerCase = (str) => str === str.toLowerCase() && str !== ".";
@@ -76,8 +71,5 @@ export class Board {
       // Add the block to the row below
       this.board[y + 1][x] = char;
     }
-
-    // console.log("board after dropping:")
-    // console.log(this.toString())
   }
 }
