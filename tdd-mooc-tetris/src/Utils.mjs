@@ -35,4 +35,18 @@ function listOccupied(obj) {
   return occupied;
 }
 
-export { twoDimensionalArraytoString, listOccupied, isUpperCase, isLowerCase };
+function listMoving(obj) {
+
+  let board = obj.board;
+  let moving = [];
+  for (let i = 0; i < obj.height; i++) {
+    for (let j = 0; j < obj.width; j++) {
+      if (isLowerCase(board[i][j])) {
+        moving.push({ x: j, y: i });
+      }
+    }
+  }
+  return moving;
+}
+
+export { twoDimensionalArraytoString, listOccupied, isUpperCase, isLowerCase, listMoving };
