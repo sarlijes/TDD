@@ -1,6 +1,6 @@
 import { Block } from "./Block.mjs";
 import { Tetromino } from "./Tetromino.mjs";
-import { twoDimensionalArraytoString, isLowerCase, listOccupied, listMoving, overlaps } from "./Utils.mjs";
+import { twoDimensionalArraytoString, isLowerCase, listOccupied, listMoving, overlaps, getPotentialNewPositionOfMovingItem } from "./Utils.mjs";
 
 export class Board {
   width;
@@ -77,7 +77,8 @@ export class Board {
 
     // 0. Find the coordinates of the items currently moving
 
-    const moving = listMoving(this.board);
+    const coordinatesOfMovingItem = listMoving(this.board);
+
 
     // 1. Find the coordinates of the already occupied spaces of the board
 
@@ -85,7 +86,11 @@ export class Board {
 
     // 2. Investigate whether the current block or Tetramino could be ticked or not
 
-    const couldBeTicked = overlaps(moving, occupied);
+    // const potentialNewPositionOfMovingItem =
+    //   getPotentialNewPositionOfMovingItem(coordinatesOfMovingItem, this);
+
+    // const couldBeTicked = !overlaps(potentialNewPositionOfMovingItem, occupied);
+    // console.log("🚀 ~ file: Board.mjs ~ line 90 ~ Board ~ tick ~ couldBeTicked", couldBeTicked);
 
     // 3b. If yes, tick
 

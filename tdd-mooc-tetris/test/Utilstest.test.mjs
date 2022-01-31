@@ -1,5 +1,8 @@
 import { expect } from "chai";
-import { listOccupied, listMoving, twoDimensionalArraytoString, overlaps } from "../src/Utils.mjs";
+import {
+  listOccupied, listMoving, twoDimensionalArraytoString,
+  overlaps, getPotentialNewPositionOfMovingItem
+} from "../src/Utils.mjs";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
@@ -150,7 +153,7 @@ describe("List Points of moving items on a board", () => {
     expect(moving.length).to.equal(0);
   });
 
-  it("One Tetramino has been dropped to the bottom - correct amount of moving Points", () => {
+  xit("One Tetramino has been dropped to the bottom - correct amount of moving Points", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
     const moving = listMoving(board);
@@ -214,4 +217,49 @@ describe("Points list overlaps", () => {
     expect(overlap).to.equal(true);
   });
 
+});
+
+describe("New potential positions of moving items", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(5, 5);
+  });
+
+  it("Basic X block", () => {
+    board.drop(new Block("x"));
+    let tickedOnce = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    expect(tickedOnce.length).to.equal(1);
+    expect(tickedOnce[0].x).to.equal(2);
+    expect(tickedOnce[0].y).to.equal(1);
+  });
+
+  it("T tetramino", () => {
+    board = new Board(10, 6);
+    board.drop(Tetromino.T_SHAPE);
+    let tickedOnce = getPotentialNewPositionOfMovingItem(listMoving(board), board);
+    expect(tickedOnce.length).to.equal(4);
+
+    expect(tickedOnce[0].x).to.equal(4);
+    expect(tickedOnce[0].y).to.equal(1);
+
+    expect(tickedOnce[1].x).to.equal(3);
+    expect(tickedOnce[1].y).to.equal(2);
+
+    expect(tickedOnce[2].x).to.equal(4);
+    expect(tickedOnce[2].y).to.equal(2);
+
+    expect(tickedOnce[3].x).to.equal(5);
+    expect(tickedOnce[3].y).to.equal(2);
+
+    //       (4,1)
+    // (3,2) (4,2) (5,2)
+
+    // ..........
+    // ....T.....
+    // ...TTT....
+    // ..........
+    // ..........
+    // ..........
+
+  });
 });
