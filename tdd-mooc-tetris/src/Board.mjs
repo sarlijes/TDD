@@ -84,49 +84,51 @@ export class Board {
     const potentialNewPositionOfMovingItem =
       getPotentialNewPositionOfMovingItem(coordinatesOfMovingItems, this);
 
-    const couldBeTicked = !overlaps(potentialNewPositionOfMovingItem, occupied);
-    console.log("🚀 ~ file: Board.mjs ~ line 90 ~ Board ~ tick ~ couldBeTicked", couldBeTicked);
+    const couldBeTicked = potentialNewPositionOfMovingItem.length !== 0 &&
+      !overlaps(potentialNewPositionOfMovingItem, occupied);
 
     // 3b. If yes, tick
-
     // 3b. If not, stop the item
 
-    // Find the currently falling block's coordinates
-    let x = -1;
-    let y = -1;
+    // Find the currently falling block's char
     let char = "";
-
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         if (isLowerCase(this.board[i][j])) {
-          y = i;
-          x = j;
           char = this.board[i][j];
         }
       }
     }
 
-    // No moving block was found, return
-    if (x === -1 || y === -1) {
-      return;
-    }
+    if (couldBeTicked) {
+      for (let i in potentialNewPositionOfMovingItem) {
+        let point = potentialNewPositionOfMovingItem[i];
+        let new_y = point.y;
+        let new_x = point.x;
+        // Remove the block from it's current place
+        this.board[new_y - 1][new_x] = ".";
+      }
 
-    // Remove the block from it's previous row
-    this.board[y][x] = ".";
-    // Check if the block has reached the bottom, stop it if yes
-    if (typeof this.board[y + 1] === "undefined") {
-      this.board[y][x] = char.toUpperCase();
-      this.hasFallingBlock = false;
-    }
-    // Check if the block can drop (the space is free)
-    else if (this.board[y + 1][x] !== ".") {
-      this.board[y][x] = char.toUpperCase();
-      this.hasFallingBlock = false;
-      //TODO duplicate code
+      for (let i in potentialNewPositionOfMovingItem) {
+        let point = potentialNewPositionOfMovingItem[i];
+        let new_y = point.y;
+        let new_x = point.x;
+        // Add the block to the new position
+        this.board[new_y][new_x] = char;
+      }
+
     } else {
-      // Add the block to the row below
-      this.board[y + 1][x] = char;
-    }
+      // Board cannot be ticked (= moving item cannot go downwards)
+      // Stop possible moving items, set hasFalling to false
+      for (let i = 0; i < this.height; i++) {
+        for (let j = 0; j < this.width; j++) {
+          if (isLowerCase(this.board[i][j])) {
+            this.board[i][j] = char.toUpperCase();
+            this.hasFallingBlock = false;
+          }
+        }
+      }
 
+    }
   }
 }
