@@ -42,7 +42,6 @@ export class Board {
 
       // Simply place the Block to the middle of the first row
       this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
-      this.hasFallingBlock = true;
     }
 
     if (block instanceof Tetromino) {
@@ -70,6 +69,7 @@ export class Board {
         }
       }
     }
+    this.hasFallingBlock = true;
   }
 
   // TODO refactor to be shorter
@@ -84,8 +84,14 @@ export class Board {
     const potentialNewPositionOfMovingItem =
       getPotentialNewPositionOfMovingItem(coordinatesOfMovingItems, this);
 
-    const couldBeTicked = potentialNewPositionOfMovingItem.length !== 0 &&
-      !overlaps(potentialNewPositionOfMovingItem, occupied);
+    const newPotentialPositionWasFound = potentialNewPositionOfMovingItem.length > 0;
+    const newPotentialPositionIsSafe = !overlaps(potentialNewPositionOfMovingItem, occupied);
+    const allItemsCanBeRepositioned = potentialNewPositionOfMovingItem.length === coordinatesOfMovingItems.length;
+
+    const couldBeTicked = newPotentialPositionWasFound &&
+      newPotentialPositionIsSafe &&
+      allItemsCanBeRepositioned;
+
 
     // 3b. If yes, tick
     // 3b. If not, stop the item
