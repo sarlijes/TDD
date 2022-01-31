@@ -82,29 +82,10 @@ export class Board {
 
   // TODO refactor to be shorter
   tick() {
-    // 0. Find the coordinates of the items currently moving
-    const coordinatesOfMovingItems = listMoving(this);
-
-    // 1. Find the coordinates of the already occupied spaces of the board
-    const occupied = listOccupied(this);
-
-    // 2. Investigate whether the current moving item could be ticked or not
-    const potentialNewCoordinatesOfMovingItem =
-      getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this);
-
-    const newPotentialPositionWasFound =
-      potentialNewCoordinatesOfMovingItem.length > 0;
-    const newPotentialPositionIsSafe =
-      !overlaps(potentialNewCoordinatesOfMovingItem, occupied);
-    const allItemsCanBeRepositioned = potentialNewCoordinatesOfMovingItem.length
-      === coordinatesOfMovingItems.length;
-
-    const couldBeTicked = newPotentialPositionWasFound &&
-      newPotentialPositionIsSafe &&
-      allItemsCanBeRepositioned;
-
-    // 3b. If yes, tick
-    // 3b. If not, stop the item
+    const { couldBeMoved,
+      coordinatesOfMovingItems,
+      potentialNewCoordinatesOfMovingItem
+    } = this.couldBeMoved("down");
 
     // Find the currently falling block's char
     let char = "";
@@ -112,17 +93,19 @@ export class Board {
       for (let j = 0; j < this.width; j++) {
         if (isLowerCase(this.board[i][j])) {
           char = this.board[i][j];
+          break;
         }
       }
     }
 
-    if (couldBeTicked) {
-      for (let i in potentialNewCoordinatesOfMovingItem) {
-        let point = potentialNewCoordinatesOfMovingItem[i];
-        let new_y = point.y;
-        let new_x = point.x;
+    if (couldBeMoved) {
+      for (let i in coordinatesOfMovingItems) {
+        let point = coordinatesOfMovingItems[i];
+        let old_y = point.y;
+        let old_x = point.x;
+        char = this.board[old_y][old_x];
         // Remove the block from it's current place
-        this.board[new_y - 1][new_x] = ".";
+        this.board[old_y][old_x] = ".";
       }
 
       for (let i in potentialNewCoordinatesOfMovingItem) {
@@ -149,30 +132,10 @@ export class Board {
   }
 
   moveLeft() {
-    // TODO duplicate code fragment starts
-    // 0. Find the coordinates of the items currently moving
-    const coordinatesOfMovingItems = listMoving(this);
 
-    // 1. Find the coordinates of the already occupied spaces of the board
-    const occupied = listOccupied(this);
-
-    // 2. Investigate whether the current moving item could be moved left or not
-    const potentialNewCoordinatesOfMovingItem =
-      getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this,
-        "left"); // exception to duplicate code
-
-    const newPotentialPositionWasFound =
-      potentialNewCoordinatesOfMovingItem.length > 0;
-    const newPotentialPositionIsSafe =
-      !overlaps(potentialNewCoordinatesOfMovingItem, occupied);
-    const allItemsCanBeRepositioned = potentialNewCoordinatesOfMovingItem.length
-      === coordinatesOfMovingItems.length;
-
-    const couldBeMoved = newPotentialPositionWasFound &&
-      newPotentialPositionIsSafe &&
-      allItemsCanBeRepositioned;
-
-    // TODO duplicate code fragment ends
+    const { couldBeMoved,
+      coordinatesOfMovingItems,
+      potentialNewCoordinatesOfMovingItem } = this.couldBeMoved("left");
 
     let char;
 
@@ -194,8 +157,37 @@ export class Board {
         // Add the block to the new position
         this.board[new_y][new_x] = char;
       }
-
     }
   }
 
+
+  couldBeMoved(direction) {
+    // 0. Find the coordinates of the items currently moving item
+    const coordinatesOfMovingItems = listMoving(this);
+
+    // 1. Find the coordinates of the already occupied spaces of the board
+    const occupied = listOccupied(this);
+
+    // 2. Investigate whether the current moving item could be moved left or not
+    const potentialNewCoordinatesOfMovingItem =
+      getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this,
+        direction);
+
+    const newPotentialPositionWasFound =
+      potentialNewCoordinatesOfMovingItem.length > 0;
+    const newPotentialPositionIsSafe =
+      !overlaps(potentialNewCoordinatesOfMovingItem, occupied);
+    const allItemsCanBeRepositioned = potentialNewCoordinatesOfMovingItem.length
+      === coordinatesOfMovingItems.length;
+
+    const couldBeMoved = newPotentialPositionWasFound &&
+      newPotentialPositionIsSafe &&
+      allItemsCanBeRepositioned;
+
+    return {
+      couldBeMoved,
+      coordinatesOfMovingItems,
+      potentialNewCoordinatesOfMovingItem
+    };
+  }
 }
