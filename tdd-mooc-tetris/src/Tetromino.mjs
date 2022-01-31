@@ -67,6 +67,7 @@ export class Tetromino extends RotatingShape {
   toString() {
     return twoDimensionalArraytoString(this.shape);
   }
+
   rotateLeft() {
     if (this.shape_enum !== "undefined") {
       if (this.shape_enum === "I_SHAPE") {
@@ -88,7 +89,7 @@ export class Tetromino extends RotatingShape {
         return result;
       }
     }
-    return this.rotateRight().rotateRight().rotateRight();
+    return super.rotateLeft();
   }
 
   rotateRight() {
@@ -107,18 +108,7 @@ export class Tetromino extends RotatingShape {
         return new Tetromino(this.shape, 0, 1, "O_SHAPE");
       }
     }
-    let rows = this.shape.length;
-
-    let cols = this.shape[0].length;
-
-    let rotated = Array.from({ length: rows }, () => Array(cols).fill("_"));
-
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        rotated[col][rows - 1 - row] = this.shape[row][col];
-      }
-    }
-    return new RotatingShape(twoDimensionalArraytoString(rotated));
+    return super.rotateRight();
   }
 
 }
