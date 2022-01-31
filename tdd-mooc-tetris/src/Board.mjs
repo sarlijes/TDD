@@ -88,7 +88,7 @@ export class Board {
     } = this.couldBeMoved("down");
 
     // Find the currently falling block's char
-    let char = "";
+    let char;
     for (let i = 0; i < this.height; i++) {
       for (let j = 0; j < this.width; j++) {
         if (isLowerCase(this.board[i][j])) {
@@ -99,22 +99,11 @@ export class Board {
     }
 
     if (couldBeMoved) {
-      for (let i in coordinatesOfMovingItems) {
-        let point = coordinatesOfMovingItems[i];
-        let old_y = point.y;
-        let old_x = point.x;
-        char = this.board[old_y][old_x];
-        // Remove the block from it's current place
-        this.board[old_y][old_x] = ".";
-      }
-
-      for (let i in potentialNewCoordinatesOfMovingItem) {
-        let point = potentialNewCoordinatesOfMovingItem[i];
-        let new_y = point.y;
-        let new_x = point.x;
-        // Add the block to the new position
-        this.board[new_y][new_x] = char;
-      }
+      this.moveShape(
+        coordinatesOfMovingItems,
+        char,
+        potentialNewCoordinatesOfMovingItem
+      );
 
     } else {
       // Board cannot be ticked (= moving item cannot go downwards)
@@ -132,7 +121,6 @@ export class Board {
   }
 
   moveLeft() {
-
     const { couldBeMoved,
       coordinatesOfMovingItems,
       potentialNewCoordinatesOfMovingItem } = this.couldBeMoved("left");
@@ -140,26 +128,35 @@ export class Board {
     let char;
 
     if (couldBeMoved) {
-
-      for (let i in coordinatesOfMovingItems) {
-        let point = coordinatesOfMovingItems[i];
-        let old_y = point.y;
-        let old_x = point.x;
-        char = this.board[old_y][old_x];
-        // Remove the block from it's current place
-        this.board[old_y][old_x] = ".";
-      }
-
-      for (let i in potentialNewCoordinatesOfMovingItem) {
-        let point = potentialNewCoordinatesOfMovingItem[i];
-        let new_y = point.y;
-        let new_x = point.x;
-        // Add the block to the new position
-        this.board[new_y][new_x] = char;
-      }
+      this.moveShape(
+        coordinatesOfMovingItems,
+        char,
+        potentialNewCoordinatesOfMovingItem
+      );
     }
   }
 
+
+  moveShape(coordinatesOfMovingItems, char,
+    potentialNewCoordinatesOfMovingItem) {
+
+    for (let i in coordinatesOfMovingItems) {
+      let point = coordinatesOfMovingItems[i];
+      let old_y = point.y;
+      let old_x = point.x;
+      char = this.board[old_y][old_x];
+      // Remove the block from it's current place
+      this.board[old_y][old_x] = ".";
+    }
+
+    for (let i in potentialNewCoordinatesOfMovingItem) {
+      let point = potentialNewCoordinatesOfMovingItem[i];
+      let new_y = point.y;
+      let new_x = point.x;
+      // Add the block to the new position
+      this.board[new_y][new_x] = char;
+    }
+  }
 
   couldBeMoved(direction) {
     // 0. Find the coordinates of the items currently moving item
@@ -168,7 +165,7 @@ export class Board {
     // 1. Find the coordinates of the already occupied spaces of the board
     const occupied = listOccupied(this);
 
-    // 2. Investigate whether the current moving item could be moved left or not
+    // 2. Investigate whether the current moving item could be moved or not
     const potentialNewCoordinatesOfMovingItem =
       getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this,
         direction);
