@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { listOccupied, twoDimensionalArraytoString } from "../src/Utils.mjs";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {
@@ -24,8 +25,14 @@ describe("2-dimensional array to string", () => {
   });
 });
 
-function fallToBottom(board) {
+function blockFallToBottom(board) {
   for (let i = 0; i < board.height; i++) {
+    board.tick();
+  }
+}
+
+function fallToBottom(board) {
+  for (let i = 0; i < 10; i++) {
     board.tick();
   }
 }
@@ -40,7 +47,7 @@ describe("Blocks - list occupied Points", () => {
   it("One block has been dropped to the bottom - correct amount of Points", () => {
     let board = new Board(3, 3);
     board.drop(new Block("x"));
-    fallToBottom(board);
+    blockFallToBottom(board);
 
     const occupied = listOccupied(board);
     expect(occupied.length).to.equal(1);
@@ -48,12 +55,73 @@ describe("Blocks - list occupied Points", () => {
 
   it("One block has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
-    board.drop(new Block("xs"));
-    fallToBottom(board);
+    board.drop(new Block("x"));
+    blockFallToBottom(board);
 
     const occupied = listOccupied(board);
     expect(occupied[0].x).to.equal(1);
     expect(occupied[0].y).to.equal(2);
   });
+
+  it("Two blocks have been dropped to the bottom - correct amount of occupied points", () => {
+    let board = new Board(3, 3);
+    board.drop(new Block("x"));
+    blockFallToBottom(board);
+    board.drop(new Block("x"));
+    blockFallToBottom(board);
+
+    const occupied = listOccupied(board);
+    expect(occupied.length).to.equal(2);
+  });
+
+  it("Two blocks have been dropped to the bottom - correct coordinates", () => {
+    let board = new Board(3, 3);
+    board.drop(new Block("x"));
+    blockFallToBottom(board);
+
+    board.drop(new Block("x"));
+    blockFallToBottom(board);
+
+    const occupied = listOccupied(board);
+    expect(occupied[1].x).to.equal(1);
+    expect(occupied[1].y).to.equal(2);
+
+    expect(occupied[0].x).to.equal(1);
+    expect(occupied[0].y).to.equal(1);
+  });
+
+});
+
+describe("Tetrominoes - list occupied Points", () => {
+
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  xit("No Tetromino has been dropped", () => {
+    const occupied = listOccupied(board);
+    expect(occupied.length).to.equal(0);
+  });
+
+
+
+  xit("One Tetromino has been dropped to the bottom - correct amount of Points", () => {
+    board.drop(Tetromino.T_SHAPE);
+    fallToBottom(board);
+
+    const occupied = listOccupied(board);
+    expect(occupied.length).to.equal(4);
+  });
+
+  // it("One Tetromino has been dropped to the bottom - correct coordinates", () => {
+  //   let board = new Board(3, 3);
+  //   board.drop(new Block("xs"));
+  //   fallToBottom(board);
+
+  //   const occupied = listOccupied(board);
+  //   expect(occupied[0].x).to.equal(1);
+  //   expect(occupied[0].y).to.equal(2);
+  // });
 });
 

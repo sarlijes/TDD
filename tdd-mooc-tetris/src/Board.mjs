@@ -90,6 +90,12 @@ export class Board {
         }
       }
     }
+
+    // No moving block was found, return
+    if (x === -1 || y === -1) {
+      return;
+    }
+
     // Remove the block from it's previous row
     this.board[y][x] = ".";
     // Check if the block has reached the bottom, stop it if yes
