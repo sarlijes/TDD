@@ -38,7 +38,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
        ..........`
     );
   });
-
+  // IN PROGRESS
   xit("stop when they hit the bottom", () => {
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
