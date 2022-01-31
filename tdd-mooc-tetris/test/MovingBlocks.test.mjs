@@ -15,7 +15,8 @@ describe("Moving simple 1x1 blocks", () => {
 
   it("a falling block can be moved left", () => {
     board.moveLeft();
-    expect(board.toString()).to.equalShape(`
+    const result = board.toString();
+    expect(result).to.equalShape(`
      X..
      ...
      ...

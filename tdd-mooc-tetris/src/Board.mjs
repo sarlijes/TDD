@@ -149,7 +149,53 @@ export class Board {
   }
 
   moveLeft() {
+    // TODO duplicate code fragment starts
+    // 0. Find the coordinates of the items currently moving
+    const coordinatesOfMovingItems = listMoving(this);
 
+    // 1. Find the coordinates of the already occupied spaces of the board
+    const occupied = listOccupied(this);
+
+    // 2. Investigate whether the current moving item could be moved left or not
+    const potentialNewCoordinatesOfMovingItem =
+      getPotentialNewCoordinatesOfMovingItem(coordinatesOfMovingItems, this,
+        "left"); // exception to duplicate code
+
+    const newPotentialPositionWasFound =
+      potentialNewCoordinatesOfMovingItem.length > 0;
+    const newPotentialPositionIsSafe =
+      !overlaps(potentialNewCoordinatesOfMovingItem, occupied);
+    const allItemsCanBeRepositioned = potentialNewCoordinatesOfMovingItem.length
+      === coordinatesOfMovingItems.length;
+
+    const couldBeMoved = newPotentialPositionWasFound &&
+      newPotentialPositionIsSafe &&
+      allItemsCanBeRepositioned;
+
+    // TODO duplicate code fragment ends
+
+    let char;
+
+    if (couldBeMoved) {
+
+      for (let i in coordinatesOfMovingItems) {
+        let point = coordinatesOfMovingItems[i];
+        let old_y = point.y;
+        let old_x = point.x;
+        char = this.board[old_y][old_x];
+        // Remove the block from it's current place
+        this.board[old_y][old_x] = ".";
+      }
+
+      for (let i in potentialNewCoordinatesOfMovingItem) {
+        let point = potentialNewCoordinatesOfMovingItem[i];
+        let new_y = point.y;
+        let new_x = point.x;
+        // Add the block to the new position
+        this.board[new_y][new_x] = char;
+      }
+
+    }
   }
 
 }
