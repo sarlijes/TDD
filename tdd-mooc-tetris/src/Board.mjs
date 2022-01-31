@@ -136,6 +136,21 @@ export class Board {
     }
   }
 
+  moveRight() {
+    const { couldBeMoved,
+      coordinatesOfMovingItems,
+      potentialNewCoordinatesOfMovingItem } = this.couldBeMoved("right");
+
+    let char;
+
+    if (couldBeMoved) {
+      this.moveShape(
+        coordinatesOfMovingItems,
+        char,
+        potentialNewCoordinatesOfMovingItem
+      );
+    }
+  }
 
   moveShape(coordinatesOfMovingItems, char,
     potentialNewCoordinatesOfMovingItem) {

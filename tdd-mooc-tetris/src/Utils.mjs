@@ -80,6 +80,12 @@ function getPotentialNewCoordinatesOfMovingItem(
       }
     }
 
+    if (direction === "right") {
+      if (point.x + 1 <= board.width) {
+        potentialNewPositionOfMovingItem.push({ x: point.x + 1, y: point.y });
+      }
+    }
+
 
   });
   return potentialNewPositionOfMovingItem;

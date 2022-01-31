@@ -22,6 +22,16 @@ describe("Moving simple 1x1 blocks", () => {
      ...
      `);
   });
+
+  it("a falling block can be moved right", () => {
+    board.moveRight();
+    const result = board.toString();
+    expect(result).to.equalShape(`
+     ..X
+     ...
+     ...
+     `);
+  });
 });
 
 // - a falling tetromino can be moved left
