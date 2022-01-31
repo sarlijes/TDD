@@ -12,4 +12,22 @@ function twoDimensionalArraytoString(arr) {
   return result.toUpperCase();
 }
 
-export { twoDimensionalArraytoString };
+function isUpperCase(str) {
+  return str === str.toUpperCase() && str !== ".";
+}
+
+function listOccupied(obj) {
+
+  let board = obj.board;
+  let occupied = [];
+  for (let i = 0; i < obj.height; i++) {
+    for (let j = 0; j < obj.width; j++) {
+      if (isUpperCase(board[i][j])) {
+        occupied.push({ x: j, y: i });
+      }
+    }
+  }
+  return occupied;
+}
+
+export { twoDimensionalArraytoString, listOccupied };

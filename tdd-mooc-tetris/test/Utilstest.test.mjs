@@ -1,5 +1,7 @@
 import { expect } from "chai";
-import { twoDimensionalArraytoString } from "../src/Utils.mjs";
+import { listOccupied, twoDimensionalArraytoString } from "../src/Utils.mjs";
+import { Board } from "../src/Board.mjs";
+import { Block } from "../src/Block.mjs";
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {
@@ -21,3 +23,34 @@ describe("2-dimensional array to string", () => {
     expect(result.toString()).to.equal("123\n456\n");
   });
 });
+
+
+describe("List occupied Points", () => {
+  it("No block has been dropped", () => {
+    let board = new Board(3, 3);
+    const occupied = listOccupied(board);
+    expect(occupied.length).to.equal(0);
+  });
+
+  it("One block has been dropped to the bottom - correct amount of Points", () => {
+    let board = new Board(3, 3);
+    board.drop(new Block("X"));
+    board.tick();
+    board.tick();
+    board.tick();
+    const occupied = listOccupied(board);
+    expect(occupied.length).to.equal(1);
+  });
+
+  it("One block has been dropped to the bottom - correct coordinates", () => {
+    let board = new Board(3, 3);
+    board.drop(new Block("X"));
+    board.tick();
+    board.tick();
+    board.tick();
+    const occupied = listOccupied(board);
+    expect(occupied[0].x).to.equal(1);
+    expect(occupied[0].y).to.equal(2);
+  });
+});
+
