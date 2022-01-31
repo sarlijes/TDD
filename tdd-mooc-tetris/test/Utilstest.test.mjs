@@ -24,8 +24,13 @@ describe("2-dimensional array to string", () => {
   });
 });
 
+function fallToBottom(board) {
+  for (let i = 0; i < board.height; i++) {
+    board.tick();
+  }
+}
 
-describe("List occupied Points", () => {
+describe("Blocks - list occupied Points", () => {
   it("No block has been dropped", () => {
     let board = new Board(3, 3);
     const occupied = listOccupied(board);
@@ -34,20 +39,18 @@ describe("List occupied Points", () => {
 
   it("One block has been dropped to the bottom - correct amount of Points", () => {
     let board = new Board(3, 3);
-    board.drop(new Block("X"));
-    board.tick();
-    board.tick();
-    board.tick();
+    board.drop(new Block("x"));
+    fallToBottom(board);
+
     const occupied = listOccupied(board);
     expect(occupied.length).to.equal(1);
   });
 
   it("One block has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
-    board.drop(new Block("X"));
-    board.tick();
-    board.tick();
-    board.tick();
+    board.drop(new Block("xs"));
+    fallToBottom(board);
+
     const occupied = listOccupied(board);
     expect(occupied[0].x).to.equal(1);
     expect(occupied[0].y).to.equal(2);
