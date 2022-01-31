@@ -6,19 +6,20 @@ import { Block } from "../src/Block.mjs";
 describe("Moving simple 1x1 blocks", () => {
 
   let board;
+  let block;
   beforeEach(() => {
     board = new Board(3, 3);
+    block = new Block("X");
+    board.drop(block);
   });
 
-  let block = new Block("X");
-
-  it("it starts from the top middle", () => {
-    board.drop(block);
-    expect(board.toString()).to.equalShape(
-      `.X.
+  it("a falling block can be moved left", () => {
+    board.moveLeft();
+    expect(board.toString()).to.equalShape(`
+     X..
      ...
-     ...`
-    );
+     ...
+     `);
   });
 });
 

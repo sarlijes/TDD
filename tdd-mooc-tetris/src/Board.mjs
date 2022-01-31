@@ -103,7 +103,6 @@ export class Board {
       newPotentialPositionIsSafe &&
       allItemsCanBeRepositioned;
 
-
     // 3b. If yes, tick
     // 3b. If not, stop the item
 
@@ -148,4 +147,9 @@ export class Board {
 
     }
   }
+
+  moveLeft() {
+
+  }
+
 }
