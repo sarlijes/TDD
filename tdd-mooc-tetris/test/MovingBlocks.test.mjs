@@ -168,6 +168,54 @@ describe("Moving falling tetrominoes - board corner cases", () => {
        ....TTT.....`
     );
   });
+});
+
+function fallToBottom(board) {
+  for (let i = 0; i < 10; i++) {
+    board.tick();
+  }
+}
+
+describe("Moving falling tetrominoes - when other shapes exist at at board", () => {
+
+  let board;
+  beforeEach(() => {
+    board = new Board(8, 6);
+    board.drop(Tetromino.I_SHAPE);
+    board.moveLeft();
+    board.moveLeft();
+    fallToBottom(board);
+
+    board.drop(Tetromino.I_SHAPE);
+    board.moveRight();
+    board.moveRight();
+    fallToBottom(board);
+
+    board.drop(Tetromino.O_SHAPE);
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    fallToBottom(board);
+
+    board.drop(Tetromino.O_SHAPE);
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    fallToBottom(board);
+  });
+
+  it("initial setup is correct", () => {
+    expect(board.toString()).to.equalShape(`
+      ........
+      ........
+      ........
+      OO....OO
+      OO....OO
+      IIIIIIII`
+    );
+
+  });
+
 
   it(" it cannot be moved left through other blocks", () => {
 
@@ -177,7 +225,7 @@ describe("Moving falling tetrominoes - board corner cases", () => {
 
   });
 
-  it("it cannot be moved down through other blocks (will stop falling)", () => {
+  it("it cannot be moved down through other blocks (will stop)", () => {
 
   });
 
