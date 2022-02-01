@@ -13,7 +13,7 @@ export class Board {
   width;
   height;
   board;
-  hasFallingBlock;
+  currentlyFallingBlock;
 
   constructor(width, height) {
     this.width = width;
@@ -26,11 +26,10 @@ export class Board {
       }
       this.board.push(this.temp);
     }
-    this.hasFallingBlock = false;
   }
 
   hasFalling() {
-    return this.hasFallingBlock;
+    return this.currentlyFallingBlock !== undefined;
   }
 
   toString() {
@@ -39,7 +38,7 @@ export class Board {
 
   // lowercase char is considered as a moving block
   drop(block) {
-    if (this.hasFallingBlock) {
+    if (this.currentlyFallingBlock !== undefined) {
       throw new Error("already falling");
     }
 
@@ -88,7 +87,7 @@ export class Board {
         }
       }
     }
-    this.hasFallingBlock = true;
+    this.currentlyFallingBlock = block;
   }
 
   // TODO refactor to be shorter
@@ -123,7 +122,7 @@ export class Board {
         for (let j = 0; j < this.width; j++) {
           if (isLowerCase(this.board[i][j])) {
             this.board[i][j] = char.toUpperCase();
-            this.hasFallingBlock = false;
+            this.currentlyFallingBlock = undefined;
           }
         }
       }
