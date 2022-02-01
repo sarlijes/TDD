@@ -64,31 +64,34 @@ function findOverlappingPoints(list1, list2) {
 // only the potential
 function getPotentialNewCoordinatesOfMovingItem(
   coordinatesOfMovingItem, board, direction = "down") {
-  let potentialNewPositionOfMovingItem = [];
+  let potentialNewCoordinatesOfMovingItem = [];
 
   coordinatesOfMovingItem.forEach((point) => {
     if (direction === "down") {
       // Check the bottom of the board - item cannot go beneath it
       if (point.y + 1 < board.height) {
-        potentialNewPositionOfMovingItem.push({ x: point.x, y: point.y + 1 });
+        potentialNewCoordinatesOfMovingItem.push(
+          { x: point.x, y: point.y + 1 });
       }
     }
 
     if (direction === "left") {
       if (point.x - 1 >= 0) {
-        potentialNewPositionOfMovingItem.push({ x: point.x - 1, y: point.y });
+        potentialNewCoordinatesOfMovingItem.push(
+          { x: point.x - 1, y: point.y });
       }
     }
 
     if (direction === "right") {
       if (point.x + 1 <= board.width) {
-        potentialNewPositionOfMovingItem.push({ x: point.x + 1, y: point.y });
+        potentialNewCoordinatesOfMovingItem.push(
+          { x: point.x + 1, y: point.y });
       }
     }
 
 
   });
-  return potentialNewPositionOfMovingItem;
+  return potentialNewCoordinatesOfMovingItem;
 }
 
 export {

@@ -107,13 +107,69 @@ describe("Moving falling tetrominoes", () => {
 
 });
 
-describe("", () => {
-  it("", () => {
+describe("Moving falling tetrominoes - corner cases", () => {
+
+  let board;
+  beforeEach(() => {
+    board = new Board(12, 4);
+    board.drop(Tetromino.T_SHAPE);
+  });
+
+  it("it cannot be moved left beyond the board", () => {
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+    board.moveLeft();
+
+    expect(board.toString()).to.equalShape(
+      `.T..........
+       TTT.........
+       ............
+       ............`
+    );
 
   });
-  it("", () => {
+
+  it("it cannot be moved right beyond the board", () => {
+
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+    board.moveRight();
+
+    // expect(board.toString()).to.equalShape(
+    //   `..........T.
+    //    .........TTT
+    //    ............
+    //    ............`
+    // );
 
   });
+
+  it("it cannot be moved down beyond the board (will stop falling)", () => {
+
+  });
+
+  it(" it cannot be moved left through other blocks", () => {
+
+  });
+
+  it("it cannot be moved right through other blocks", () => {
+
+  });
+
+  it("it cannot be moved down through other blocks (will stop falling)", () => {
+
+  });
+
   it("", () => {
 
   });
@@ -121,9 +177,7 @@ describe("", () => {
 });
 
 
-// - it cannot be moved left beyond the board
-// - it cannot be moved right beyond the board
-// - it cannot be moved down beyond the board (will stop falling)
-// - it cannot be moved left through other blocks
+// -
+// -
 // - it cannot be moved right through other blocks
-// - it cannot be moved down through other blocks (will stop falling)
+// -
