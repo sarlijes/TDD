@@ -107,7 +107,7 @@ describe("Moving falling tetrominoes", () => {
 
 });
 
-describe("Moving falling tetrominoes - corner cases", () => {
+describe("Moving falling tetrominoes - board corner cases", () => {
 
   let board;
   beforeEach(() => {
@@ -155,7 +155,18 @@ describe("Moving falling tetrominoes - corner cases", () => {
   });
 
   it("it cannot be moved down beyond the board (will stop falling)", () => {
-
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    board.moveDown();
+    expect(board.toString()).to.equalShape(
+      `............
+       ............
+       .....T......
+       ....TTT.....`
+    );
   });
 
   it(" it cannot be moved left through other blocks", () => {
