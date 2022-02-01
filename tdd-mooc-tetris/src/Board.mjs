@@ -152,6 +152,22 @@ export class Board {
     }
   }
 
+  moveDown() {
+    const { couldBeMoved,
+      coordinatesOfMovingItems,
+      potentialNewCoordinatesOfMovingItem } = this.couldBeMoved("down");
+
+    let char;
+
+    if (couldBeMoved) {
+      this.moveShape(
+        coordinatesOfMovingItems,
+        char,
+        potentialNewCoordinatesOfMovingItem
+      );
+    }
+  }
+
   moveShape(coordinatesOfMovingItems, char,
     potentialNewCoordinatesOfMovingItem) {
 
