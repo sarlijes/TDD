@@ -144,4 +144,86 @@ describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
     );
   });
 
+
+
+});
+describe("different tetrominoes have correct starting position", () => {
+  let board;
+  beforeEach(() => {
+    board = new Board(10, 6);
+  });
+
+  it("T_SHAPE start from the top middle", () => {
+    let shape = Tetromino.T_SHAPE;
+    board.drop(shape);
+
+    const position = shape.currentPosition;
+
+    expect(position).not.to.equal(undefined);
+    expect(position.x).to.equal(3);
+    expect(position.y).to.equal(0);
+
+    expect(board.toString()).to.equalShape(`
+      ....T.....
+      ...TTT....
+      ..........
+      ..........
+      ..........
+      ..........
+      `);
+  });
+
+  it("O_SHAPE start from the top middle", () => {
+    let shape = Tetromino.O_SHAPE;
+    board.drop(shape);
+    const position = shape.currentPosition;
+
+    expect(position).not.to.equal(undefined);
+    expect(position.x).to.equal(4);
+    expect(position.y).to.equal(0);
+
+    expect(board.toString()).to.equalShape(
+      `....OO....
+       ....OO....
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  it("I_SHAPE start from the top middle", () => {
+    let shape = Tetromino.I_SHAPE;
+    board.drop(shape);
+    const position = shape.currentPosition;
+
+    expect(position).not.to.equal(undefined);
+    expect(position.x).to.equal(3);
+    expect(position.y).to.equal(0);
+
+    expect(board.toString()).to.equalShape(
+      `...IIII...
+       ..........
+       ..........
+       ..........
+       ..........
+       ..........`
+    );
+  });
+
+  it("", () => {
+
+  });
+
+
+  it("", () => {
+
+  });
+
+
+  it("", () => {
+
+  });
+
+
 });

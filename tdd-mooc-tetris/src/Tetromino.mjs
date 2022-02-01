@@ -51,17 +51,20 @@ export class Tetromino extends RotatingShape {
   );
 
   shape_enum;
-  currentOrientation;
+  currentOrientation; // TODO this is not used - remove
   orientations;
   color;
+  currentPosition;
 
-  constructor(shape, currentOrientation, orientations, shape_enum) {
+  constructor(shape, currentOrientation, orientations, shape_enum,
+    currentPosition) {
     super(twoDimensionalArraytoString(shape));
 
     this.currentOrientation = currentOrientation;
     this.orientations = orientations;
     this.shape_enum = shape_enum;
     this.color = shape_enum.substring(0, 1).toLowerCase();
+    this.currentPosition = currentPosition;
   }
 
   toString() {

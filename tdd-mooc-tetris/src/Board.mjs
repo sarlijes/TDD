@@ -63,14 +63,25 @@ export class Board {
 
             if (block.shape_enum === "T_SHAPE") {
               this.board[i][clearance + j] = block.color;
+              if (block.currentPosition === undefined) {
+                block.currentPosition = { x: clearance + j - 1, y: 0 };
+              }
             }
 
             if (block.shape_enum === "I_SHAPE") {
               this.board[startingYPosition][clearance + j] = block.color;
+
+              if (block.currentPosition === undefined) {
+                block.currentPosition = { x: clearance + j, y: 0 };
+              }
+
             }
 
             if (block.shape_enum === "O_SHAPE") {
               this.board[i][clearance + j] = block.color;
+              if (block.currentPosition === undefined) {
+                block.currentPosition = { x: clearance + j, y: 0 };
+              }
             }
 
           }
