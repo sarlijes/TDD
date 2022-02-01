@@ -145,12 +145,12 @@ describe("Moving falling tetrominoes - corner cases", () => {
     board.moveRight();
     board.moveRight();
 
-    // expect(board.toString()).to.equalShape(
-    //   `..........T.
-    //    .........TTT
-    //    ............
-    //    ............`
-    // );
+    expect(board.toString()).to.equalShape(
+      `..........T.
+       .........TTT
+       ............
+       ............`
+    );
 
   });
 

@@ -83,7 +83,7 @@ function getPotentialNewCoordinatesOfMovingItem(
     }
 
     if (direction === "right") {
-      if (point.x + 1 <= board.width) {
+      if (point.x + 1 < board.width) {
         potentialNewCoordinatesOfMovingItem.push(
           { x: point.x + 1, y: point.y });
       }
