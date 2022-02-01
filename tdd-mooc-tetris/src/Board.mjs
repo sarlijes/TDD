@@ -197,6 +197,18 @@ export class Board {
       // Add the block to the new position
       this.board[new_y][new_x] = char;
     }
+    const firstNewCoordinate = potentialNewCoordinatesOfMovingItem[0];
+    this.updateCurrentPosition(firstNewCoordinate.x, firstNewCoordinate.y);
+  }
+
+  updateCurrentPosition(x_coordinate, y_coordinate) {
+    if (this.currentlyFallingBlock.shape_enum === "T_SHAPE") {
+      this.currentlyFallingBlock.currentPosition =
+        { x: x_coordinate - 1, y: y_coordinate };
+    } else {
+      this.currentlyFallingBlock.currentPosition =
+        { x: x_coordinate, y: y_coordinate };
+    }
   }
 
   couldBeMoved(direction) {
