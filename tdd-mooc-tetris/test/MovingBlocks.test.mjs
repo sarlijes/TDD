@@ -176,67 +176,104 @@ function fallToBottom(board) {
   }
 }
 
-describe("Moving falling tetrominoes - when other shapes exist at at board", () => {
+describe(
+  "Moving falling tetrominoes - when other shapes exist at at board", () => {
 
-  let board;
-  beforeEach(() => {
-    board = new Board(8, 6);
-    board.drop(Tetromino.I_SHAPE);
-    board.moveLeft();
-    board.moveLeft();
-    fallToBottom(board);
+    let board;
+    beforeEach(() => {
+      board = new Board(8, 6);
+      board.drop(Tetromino.I_SHAPE);
+      board.moveLeft();
+      board.moveLeft();
+      fallToBottom(board);
 
-    board.drop(Tetromino.I_SHAPE);
-    board.moveRight();
-    board.moveRight();
-    fallToBottom(board);
+      board.drop(Tetromino.I_SHAPE);
+      board.moveRight();
+      board.moveRight();
+      fallToBottom(board);
 
-    board.drop(Tetromino.O_SHAPE);
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    fallToBottom(board);
+      board.drop(Tetromino.O_SHAPE);
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      fallToBottom(board);
 
-    board.drop(Tetromino.O_SHAPE);
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    fallToBottom(board);
-  });
+      board.drop(Tetromino.O_SHAPE);
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      fallToBottom(board);
+    });
 
-  it("initial setup is correct", () => {
-    expect(board.toString()).to.equalShape(`
+    it("initial setup is correct", () => {
+      expect(board.toString()).to.equalShape(`
       ........
       ........
       ........
       OO....OO
       OO....OO
       IIIIIIII`
-    );
+      );
 
+    });
+
+
+    it(" it cannot be moved left through other blocks", () => {
+
+      board.drop(Tetromino.T_SHAPE);
+      board.tick();
+      board.tick();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveLeft();
+
+      expect(board.toString()).to.equalShape(`
+    ........
+    ........
+    ...T....
+    OOTTT.OO
+    OO....OO
+    IIIIIIII`
+      );
+
+    });
+
+    it("it cannot be moved right through other blocks", () => {
+      board.drop(Tetromino.T_SHAPE);
+      board.tick();
+      board.tick();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+
+      expect(board.toString()).to.equalShape(`
+    ........
+    ........
+    ....T...
+    OO.TTTOO
+    OO....OO
+    IIIIIIII`
+      );
+
+    });
+
+    it("it cannot be moved down through other blocks (will stop)", () => {
+      it("it cannot be moved right through other blocks", () => {
+        board.drop(Tetromino.T_SHAPE);
+        fallToBottom(board);
+
+        expect(board.toString()).to.equalShape(`
+      ........
+      ........
+      ........
+      OO.T..OO
+      OOTTT.OO
+      IIIIIIII`
+        );
+      });
+    });
   });
-
-
-  it(" it cannot be moved left through other blocks", () => {
-
-  });
-
-  it("it cannot be moved right through other blocks", () => {
-
-  });
-
-  it("it cannot be moved down through other blocks (will stop)", () => {
-
-  });
-
-  it("", () => {
-
-  });
-
-});
-
-
-// -
-// -
-// - it cannot be moved right through other blocks
-// -
