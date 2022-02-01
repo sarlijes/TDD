@@ -2,6 +2,7 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 
 describe("Moving simple 1x1 blocks", () => {
 
@@ -59,9 +60,67 @@ describe("Moving simple 1x1 blocks", () => {
 
 });
 
-// - a falling tetromino can be moved left
-// - a falling tetromino can be moved right
-// - a falling tetromino can be moved down
+describe("Moving falling tetrominoes", () => {
+
+  let board;
+  beforeEach(() => {
+    board = new Board(12, 6);
+    board.drop(Tetromino.T_SHAPE);
+  });
+
+
+  it("a falling tetromino can be moved left", () => {
+    board.moveLeft();
+    expect(board.toString()).to.equalShape(
+      `....T.......
+       ...TTT......
+       ............
+       ............
+       ............
+       ............`
+    );
+  });
+
+  it("a falling tetromino can be moved right", () => {
+    board.moveRight();
+    expect(board.toString()).to.equalShape(
+      `......T.....
+       .....TTT....
+       ............
+       ............
+       ............
+       ............`
+    );
+  });
+
+  it("a falling tetromino can be moved down", () => {
+    board.moveDown();
+    expect(board.toString()).to.equalShape(
+      `............
+       .....T......
+       ....TTT.....
+       ............
+       ............
+       ............`
+    );
+  });
+
+});
+
+describe("", () => {
+  it("", () => {
+
+  });
+  it("", () => {
+
+  });
+  it("", () => {
+
+  });
+
+});
+
+
 // - it cannot be moved left beyond the board
 // - it cannot be moved right beyond the board
 // - it cannot be moved down beyond the board (will stop falling)
