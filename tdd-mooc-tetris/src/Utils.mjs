@@ -75,7 +75,7 @@ function getPotentialNewCoordinatesOfMovingItem(
     }
 
     if (direction === "left") {
-      if (point.x - 1 <= 0) {
+      if (point.x - 1 >= 0) {
         potentialNewPositionOfMovingItem.push({ x: point.x - 1, y: point.y });
       }
     }

@@ -42,6 +42,21 @@ describe("Moving simple 1x1 blocks", () => {
      ...
      `);
   });
+
+  it("a falling block can be moved several times to various directions", () => {
+    board.moveRight();
+    board.moveDown();
+    board.moveDown();
+    board.moveLeft();
+    board.moveLeft();
+    const result = board.toString();
+    expect(result).to.equalShape(`
+     ...
+     ...
+     X..
+     `);
+  });
+
 });
 
 // - a falling tetromino can be moved left
