@@ -308,6 +308,47 @@ describe(
       );
     });
 
+    it("O_SHAPE is moved one down", () => {
+      let shape = Tetromino.O_SHAPE;
+      board.drop(shape);
+      board.moveDown();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ....OO....
+         ....OO....
+         ..........
+         ..........
+         ..........`
+      );
+    });
+
+    it("O_SHAPE is ticked moved one down", () => {
+      let shape = Tetromino.O_SHAPE;
+      board.drop(shape);
+      board.tick();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ....OO....
+         ....OO....
+         ..........
+         ..........
+         ..........`
+      );
+    });
 
     it("O_SHAPE is moved one down", () => {
 
