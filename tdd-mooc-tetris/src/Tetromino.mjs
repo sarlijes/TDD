@@ -1,50 +1,58 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
+class Shape {
+  static T_SHAPE_INITIAL = new Shape([
+    [".", "t", "."],
+    ["t", "t", "t"],
+    [".", ".", "."],
+  ]);
+  static I_SHAPE_INITIAL = new Shape([
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+    ["i", "i", "i", "i", "."],
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+  ]);
+  static I_SHAPE_ROTATED = new Shape([
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", ".", ".", "."],
+  ]);
+  static O_SHAPE = new Shape([
+    [".", "o", "o"],
+    [".", "o", "o"],
+    [".", ".", "."],
+  ]);
+  static Right = new Shape("Right");
+
+  constructor(layout) {
+    this.layout = layout;
+  }
+}
+
 export class Tetromino extends RotatingShape {
-  static T_SHAPE = new Tetromino(
-    [
-      [".", "t", "."],
-      ["t", "t", "t"],
-      [".", ".", "."],
-    ],
+  static T_SHAPE = new Tetromino(Shape.T_SHAPE_INITIAL.layout,
     0,
     4,
     "T_SHAPE"
   );
 
-  static I_SHAPE = new Tetromino(
-    [
-      [".", ".", ".", ".", "."],
-      [".", ".", ".", ".", "."],
-      ["i", "i", "i", "i", "."],
-      [".", ".", ".", ".", "."],
-      [".", ".", ".", ".", "."],
-    ],
+  static I_SHAPE = new Tetromino(Shape.I_SHAPE_INITIAL.layout,
     0,
     2,
     "I_SHAPE"
   );
 
-  static ROTATED_I_SHAPE = new Tetromino(
-    [
-      [".", ".", "i", ".", "."],
-      [".", ".", "i", ".", "."],
-      [".", ".", "i", ".", "."],
-      [".", ".", "i", ".", "."],
-      [".", ".", ".", ".", "."],
-    ],
+  static ROTATED_I_SHAPE = new Tetromino(Shape.I_SHAPE_ROTATED.layout,
     0,
     2,
     "ROTATED_I_SHAPE"
   );
 
-  static O_SHAPE = new Tetromino(
-    [
-      [".", "o", "o"],
-      [".", "o", "o"],
-      [".", ".", "."],
-    ],
+  static O_SHAPE = new Tetromino(Shape.O_SHAPE.layout,
     0,
     1,
     "O_SHAPE"
