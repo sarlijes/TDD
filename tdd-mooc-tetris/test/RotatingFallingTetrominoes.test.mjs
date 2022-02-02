@@ -30,14 +30,15 @@ describe("Rotating falling tetrominoes", () => {
     );
   });
 
-  xit("a falling tetromino can be rotated left", () => {
+  it("a falling tetromino can be rotated left", () => {
     board.rotateLeft();
-    expect(shape.rotateRight().toString()).to.equalShape(
+    expect(board.currentlyFallingBlock.toString()).to.equalShape(
       `.T.
        TT.
        .T.`
     );
-    expect(board.toString()).to.equalShape(
+    let result = board.toString();
+    expect(result).to.equalShape(
       `.....T......
        ....TT......
        .....T......
