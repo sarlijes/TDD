@@ -292,36 +292,19 @@ export class Board {
     this.currentlyFallingBlock = rotatedBlock;
 
     // Update coordinates
-    // TODO loop seems overkill
-    for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
-      for (let j = 0; j < this.currentlyFallingBlock.shape[0].length; j++) {
 
-        let xWithOffset = i + currentCoordinates.x;
-        let yWithOffset = j + currentCoordinates.y;
-
-        if (i === 0 && j === 0) {
-          // this.updateCurrentPosition(xWithOffset, yWithOffset);
-          this.updateCurrentPosition_NEW_TEMP(xWithOffset, yWithOffset);
-          rotatedBlock.currentPosition = this.currentlyFallingBlock.currentPosition;
-        }
-
-      }
-    }
-
+    this.updateCurrentPosition_NEW_TEMP(currentCoordinates.x, currentCoordinates.y);
 
   }
 
   updateCurrentPosition_NEW_TEMP(x, y) {
-
     if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
       Shape.T_SHAPE_ROTATED_RIGHT.layout)) {
       this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };
     } else {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
     }
-
   }
-
 
   rotateLeft() {
     // Rotate the block and save the rotated version into a new variable
