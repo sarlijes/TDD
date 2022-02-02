@@ -201,14 +201,19 @@ export class Board {
     this.updateCurrentPosition(firstNewCoordinate.x, firstNewCoordinate.y);
   }
 
-  updateCurrentPosition(x_coordinate, y_coordinate) {
+  updateCurrentPosition(x, y) {
     if (this.currentlyFallingBlock.shape_enum === "T_SHAPE") {
-      this.currentlyFallingBlock.currentPosition =
-        { x: x_coordinate - 1, y: y_coordinate };
-    } else {
-      this.currentlyFallingBlock.currentPosition =
-        { x: x_coordinate, y: y_coordinate };
+
+      if (this.board[y][x] !== "."
+        && this.board[y + 1][x - 1] !== ".") {
+        this.currentlyFallingBlock.currentPosition =
+          { x: x - 1, y: y };
+        return;
+      }
     }
+    this.currentlyFallingBlock.currentPosition =
+      { x: x, y: y };
+
   }
 
   couldBeMoved(direction) {
@@ -266,7 +271,8 @@ export class Board {
         }
         if (i === 0 && j === 0) {
           // Update coordinates
-          rotatedBlock.currentPosition = { x: xWithOffset, y: yWithOffset };
+          // rotatedBlock.currentPosition = { x: xWithOffset + 2, y: yWithOffset };
+          this.updateCurrentPosition(xWithOffset, yWithOffset);
         }
 
       }
