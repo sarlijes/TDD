@@ -213,7 +213,8 @@ describe("different tetrominoes have correct starting position", () => {
 });
 
 describe(
-  "different tetrominoes have correct starting position after moving", () => {
+  "different tetrominoes have correct starting position after moving down",
+  () => {
     let board;
     beforeEach(() => {
       board = new Board(10, 6);
@@ -263,6 +264,48 @@ describe(
 
     it("I_SHAPE is moved one down", () => {
 
+    });
+
+    it("I_SHAPE is moved one down", () => {
+      let shape = Tetromino.I_SHAPE;
+      board.drop(shape);
+      board.moveDown();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(3);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ...IIII...
+         ..........
+         ..........
+         ..........
+         ..........`
+      );
+    });
+
+    it("I_SHAPE is ticked moved one down", () => {
+      let shape = Tetromino.I_SHAPE;
+      board.drop(shape);
+      board.tick();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(3);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ...IIII...
+         ..........
+         ..........
+         ..........
+         ..........`
+      );
     });
 
 
