@@ -240,4 +240,44 @@ export class Board {
       potentialNewCoordinatesOfMovingItem
     };
   }
+
+  rotateRight() {
+    // Find the coordinates of the currently falling block
+    const currentCoordinates = this.currentlyFallingBlock.currentPosition;
+
+    // Save the rotated version into a new variable
+    const rotatedBlock = this.currentlyFallingBlock.rotateRight();
+
+    // Wipe the block away from the board
+
+    for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
+      for (let j = 0; j < this.currentlyFallingBlock.shape[0].length; j++) {
+
+        let xWithOffset = i + currentCoordinates.x;
+        let yWithOffset = j + currentCoordinates.y;
+
+        if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
+          this.board[yWithOffset][xWithOffset] = ".";
+        }
+
+      }
+    }
+
+    // Re-draw the rotated block to the board
+
+    for (let i = 0; i < rotatedBlock.shape.length; i++) {
+      for (let j = 0; j < rotatedBlock.shape[0].length; j++) {
+
+        let xWithOffset = i + currentCoordinates.x;
+        let yWithOffset = j + currentCoordinates.y;
+
+        if (rotatedBlock.shape[j][i] !== ".") {
+          let char = rotatedBlock.shape[j][i];
+          this.board[yWithOffset][xWithOffset] = char; // TEMP
+        }
+      }
+    }
+    // Set the rotated shape to currentlyFallingBlock
+    this.currentlyFallingBlock = rotatedBlock; // TODO should update coordinates?
+  }
 }
