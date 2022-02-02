@@ -68,10 +68,9 @@ describe("Rotating falling tetrominoes", () => {
 describe("Rotating falling tetrominoes - coordinates update correctly", () => {
 
   let board;
-  let shape;
   beforeEach(() => {
     board = new Board(12, 6);
-    shape = Tetromino.T_SHAPE;
+    let shape = Tetromino.T_SHAPE;
     board.drop(shape);
   });
 
@@ -93,7 +92,7 @@ describe("Rotating falling tetrominoes - coordinates update correctly", () => {
     );
   });
 
-  xit("after rotating right", () => {
+  it("after rotating right", () => {
     board.rotateRight();
 
     const position = board.currentlyFallingBlock.currentPosition;

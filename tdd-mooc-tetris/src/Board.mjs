@@ -1,12 +1,13 @@
 import { Block } from "./Block.mjs";
-import { Tetromino } from "./Tetromino.mjs";
+import { Shape, Tetromino } from "./Tetromino.mjs";
 import {
   twoDimensionalArraytoString,
   isLowerCase,
   listOccupied,
   listMoving,
   overlaps,
-  getPotentialNewCoordinatesOfMovingItem
+  getPotentialNewCoordinatesOfMovingItem,
+  twoDimensionalArraysMatch
 } from "./Utils.mjs";
 
 export class Board {
@@ -286,6 +287,10 @@ export class Board {
         }
       }
     }
+
+    // Set the rotated shape to currentlyFallingBlock
+    this.currentlyFallingBlock = rotatedBlock;
+
     // Update coordinates
     // TODO loop seems overkill
     for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
@@ -295,16 +300,28 @@ export class Board {
         let yWithOffset = j + currentCoordinates.y;
 
         if (i === 0 && j === 0) {
-          this.updateCurrentPosition(xWithOffset, yWithOffset);
+          // this.updateCurrentPosition(xWithOffset, yWithOffset);
+          this.updateCurrentPosition_NEW_TEMP(xWithOffset, yWithOffset);
           rotatedBlock.currentPosition = this.currentlyFallingBlock.currentPosition;
         }
 
       }
     }
 
-    // Set the rotated shape to currentlyFallingBlock
-    this.currentlyFallingBlock = rotatedBlock;
+
   }
+
+  updateCurrentPosition_NEW_TEMP(x, y) {
+
+    if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
+      Shape.T_SHAPE_ROTATED_RIGHT.layout)) {
+      this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };
+    } else {
+      this.currentlyFallingBlock.currentPosition = { x: x, y: y };
+    }
+
+  }
+
 
   rotateLeft() {
     // Rotate the block and save the rotated version into a new variable

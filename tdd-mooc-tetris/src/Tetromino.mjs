@@ -1,7 +1,7 @@
 import { RotatingShape } from "./RotatingShape.mjs";
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
-class Shape {
+export class Shape {
   static T_SHAPE_INITIAL = new Shape([
     [".", "t", "."],
     ["t", "t", "t"],

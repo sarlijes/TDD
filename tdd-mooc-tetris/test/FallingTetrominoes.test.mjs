@@ -213,7 +213,7 @@ describe("different tetrominoes have correct starting position", () => {
 });
 
 describe(
-  "different tetrominoes have correct starting position after moving down",
+  "different tetrominoes have correct position after moving down",
   () => {
     let board;
     beforeEach(() => {
