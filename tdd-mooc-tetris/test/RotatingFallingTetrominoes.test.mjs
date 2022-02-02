@@ -93,7 +93,7 @@ describe("Rotating falling tetrominoes - coordinates update correctly", () => {
     );
   });
 
-  xit("after rotating right", () => {
+  it("after rotating right", () => {
     board.rotateRight();
 
     const position = board.currentlyFallingBlock.currentPosition;

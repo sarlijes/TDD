@@ -269,13 +269,6 @@ export class Board {
         if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
           this.board[yWithOffset][xWithOffset] = ".";
         }
-        if (i === 0 && j === 0) {
-          // Update coordinates
-          // rotatedBlock.currentPosition = { x: xWithOffset + 2, y: yWithOffset };
-          this.updateCurrentPosition(xWithOffset, yWithOffset);
-          rotatedBlock.currentPosition = this.currentlyFallingBlock.currentPosition;
-        }
-
       }
     }
 
@@ -293,6 +286,22 @@ export class Board {
         }
       }
     }
+    // Update coordinates
+
+    for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
+      for (let j = 0; j < this.currentlyFallingBlock.shape[0].length; j++) {
+
+        let xWithOffset = i + currentCoordinates.x;
+        let yWithOffset = j + currentCoordinates.y;
+
+        if (i === 0 && j === 0) {
+          this.updateCurrentPosition(xWithOffset, yWithOffset);
+          rotatedBlock.currentPosition = this.currentlyFallingBlock.currentPosition;
+        }
+
+      }
+    }
+
     // Set the rotated shape to currentlyFallingBlock
     this.currentlyFallingBlock = rotatedBlock;
   }
