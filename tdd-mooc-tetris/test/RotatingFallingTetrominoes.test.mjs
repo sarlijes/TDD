@@ -112,6 +112,58 @@ describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
     });
   });
 
+let s = "Rotating falling tetrominoes T_SHAPE - "
+  + "coordinates update correctly also after having ticked downwards first";
+
+describe(s,
+  () => {
+
+    let board;
+    beforeEach(() => {
+      board = new Board(12, 6);
+      let shape = Tetromino.T_SHAPE;
+      board.drop(shape);
+      board.tick();
+      board.tick();
+    });
+
+    it("after rotating left", () => {
+      board.rotateLeft();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(2);
+
+      expect(board.toString()).to.equalShape(`
+       ............
+       ............
+       .....T......
+       ....TT......
+       .....T......
+       ............`
+      );
+    });
+
+    xit("after rotating right", () => {
+      board.rotateRight();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(5);
+      expect(position.y).to.equal(2);
+
+      expect(board.toString()).to.equalShape(`
+       ............
+       ............
+       .....T......
+       .....TT.....
+       .....T......
+       ............`
+      );
+    });
+  });
+
 describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
   () => {
 
