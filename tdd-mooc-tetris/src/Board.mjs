@@ -242,11 +242,16 @@ export class Board {
   }
 
   rotateRight() {
+    // Rotate the block and save the rotated version into a new variable
+    const rotatedBlock = this.currentlyFallingBlock.rotateRight();
+    this.rotate(rotatedBlock);
+  }
+
+  rotate(rotatedBlock) {
+
     // Find the coordinates of the currently falling block
     const currentCoordinates = this.currentlyFallingBlock.currentPosition;
 
-    // Save the rotated version into a new variable
-    const rotatedBlock = this.currentlyFallingBlock.rotateRight();
 
     // Wipe the block away from the board
 
@@ -283,13 +288,12 @@ export class Board {
     }
     // Set the rotated shape to currentlyFallingBlock
     this.currentlyFallingBlock = rotatedBlock;
-
   }
 
   rotateLeft() {
-    this.rotateRight();
-    this.rotateRight();
-    this.rotateRight();
+    // Rotate the block and save the rotated version into a new variable
+    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
+    this.rotate(rotatedBlock);
   }
 
 }
