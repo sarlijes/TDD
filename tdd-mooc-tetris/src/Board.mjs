@@ -255,6 +255,10 @@ export class Board {
 
   rotate(rotatedBlock) {
 
+    if (this.currentlyFallingBlock.shape_enum === "O_SHAPE") {
+      return;
+    }
+
     // Find the coordinates of the currently falling block
     const currentCoordinates = this.currentlyFallingBlock.currentPosition;
 

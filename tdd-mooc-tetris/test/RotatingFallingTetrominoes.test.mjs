@@ -112,6 +112,54 @@ describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
     });
   });
 
+describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
+  () => {
+
+    let board;
+    beforeEach(() => {
+      board = new Board(10, 6);
+      let shape = Tetromino.O_SHAPE;
+      board.drop(shape);
+    });
+
+    it("after rotating left", () => {
+      board.rotateLeft();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(0);
+
+      expect(board.toString()).to.equalShape(`
+      ....OO....
+      ....OO....
+      ..........
+      ..........
+      ..........
+      ..........`
+      );
+    });
+
+    it("after rotating right", () => {
+      board.rotateRight();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(0);
+
+      expect(board.toString()).to.equalShape(`
+       ....OO....
+       ....OO....
+       ..........
+       ..........
+       ..........
+       ..........`
+      );
+    });
+  });
+
+
 // - a falling tetromino can be rotated
 // - it cannot be rotated when there is no room to rotate
 // - [wall kick](https://tetris.fandom.com/wiki/Wall_kick):
