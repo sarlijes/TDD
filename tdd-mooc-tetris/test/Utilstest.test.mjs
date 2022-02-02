@@ -4,7 +4,8 @@ import {
   listMoving,
   twoDimensionalArraytoString,
   overlaps,
-  getPotentialNewCoordinatesOfMovingItem
+  getPotentialNewCoordinatesOfMovingItem,
+  twoDimensionalArraysMatch
 } from "../src/Utils.mjs";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
@@ -314,4 +315,50 @@ describe("New potential positions of moving items - corner cases regarding the b
     // ....T.....
     // ...TTT....
   });
+});
+
+
+describe("Two dimensional arrays match", () => {
+
+  const arr1 = [
+    [".", "t", "."],
+    ["t", "t", "t"],
+    [".", ".", "."],
+  ];
+  const arr2 = [
+    [".", "T", "."],
+    ["T", "T", "T"],
+    [".", ".", "."],
+  ];
+  const arr3 = [
+    [".", "t", "."],
+    ["t", "t", "."],
+    [".", "t", "."],
+  ];
+  const arr4 = [
+    [".", "t", "."],
+    [".", "t", "t"],
+    [".", "t", "."],
+  ];
+  const arr5 = [
+    ["1", "2", "3"],
+    ["4", "5", "6"],
+    ["7", "8", "9"],
+  ];
+
+  xit("Same array is the same", () => {
+    expect(twoDimensionalArraysMatch(arr5, arr5)).to.be.true;
+  });
+
+  it("Same array with different case is the same", () => {
+    expect(twoDimensionalArraysMatch(arr1, arr2)).to.be.true;
+  });
+
+  it("Different arrays are not the same", () => {
+    expect(twoDimensionalArraysMatch(arr1, arr3)).to.be.false;
+    expect(twoDimensionalArraysMatch(arr1, arr4)).to.be.false;
+    expect(twoDimensionalArraysMatch(arr1, arr5)).to.be.false;
+    expect(twoDimensionalArraysMatch(arr3, arr2)).to.be.false;
+  });
+
 });

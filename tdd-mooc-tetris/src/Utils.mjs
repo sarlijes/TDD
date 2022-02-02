@@ -94,6 +94,21 @@ function getPotentialNewCoordinatesOfMovingItem(
   return potentialNewCoordinatesOfMovingItem;
 }
 
+function twoDimensionalArraysMatch(arr1, arr2) {
+  let matching = 0;
+  let totalCount = arr1[0].length * arr1.length;
+
+  for (let i = 0; i < arr1[0].length; i++) {
+    for (let j = 0; j < arr1[0].length; j++) {
+      if ((arr1[i][j] === "." && arr2[i][j] === ".")
+        || (arr1[i][j].toUpperCase() === arr2[i][j].toUpperCase())) {
+        matching = matching + 1;
+      }
+    }
+  }
+  return matching === totalCount;
+}
+
 export {
   twoDimensionalArraytoString,
   listOccupied,
@@ -101,5 +116,6 @@ export {
   isLowerCase,
   listMoving,
   overlaps,
-  getPotentialNewCoordinatesOfMovingItem
+  getPotentialNewCoordinatesOfMovingItem,
+  twoDimensionalArraysMatch
 };
