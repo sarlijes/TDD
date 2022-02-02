@@ -164,7 +164,7 @@ describe(s,
     });
   });
 
-describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
+describe("Rotating falling tetrominoes O_SHAPE - coordinates update correctly",
   () => {
 
     let board;
@@ -205,6 +205,59 @@ describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
        ....OO....
        ..........
        ..........
+       ..........
+       ..........`
+      );
+    });
+  });
+
+s = "Rotating falling tetrominoes O_SHAPE - "
+  + "coordinates update correctly also after having ticked downwards first";
+
+
+describe("Rotating falling tetrominoes O_SHAPE - coordinates update correctly",
+  () => {
+
+    let board;
+    beforeEach(() => {
+      board = new Board(10, 6);
+      let shape = Tetromino.O_SHAPE;
+      board.drop(shape);
+      board.tick();
+      board.tick();
+    });
+
+    it("after rotating left", () => {
+      board.rotateLeft();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(2);
+
+      expect(board.toString()).to.equalShape(`
+      ..........
+      ..........
+      ....OO....
+      ....OO....
+      ..........
+      ..........`
+      );
+    });
+
+    it("after rotating right", () => {
+      board.rotateRight();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(2);
+
+      expect(board.toString()).to.equalShape(`
+       ..........
+       ..........
+       ....OO....
+       ....OO....
        ..........
        ..........`
       );
