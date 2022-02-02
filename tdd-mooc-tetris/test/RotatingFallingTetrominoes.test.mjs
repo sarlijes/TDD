@@ -65,60 +65,59 @@ describe("Rotating falling tetrominoes", () => {
 
 });
 
-describe("Rotating falling tetrominoes - coordinates update correctly", () => {
+describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
+  () => {
 
-  let board;
-  beforeEach(() => {
-    board = new Board(12, 6);
-    let shape = Tetromino.T_SHAPE;
-    board.drop(shape);
-  });
+    let board;
+    beforeEach(() => {
+      board = new Board(12, 6);
+      let shape = Tetromino.T_SHAPE;
+      board.drop(shape);
+    });
 
-  it("after rotating left", () => {
-    board.rotateLeft();
+    it("after rotating left", () => {
+      board.rotateLeft();
 
-    const position = board.currentlyFallingBlock.currentPosition;
-    expect(position).not.to.equal(undefined);
-    expect(position.x).to.equal(4);
-    expect(position.y).to.equal(0);
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(4);
+      expect(position.y).to.equal(0);
 
-    expect(board.toString()).to.equalShape(
-      `.....T......
+      expect(board.toString()).to.equalShape(
+        `.....T......
        ....TT......
        .....T......
        ............
        ............
        ............`
-    );
-  });
+      );
+    });
 
-  it("after rotating right", () => {
-    board.rotateRight();
+    it("after rotating right", () => {
+      board.rotateRight();
 
-    const position = board.currentlyFallingBlock.currentPosition;
-    expect(position).not.to.equal(undefined);
-    expect(position.x).to.equal(5);
-    expect(position.y).to.equal(0);
+      const position = board.currentlyFallingBlock.currentPosition;
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(5);
+      expect(position.y).to.equal(0);
 
-    expect(board.toString()).to.equalShape(
-      `.....T......
+      expect(board.toString()).to.equalShape(
+        `.....T......
        .....TT.....
        .....T......
        ............
        ............
        ............`
-    );
+      );
+    });
   });
-
-  it("", () => {
-
-  });
-
-
-});
 
 // - a falling tetromino can be rotated
 // - it cannot be rotated when there is no room to rotate
 // - [wall kick](https://tetris.fandom.com/wiki/Wall_kick):
 //    when it is up against a wall and is rotated, but there is no
 //   room to rotate, move it away from the wall if possible
+
+// it("", () => {
+
+// });
