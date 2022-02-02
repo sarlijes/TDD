@@ -273,6 +273,7 @@ export class Board {
           // Update coordinates
           // rotatedBlock.currentPosition = { x: xWithOffset + 2, y: yWithOffset };
           this.updateCurrentPosition(xWithOffset, yWithOffset);
+          rotatedBlock.currentPosition = this.currentlyFallingBlock.currentPosition;
         }
 
       }

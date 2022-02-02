@@ -78,7 +78,7 @@ describe("Rotating falling tetrominoes - coordinates update correctly", () => {
   it("after rotating left", () => {
     board.rotateLeft();
 
-    const position = shape.currentPosition;
+    const position = board.currentlyFallingBlock.currentPosition;
     expect(position).not.to.equal(undefined);
     expect(position.x).to.equal(4);
     expect(position.y).to.equal(0);
@@ -96,7 +96,7 @@ describe("Rotating falling tetrominoes - coordinates update correctly", () => {
   xit("after rotating right", () => {
     board.rotateRight();
 
-    const position = shape.currentPosition;
+    const position = board.currentlyFallingBlock.currentPosition;
     expect(position).not.to.equal(undefined);
     expect(position.x).to.equal(5);
     expect(position.y).to.equal(0);
