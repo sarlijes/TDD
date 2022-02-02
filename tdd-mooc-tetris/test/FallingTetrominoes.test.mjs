@@ -240,16 +240,37 @@ describe(
         `);
     });
 
-    it("", () => {
+    it("T_SHAPE is ticked moved one down", () => {
+      let shape = Tetromino.T_SHAPE;
+      board.drop(shape);
+      board.tick();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(3);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(`
+        ..........
+        ....T.....
+        ...TTT....
+        ..........
+        ..........
+        ..........
+        `);
+    });
+
+    it("I_SHAPE is moved one down", () => {
 
     });
 
 
-    it("", () => {
+    it("O_SHAPE is moved one down", () => {
 
     });
-
-
+    // same for going left and going right + one test with several moves
+    // then proceed to rotating
     it("", () => {
 
     });
