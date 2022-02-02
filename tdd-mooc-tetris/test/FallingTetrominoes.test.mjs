@@ -383,13 +383,35 @@ describe(
          ..........
          ..........`
       );
-
-    });
-    // same for going left and going right + one test with several moves
-    // then proceed to rotating
-    it("", () => {
-
     });
 
+    it("T_SHAPE is moved several times", () => {
+
+      let shape = Tetromino.T_SHAPE;
+      board.drop(shape);
+      board.moveDown();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+      board.moveRight();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(7);
+      expect(position.y).to.equal(1);
+
+      expect(board.toString()).to.equalShape(`
+      ..........
+      ........T.
+      .......TTT
+      ..........
+      ..........
+      ..........
+      `);
+    });
 
   });
