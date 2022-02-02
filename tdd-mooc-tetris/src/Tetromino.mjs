@@ -7,6 +7,21 @@ class Shape {
     ["t", "t", "t"],
     [".", ".", "."],
   ]);
+  static T_SHAPE_ROTATED_RIGHT = new Shape([
+    [".", "t", "."],
+    [".", "t", "t"],
+    [".", "t", "."],
+  ]);
+  static T_SHAPE_UPSIDE_DOWN = new Shape([
+    [".", ".", "."],
+    ["t", "t", "t"],
+    [".", "t", "."],
+  ]);
+  static T_SHAPE_ROTATED_LEFT = new Shape([
+    [".", "t", "."],
+    ["t", "t", "."],
+    [".", "t", "."],
+  ]);
   static I_SHAPE_INITIAL = new Shape([
     [".", ".", ".", ".", "."],
     [".", ".", ".", ".", "."],
