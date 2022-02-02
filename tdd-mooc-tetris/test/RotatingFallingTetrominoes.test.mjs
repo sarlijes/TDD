@@ -31,8 +31,7 @@ describe("Rotating falling tetrominoes", () => {
   });
 
   xit("a falling tetromino can be rotated left", () => {
-    // board.moveDown();
-    // board.moveDown();
+    board.rotateLeft();
     expect(shape.rotateRight().toString()).to.equalShape(
       `.T.
        TT.
@@ -65,6 +64,58 @@ describe("Rotating falling tetrominoes", () => {
 
 });
 
+describe("Rotating falling tetrominoes - coordinates update correctly", () => {
+
+  let board;
+  let shape;
+  beforeEach(() => {
+    board = new Board(12, 6);
+    shape = Tetromino.T_SHAPE;
+    board.drop(shape);
+  });
+
+  xit("after rotating left", () => {
+    board.rotateLeft();
+
+    const position = shape.currentPosition;
+    expect(position).not.to.equal(undefined);
+    expect(position.x).to.equal(5);
+    expect(position.y).to.equal(0);
+
+    expect(board.toString()).to.equalShape(
+      `.....T......
+       ....TT......
+       .....T......
+       ............
+       ............
+       ............`
+    );
+  });
+
+  xit("after rotating right", () => {
+    board.rotateRight();
+
+    const position = shape.currentPosition;
+    expect(position).not.to.equal(undefined);
+    expect(position.x).to.equal(5);
+    expect(position.y).to.equal(0);
+
+    expect(board.toString()).to.equalShape(
+      `.....T......
+       .....TT.....
+       .....T......
+       ............
+       ............
+       ............`
+    );
+  });
+
+  it("", () => {
+
+  });
+
+
+});
 
 // - a falling tetromino can be rotated
 // - it cannot be rotated when there is no room to rotate

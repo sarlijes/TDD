@@ -259,6 +259,9 @@ export class Board {
         if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
           this.board[yWithOffset][xWithOffset] = ".";
         }
+        if (i === 0 && j === 0) {
+          rotatedBlock.currentPosition = { x: xWithOffset, y: yWithOffset };
+        }
 
       }
     }
@@ -279,5 +282,13 @@ export class Board {
     }
     // Set the rotated shape to currentlyFallingBlock
     this.currentlyFallingBlock = rotatedBlock; // TODO should update coordinates?
+
   }
+
+  rotateLeft() {
+    this.rotateRight();
+    this.rotateRight();
+    this.rotateRight();
+  }
+
 }
