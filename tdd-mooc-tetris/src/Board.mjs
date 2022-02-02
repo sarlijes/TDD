@@ -271,9 +271,12 @@ export class Board {
         let xWithOffset = i + currentCoordinates.x;
         let yWithOffset = j + currentCoordinates.y;
 
-        if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
-          this.board[yWithOffset][xWithOffset] = ".";
+        if (this.board[yWithOffset] !== undefined) {
+          if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
+            this.board[yWithOffset][xWithOffset] = ".";
+          }
         }
+
       }
     }
 
@@ -302,6 +305,13 @@ export class Board {
   }
 
   updateCurrentPosition_NEW_TEMP(x, y) {
+
+    if (this.currentlyFallingBlock.shape_enum !== undefined &&
+      this.currentlyFallingBlock.shape_enum.includes("I_SHAPE")) {
+      this.currentlyFallingBlock.currentPosition = { x: x + 2, y: y };
+      return;
+    }
+
     if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
       Shape.T_SHAPE_ROTATED_RIGHT.layout)) {
       this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };

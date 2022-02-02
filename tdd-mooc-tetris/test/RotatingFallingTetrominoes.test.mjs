@@ -168,42 +168,55 @@ describe("Rotating falling tetrominoes I_SHAPE - coordinates update correctly",
       board = new Board(10, 6);
       let shape = Tetromino.I_SHAPE;
       board.drop(shape);
+      board.tick();
+      board.tick();
     });
 
-    xit("after rotating left", () => {
-      board.rotateLeft();
+    // xit("after rotating left", () => {
+    //   board.rotateLeft();
 
-      const position = board.currentlyFallingBlock.currentPosition;
-      expect(position).not.to.equal(undefined);
-      expect(position.x).to.equal(4);
-      expect(position.y).to.equal(0);
+    //   const position = board.currentlyFallingBlock.currentPosition;
+    //   expect(position).not.to.equal(undefined);
+    //   expect(position.x).to.equal(4);
+    //   expect(position.y).to.equal(0);
+
+    //   expect(board.toString()).to.equalShape(`
+    //    ...IIII...
+    //    ..........
+    //    ..........
+    //    ..........
+    //    ..........
+    //    ..........`
+    //   );
+    // });
+
+    it("after rotating right", () => {
 
       expect(board.toString()).to.equalShape(`
+       ..........
+       ..........
        ...IIII...
-       ..........
-       ..........
        ..........
        ..........
        ..........`
       );
-    });
 
-    xit("after rotating right", () => {
       board.rotateRight();
 
+      expect(board.toString()).to.equalShape(`
+       ..........
+       ..........
+       .....I....
+       .....I....
+       .....I....
+       .....I....`
+      );
       const position = board.currentlyFallingBlock.currentPosition;
       expect(position).not.to.equal(undefined);
-      expect(position.x).to.equal(4);
-      expect(position.y).to.equal(0);
+      expect(position.x).to.equal(5);
+      expect(position.y).to.equal(2);
 
-      expect(board.toString()).to.equalShape(`
-       ...IIII...
-       ..........
-       ..........
-       ..........
-       ..........
-       ..........`
-      );
+
     });
   });
 
