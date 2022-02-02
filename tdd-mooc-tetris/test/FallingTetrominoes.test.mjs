@@ -349,8 +349,40 @@ describe(
          ..........`
       );
     });
+  });
 
-    it("O_SHAPE is moved one down", () => {
+
+describe(
+  "different tetrominoes have correct starting position after moving several times",
+  () => {
+    let board;
+    beforeEach(() => {
+      board = new Board(10, 6);
+    });
+
+    it("O_SHAPE is moved several times", () => {
+
+      let shape = Tetromino.O_SHAPE;
+      board.drop(shape);
+      board.moveDown();
+      board.moveLeft();
+      board.moveLeft();
+      board.moveDown();
+
+      const position = board.currentlyFallingBlock.currentPosition;
+
+      expect(position).not.to.equal(undefined);
+      expect(position.x).to.equal(2);
+      expect(position.y).to.equal(2);
+
+      expect(board.toString()).to.equalShape(
+        `..........
+         ..........
+         ..OO......
+         ..OO......
+         ..........
+         ..........`
+      );
 
     });
     // same for going left and going right + one test with several moves
