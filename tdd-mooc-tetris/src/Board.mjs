@@ -260,6 +260,7 @@ export class Board {
           this.board[yWithOffset][xWithOffset] = ".";
         }
         if (i === 0 && j === 0) {
+          // Update coordinates
           rotatedBlock.currentPosition = { x: xWithOffset, y: yWithOffset };
         }
 
@@ -276,12 +277,12 @@ export class Board {
 
         if (rotatedBlock.shape[j][i] !== ".") {
           let char = rotatedBlock.shape[j][i];
-          this.board[yWithOffset][xWithOffset] = char; // TEMP
+          this.board[yWithOffset][xWithOffset] = char;
         }
       }
     }
     // Set the rotated shape to currentlyFallingBlock
-    this.currentlyFallingBlock = rotatedBlock; // TODO should update coordinates?
+    this.currentlyFallingBlock = rotatedBlock;
 
   }
 
