@@ -287,7 +287,7 @@ export class Board {
       }
     }
     // Update coordinates
-
+    // TODO loop seems overkill
     for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
       for (let j = 0; j < this.currentlyFallingBlock.shape[0].length; j++) {
 
