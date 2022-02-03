@@ -273,7 +273,7 @@ describe("Rotating falling tetrominoes I_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(10, 6);
-      let shape = Tetromino.I_SHAPE;
+      let shape = NewTetromino.I_SHAPE;
       board.drop(shape);
       board.tick();
       board.tick();
