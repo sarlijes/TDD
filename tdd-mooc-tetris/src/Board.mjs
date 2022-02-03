@@ -364,7 +364,24 @@ export class Board {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
     }
   }
+  // TODO temp - refactor later - should happen whenever a shape stops
+  checkClear() {
+    // Check if a row is full, if yes, then replace the contents with dots
 
+    const isOccupied = (cell) => cell !== ".";
+    let rowsToErase = [];
 
+    for (let row in this.board) {
+      if (this.board[row].every(isOccupied)) {
+        rowsToErase.push(row);
+      }
+    }
+    rowsToErase.sort((a, b) => b - a); // sort descending
+    rowsToErase.forEach(row =>
+      this.board[row].fill(".")
+    );
+    // TODO drop blocks that are dangling in the air
+
+  }
 
 }
