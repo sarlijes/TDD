@@ -409,4 +409,30 @@ describe("Can get potential new coordinates of rotating item", () => {
     //    .....I....
     //    .....I....
   });
+
+
+
+  it("when the space is limited - tiny board", () => {
+
+    board = new Board(4, 1);
+    shape = Tetromino.I_SHAPE;
+    board.drop(shape);
+    //    IIII
+    const rotatedBlock = shape.rotateLeft();
+    const position = board.currentlyFallingBlock.currentPosition;
+
+    const newCoordinates = getPotentialNewCoordinatesOfRotatingItem(
+      rotatedBlock, position, board.board);
+
+    expect(newCoordinates.length).to.equal(1);
+  });
+
+  it("when trying to rotate shape O (that doesn't rotate)", () => {
+
+  });
+
+  it("when the space is limited - crowded board - I shape", () => {
+
+  });
+
 });

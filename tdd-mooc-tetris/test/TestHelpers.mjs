@@ -29,7 +29,11 @@ function getCrowdedBoard() {
 
   return board;
 }
-
+// Crowded board looks like this:
+//
+// OO....OO
+// OO....OO
+// IIIIIIII
 
 function fallToBottom(board) {
   for (let i = 0; i < 10; i++) {
