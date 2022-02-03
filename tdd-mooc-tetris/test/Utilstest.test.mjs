@@ -366,57 +366,66 @@ describe("Two dimensional arrays match", () => {
 
 });
 
-describe("Can get potential new coordinates of rotating item", () => {
+describe("Can get potential new coordinates of rotating item - 10*6 board", () => {
 
-  // let board;
-  // let shape;
+  let board;
+  let shape;
 
+  beforeEach(() => {
+    board = new Board(10, 6);
+    shape = Tetromino.I_SHAPE;
+    board.drop(shape);
+  });
 
-  // it("when there is plenty of space to rotate", () => {
+  it("when there is plenty of space to rotate", () => {
 
-  //   let board = new Board(10, 6);
-  //   let shape = Tetromino.I_SHAPE;
-  //   board.drop(shape);
-  //   board.tick();
-  //   board.tick();
+    board.tick();
+    board.tick();
 
-  //   const rotatedBlock = shape.rotateLeft();
+    const rotatedBlock = shape.rotateLeft();
 
-  //   const position = board.currentlyFallingBlock.currentPosition;
+    const position = board.currentlyFallingBlock.currentPosition;
 
-  //   const newCoordinates = getPotentialNewCoordinatesOfRotatingItem(
-  //     rotatedBlock, position, board.board);
+    const newCoordinates = getPotentialNewCoordinatesOfRotatingItem(
+      rotatedBlock, position, board.board);
 
-  //   expect(newCoordinates.length).to.equal(4);
+    expect(newCoordinates.length).to.equal(4);
 
-  //   expect(newCoordinates[0].x).to.equal(5);
-  //   expect(newCoordinates[0].y).to.equal(2);
+    expect(newCoordinates[0].x).to.equal(5);
+    expect(newCoordinates[0].y).to.equal(2);
 
-  //   expect(newCoordinates[1].x).to.equal(5);
-  //   expect(newCoordinates[1].y).to.equal(3);
+    expect(newCoordinates[1].x).to.equal(5);
+    expect(newCoordinates[1].y).to.equal(3);
 
-  //   expect(newCoordinates[2].x).to.equal(5);
-  //   expect(newCoordinates[2].y).to.equal(4);
+    expect(newCoordinates[2].x).to.equal(5);
+    expect(newCoordinates[2].y).to.equal(4);
 
-  //   expect(newCoordinates[3].x).to.equal(5);
-  //   expect(newCoordinates[3].y).to.equal(5);
+    expect(newCoordinates[3].x).to.equal(5);
+    expect(newCoordinates[3].y).to.equal(5);
 
-  //   //    ..........
-  //   //    ..........
-  //   //    .....I....
-  //   //    .....I....
-  //   //    .....I....
-  //   //    .....I....
-  // });
+    //    ..........
+    //    ..........
+    //    .....I....
+    //    .....I....
+    //    .....I....
+    //    .....I....
+  });
+});
 
+describe("Can get potential new coordinates of rotating item - 4*1 board", () => {
 
+  let board;
+  let shape;
 
-  it("when the space is limited - tiny board", () => {
-
-    let board = new Board(4, 1);
-    let shape = Tetromino.I_SHAPE;
+  beforeEach(() => {
+    board = new Board(4, 1);
+    shape = Tetromino.I_SHAPE;
     board.drop(shape);
     //    IIII
+  });
+
+  xit("when the space is limited - tiny board", () => {
+
     const rotatedBlock = shape.rotateLeft();
     const position = board.currentlyFallingBlock.currentPosition;
 
@@ -426,12 +435,12 @@ describe("Can get potential new coordinates of rotating item", () => {
     expect(newCoordinates.length).to.equal(1);
   });
 
-  it("when trying to rotate shape O (that doesn't rotate)", () => {
+  // it("when trying to rotate shape O (that doesn't rotate)", () => {
 
-  });
+  // });
 
-  it("when the space is limited - crowded board - I shape", () => {
+  // it("when the space is limited - crowded board - I shape", () => {
 
-  });
+  // });
 
 });
