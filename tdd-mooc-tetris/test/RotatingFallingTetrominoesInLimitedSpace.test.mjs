@@ -1,6 +1,6 @@
 /* eslint-disable linebreak-style */
 import { expect } from "chai";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 import { getCrowdedBoard } from "./TestHelpers.mjs";
 
 
@@ -22,7 +22,7 @@ describe("Rotating falling tetrominoes in limited space", () => {
 
 
   it("Shape I is not rotated when there is no space to rotate", () => {
-    board.drop(NewTetromino.I_SHAPE);
+    board.drop(Tetromino.I_SHAPE);
     board.rotateLeft();
     expect(board.toString()).to.equalShape(`
       OOIIIIOO

@@ -11,7 +11,7 @@ import {
 
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("2-dimensional array to string", () => {
@@ -105,7 +105,7 @@ describe("Tetrominoes - list occupied Points", () => {
 
   it("T_SHAPE has been dropped to the bottom - correct amount of occupied points",
     () => {
-      board.drop(NewTetromino.T_SHAPE);
+      board.drop(Tetromino.T_SHAPE);
       fallToBottom(board);
 
       const occupied = listOccupied(board);
@@ -115,7 +115,7 @@ describe("Tetrominoes - list occupied Points", () => {
   it("One T_SHAPE has been dropped to the bottom - correct coordinates",
     () => {
       let board = new Board(3, 3);
-      board.drop(NewTetromino.T_SHAPE);
+      board.drop(Tetromino.T_SHAPE);
       fallToBottom(board);
 
       // ...
@@ -167,7 +167,7 @@ describe("List Points of moving items on a board", () => {
 
   it("1 Tetramino has been dropped to the bottom - correct amount of moving Points",
     () => {
-      board.drop(NewTetromino.T_SHAPE);
+      board.drop(Tetromino.T_SHAPE);
       fallToBottom(board);
       const moving = listMoving(board);
       expect(moving.length).to.equal(0);
@@ -175,7 +175,7 @@ describe("List Points of moving items on a board", () => {
 
   it("1 Tetromino has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
     const moving = listMoving(board);
@@ -248,7 +248,7 @@ describe("New potential positions of moving items", () => {
 
   it("T tetramino", () => {
     board = new Board(10, 6);
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     let tickedOnce = getPotentialNewCoordinatesOfMovingItem(
       listMoving(board), board);
     expect(tickedOnce.length).to.equal(4);
@@ -305,7 +305,7 @@ describe(s, () => {
   // TODO pending implementation
   it("T tetramino", () => {
     board = new Board(10, 6);
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
     let newPosition = getPotentialNewCoordinatesOfMovingItem(
       listMoving(board), board);
@@ -375,7 +375,7 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   });
 
   it("when there is plenty of space to rotate", () => {
-    let shape = NewTetromino.I_SHAPE;
+    let shape = Tetromino.I_SHAPE;
     board.drop(shape);
     board.tick();
     board.tick();
@@ -404,7 +404,7 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   });
 
   it("when trying to rotate shape T", () => {
-    let shape = NewTetromino.T_SHAPE;
+    let shape = Tetromino.T_SHAPE;
     board.drop(shape);
     board.tick();
     board.tick();
@@ -461,7 +461,7 @@ describe("Can get potential new coordinates of rotating item - 4*1 board", () =>
 
     board = undefined;
     board = new Board(4, 1);
-    shape = NewTetromino.I_SHAPE;
+    shape = Tetromino.I_SHAPE;
     board.drop(shape);
 
     const rotatedBlock = shape.rotateLeft();

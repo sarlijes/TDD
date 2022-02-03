@@ -1,5 +1,5 @@
 import { Block } from "./Block.mjs";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "./Tetromino.mjs";
 import {
   twoDimensionalArraytoString,
   isLowerCase,
@@ -50,7 +50,7 @@ export class Board {
       this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     }
 
-    if (block instanceof NewTetromino) {
+    if (block instanceof Tetromino) {
       let clearance = Math.floor(this.width / 3);
       if (clearance === 1) {
         clearance = 0;
@@ -358,7 +358,7 @@ export class Board {
     }
 
     if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
-      NewTetromino.T_SHAPE_ORIENTATIONS[1])) {
+      Tetromino.T_SHAPE_ORIENTATIONS[1])) {
       this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };
     } else {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };

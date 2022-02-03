@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
@@ -10,7 +10,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    let shape = NewTetromino.T_SHAPE;
+    let shape = Tetromino.T_SHAPE;
     board.drop(shape);
 
     const result = board.toString();
@@ -26,7 +26,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("stop when they hit the bottom", () => {
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
@@ -40,9 +40,9 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("stop when they land on another block", () => {
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
@@ -64,7 +64,7 @@ describe("I_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(NewTetromino.I_SHAPE);
+    board.drop(Tetromino.I_SHAPE);
 
     const result = board.toString();
 
@@ -86,7 +86,7 @@ describe("O_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(NewTetromino.O_SHAPE);
+    board.drop(Tetromino.O_SHAPE);
 
     const result = board.toString();
 
@@ -108,7 +108,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
 
     const result = board.toString();
     expect(result).to.equalShape(
@@ -119,7 +119,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
   });
 
   it("stop when they hit the bottom", () => {
-    board.drop(NewTetromino.T_SHAPE);
+    board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
 
     const result = board.toString();
@@ -140,8 +140,8 @@ describe("different tetrominoes have correct starting position", () => {
   });
 
   it("T_SHAPE start from the top middle", () => {
-    let shape = new NewTetromino(
-      NewTetromino.T_SHAPE_ORIENTATIONS,
+    let shape = new Tetromino(
+      Tetromino.T_SHAPE_ORIENTATIONS,
       0,
       "T_SHAPE"
     );
@@ -165,7 +165,7 @@ describe("different tetrominoes have correct starting position", () => {
   });
 
   it("O_SHAPE start from the top middle", () => {
-    let shape = NewTetromino.O_SHAPE;
+    let shape = Tetromino.O_SHAPE;
     board.drop(shape);
     const position = shape.currentPosition;
 
@@ -184,7 +184,7 @@ describe("different tetrominoes have correct starting position", () => {
   });
 
   it("I_SHAPE start from the top middle", () => {
-    let shape = NewTetromino.I_SHAPE;
+    let shape = Tetromino.I_SHAPE;
     board.drop(shape);
     const position = shape.currentPosition;
 
@@ -212,7 +212,7 @@ describe(
     });
 
     it("T_SHAPE is moved one down", () => {
-      let shape = NewTetromino.T_SHAPE;
+      let shape = Tetromino.T_SHAPE;
       board.drop(shape);
       board.moveDown();
 
@@ -233,7 +233,7 @@ describe(
     });
 
     it("T_SHAPE is ticked moved one down", () => {
-      let shape = NewTetromino.T_SHAPE;
+      let shape = Tetromino.T_SHAPE;
       board.drop(shape);
       board.tick();
 
@@ -258,7 +258,7 @@ describe(
     });
 
     it("I_SHAPE is moved one down", () => {
-      let shape = NewTetromino.I_SHAPE;
+      let shape = Tetromino.I_SHAPE;
       board.drop(shape);
       board.moveDown();
 
@@ -279,7 +279,7 @@ describe(
     });
 
     it("I_SHAPE is ticked moved one down", () => {
-      let shape = NewTetromino.I_SHAPE;
+      let shape = Tetromino.I_SHAPE;
       board.drop(shape);
       board.tick();
 
@@ -300,7 +300,7 @@ describe(
     });
 
     it("O_SHAPE is moved one down", () => {
-      let shape = NewTetromino.O_SHAPE;
+      let shape = Tetromino.O_SHAPE;
       board.drop(shape);
       board.moveDown();
 
@@ -321,7 +321,7 @@ describe(
     });
 
     it("O_SHAPE is ticked moved one down", () => {
-      let shape = NewTetromino.O_SHAPE;
+      let shape = Tetromino.O_SHAPE;
       board.drop(shape);
       board.tick();
 
@@ -353,7 +353,7 @@ describe(
 
     it("O_SHAPE is moved several times", () => {
 
-      let shape = NewTetromino.O_SHAPE;
+      let shape = Tetromino.O_SHAPE;
       board.drop(shape);
       board.moveDown();
       board.moveLeft();
@@ -378,7 +378,7 @@ describe(
 
     it("T_SHAPE is moved several times", () => {
 
-      let shape = NewTetromino.T_SHAPE;
+      let shape = Tetromino.T_SHAPE;
       board.drop(shape);
       board.moveDown();
       board.moveRight();

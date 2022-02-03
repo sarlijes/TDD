@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 
 describe("Rotating falling tetrominoes", () => {
 
@@ -10,7 +10,7 @@ describe("Rotating falling tetrominoes", () => {
 
   beforeEach(() => {
     board = new Board(12, 6);
-    shape_new = NewTetromino.T_SHAPE;
+    shape_new = Tetromino.T_SHAPE;
     board.drop(shape_new);
   });
 
@@ -72,7 +72,7 @@ describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(12, 6);
-      let shape = NewTetromino.T_SHAPE;
+      let shape = Tetromino.T_SHAPE;
       board.drop(shape);
     });
 
@@ -122,7 +122,7 @@ describe(s,
     let board;
     beforeEach(() => {
       board = new Board(12, 6);
-      let shape = NewTetromino.T_SHAPE;
+      let shape = Tetromino.T_SHAPE;
       board.drop(shape);
       board.tick();
       board.tick();
@@ -171,7 +171,7 @@ describe("Rotating falling tetrominoes O_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(10, 6);
-      let shape = NewTetromino.O_SHAPE;
+      let shape = Tetromino.O_SHAPE;
       board.drop(shape);
     });
 
@@ -222,7 +222,7 @@ describe("Rotating falling tetrominoes O_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(10, 6);
-      let shape = NewTetromino.O_SHAPE;
+      let shape = Tetromino.O_SHAPE;
       board.drop(shape);
       board.tick();
       board.tick();
@@ -272,7 +272,7 @@ describe("Rotating falling tetrominoes I_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(10, 6);
-      let shape = NewTetromino.I_SHAPE;
+      let shape = Tetromino.I_SHAPE;
       board.drop(shape);
       board.tick();
       board.tick();

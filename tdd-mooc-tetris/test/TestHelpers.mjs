@@ -1,27 +1,27 @@
 /* eslint-disable linebreak-style */
 import { Board } from "../src/Board.mjs";
-import { NewTetromino } from "../src/NewTetromino.mjs";
+import { Tetromino } from "../src/Tetromino.mjs";
 
 function getCrowdedBoard() {
   let board;
   board = new Board(8, 3);
-  board.drop(NewTetromino.I_SHAPE);
+  board.drop(Tetromino.I_SHAPE);
   board.moveLeft();
   board.moveLeft();
   fallToBottom(board);
 
-  board.drop(NewTetromino.I_SHAPE);
+  board.drop(Tetromino.I_SHAPE);
   board.moveRight();
   board.moveRight();
   fallToBottom(board);
 
-  board.drop(NewTetromino.O_SHAPE);
+  board.drop(Tetromino.O_SHAPE);
   board.moveLeft();
   board.moveLeft();
   board.moveLeft();
   fallToBottom(board);
 
-  board.drop(NewTetromino.O_SHAPE);
+  board.drop(Tetromino.O_SHAPE);
   board.moveRight();
   board.moveRight();
   board.moveRight();
