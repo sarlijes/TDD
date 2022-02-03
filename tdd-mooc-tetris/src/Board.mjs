@@ -248,7 +248,7 @@ export class Board {
     };
   }
 
-  rotateLeftTemp() {
+  rotateLeft() {
     // Rotate the block, save it into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
 
@@ -276,9 +276,9 @@ export class Board {
 
     const canBeRotated = newPotentialPositionIsSafe && allItemsCanBeRepositioned;
 
-    // If yes, proceed as usual
+    // If yes, rotate
     if (canBeRotated) {
-      this.rotateLeft();
+      this.rotate(rotatedBlock);
     }
   }
 
@@ -355,10 +355,6 @@ export class Board {
     }
   }
 
-  rotateLeft() {
-    // Rotate the block and save the rotated version into a new variable
-    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
-    this.rotate(rotatedBlock);
-  }
+
 
 }

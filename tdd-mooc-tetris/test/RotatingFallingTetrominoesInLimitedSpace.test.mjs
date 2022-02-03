@@ -22,7 +22,7 @@ describe("Rotating falling tetrominoes in limited space", () => {
 
   it("Shape I is not rotated when there is no space to rotate", () => {
     board.drop(Tetromino.I_SHAPE);
-    board.rotateLeftTemp();
+    board.rotateLeft();
     expect(board.toString()).to.equalShape(`
       OOIIIIOO
       OO....OO
