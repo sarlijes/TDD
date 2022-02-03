@@ -1,5 +1,5 @@
 import { Block } from "./Block.mjs";
-import { Shape, Tetromino } from "./Tetromino.mjs";
+import { Tetromino } from "./Tetromino.mjs";
 import { NewTetromino } from "../src/NewTetromino.mjs";
 import {
   twoDimensionalArraytoString,
@@ -349,7 +349,7 @@ export class Board {
     this.updateCurrentPosition_NEW_TEMP(currentCoordinates.x, currentCoordinates.y);
 
   }
-
+  // TODO temp
   updateCurrentPosition_NEW_TEMP(x, y) {
 
     if (this.currentlyFallingBlock.shape_enum !== undefined &&
@@ -359,7 +359,7 @@ export class Board {
     }
 
     if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
-      Shape.T_SHAPE_ROTATED_RIGHT.layout)) {
+      NewTetromino.T_SHAPE_ORIENTATIONS[1])) {
       this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };
     } else {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
