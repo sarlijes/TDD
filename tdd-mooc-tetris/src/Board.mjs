@@ -1,5 +1,6 @@
 import { Block } from "./Block.mjs";
 import { Shape, Tetromino } from "./Tetromino.mjs";
+import { NewTetromino } from "../src/NewTetromino.mjs";
 import {
   twoDimensionalArraytoString,
   isLowerCase,
@@ -50,7 +51,7 @@ export class Board {
       this.board[0][Math.floor(this.width / 2)] = block.color.toLowerCase();
     }
 
-    if (block instanceof Tetromino) {
+    if (block instanceof Tetromino || block instanceof NewTetromino) {
       let clearance = Math.floor(this.width / 3);
       if (clearance === 1) {
         clearance = 0;

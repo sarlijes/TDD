@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { NewTetromino } from "../src/NewTetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
@@ -10,7 +11,8 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(Tetromino.T_SHAPE);
+    let shape = NewTetromino.T_SHAPE;
+    board.drop(shape);
 
     const result = board.toString();
 
@@ -25,7 +27,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("stop when they hit the bottom", () => {
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
@@ -39,9 +41,9 @@ describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("stop when they land on another block", () => {
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
 
     expect(board.toString()).to.equalShape(
@@ -107,7 +109,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
 
     const result = board.toString();
     expect(result).to.equalShape(
@@ -118,7 +120,7 @@ describe("T_SHAPE Tetromino: Falling tetrominoes - smaller board", () => {
   });
 
   it("stop when they hit the bottom", () => {
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
 
     const result = board.toString();
@@ -139,8 +141,13 @@ describe("different tetrominoes have correct starting position", () => {
   });
 
   it("T_SHAPE start from the top middle", () => {
-    let shape = new Tetromino(Tetromino.T_SHAPE.shape, 0, 4, "T_SHAPE");
-
+    let shape = new NewTetromino(
+      NewTetromino.T_SHAPE_ORIENTATIONS,
+      0,
+      "T_SHAPE"
+    );
+    // TODO why does the above need the whole constructor?
+    // - NewTetromino.T_SHAPE should do
     board.drop(shape);
     const position = board.currentlyFallingBlock.currentPosition;
 
@@ -227,7 +234,7 @@ describe(
     });
 
     it("T_SHAPE is ticked moved one down", () => {
-      let shape = Tetromino.T_SHAPE;
+      let shape = NewTetromino.T_SHAPE;
       board.drop(shape);
       board.tick();
 
@@ -372,7 +379,7 @@ describe(
 
     it("T_SHAPE is moved several times", () => {
 
-      let shape = Tetromino.T_SHAPE;
+      let shape = NewTetromino.T_SHAPE;
       board.drop(shape);
       board.moveDown();
       board.moveRight();

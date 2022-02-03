@@ -41,7 +41,7 @@ export class Shape {
     [".", "o", "o"],
     [".", ".", "."],
   ]);
-  static Right = new Shape("Right");
+
 
   constructor(layout) {
     this.layout = layout;
