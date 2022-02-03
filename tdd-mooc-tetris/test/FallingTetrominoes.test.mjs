@@ -1,6 +1,5 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
 import { NewTetromino } from "../src/NewTetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
@@ -65,7 +64,7 @@ describe("I_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(Tetromino.I_SHAPE);
+    board.drop(NewTetromino.I_SHAPE);
 
     const result = board.toString();
 
@@ -87,7 +86,7 @@ describe("O_SHAPE Tetromino: Falling tetrominoes", () => {
   });
 
   it("start from the top middle", () => {
-    board.drop(Tetromino.O_SHAPE);
+    board.drop(NewTetromino.O_SHAPE);
 
     const result = board.toString();
 

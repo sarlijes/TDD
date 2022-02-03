@@ -1,5 +1,4 @@
 import { expect } from "chai";
-import { Tetromino } from "../src/Tetromino.mjs";
 import { NewTetromino } from "../src/NewTetromino.mjs";
 
 function distinctOrientations(shape) {

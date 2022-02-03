@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
 import { NewTetromino } from "../src/NewTetromino.mjs";
 
 describe("Rotating falling tetrominoes", () => {
