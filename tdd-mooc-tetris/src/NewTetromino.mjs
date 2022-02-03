@@ -53,7 +53,7 @@ export class NewTetromino {
   }
 
   rotateRight() {
-    const next = this.currentOrientation + 1;
+    const next = this.getNewRotationValue(this.currentOrientation + 1);
     return new NewTetromino(
       NewTetromino.T_SHAPE_ORIENTATIONS,
       next,
@@ -61,8 +61,22 @@ export class NewTetromino {
     );
   }
 
+  getNewRotationValue(newRotation) {
+    if (newRotation < 0) {
+      return newRotation + this.orientations.length;
+    }
+    if (newRotation === 0) {
+      return 0;
+    }
+    if (newRotation >= this.orientations.length) {
+      return newRotation - this.orientations.length;
+    }
+    return newRotation;
+  }
+
+
   rotateLeft() {
-    const next = this.currentOrientation + 3;
+    const next = this.getNewRotationValue(this.currentOrientation - 1);
     return new NewTetromino(
       NewTetromino.T_SHAPE_ORIENTATIONS,
       next,
