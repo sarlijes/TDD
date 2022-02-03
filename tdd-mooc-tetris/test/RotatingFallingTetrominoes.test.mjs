@@ -2,20 +2,22 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { NewTetromino } from "../src/NewTetromino.mjs";
 
 describe("Rotating falling tetrominoes", () => {
 
   let board;
-  let shape;
+  let shape_new;
+
   beforeEach(() => {
     board = new Board(12, 6);
-    shape = Tetromino.T_SHAPE;
-    board.drop(shape);
+    shape_new = NewTetromino.T_SHAPE;
+    board.drop(shape_new);
   });
 
   it("a falling tetromino can be rotated right", () => {
     board.rotateRight();
-    expect(shape.rotateRight().toString()).to.equalShape(
+    expect(shape_new.rotateRight().toString()).to.equalShape(
       `.T.
        .TT
        .T.`
@@ -71,7 +73,7 @@ describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",
     let board;
     beforeEach(() => {
       board = new Board(12, 6);
-      let shape = Tetromino.T_SHAPE;
+      let shape = NewTetromino.T_SHAPE;
       board.drop(shape);
     });
 
@@ -121,7 +123,7 @@ describe(s,
     let board;
     beforeEach(() => {
       board = new Board(12, 6);
-      let shape = Tetromino.T_SHAPE;
+      let shape = NewTetromino.T_SHAPE;
       board.drop(shape);
       board.tick();
       board.tick();
