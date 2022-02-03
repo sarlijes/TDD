@@ -60,4 +60,14 @@ export class NewTetromino {
       "T_SHAPE"
     );
   }
+
+  rotateLeft() {
+    const next = this.currentOrientation + 3;
+    return new NewTetromino(
+      NewTetromino.T_SHAPE_ORIENTATIONS,
+      next,
+      "T_SHAPE"
+    );
+  }
+
 }
