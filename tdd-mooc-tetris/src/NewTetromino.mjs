@@ -21,6 +21,21 @@ export class NewTetromino {
   ]
   ];
 
+  static I_SHAPE_ORIENTATIONS = [[
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+    ["i", "i", "i", "i", "."],
+    [".", ".", ".", ".", "."],
+    [".", ".", ".", ".", "."],
+  ], [
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", "i", ".", "."],
+    [".", ".", ".", ".", "."],
+  ]
+  ];
+
   shape;
   shape_enum;
   currentOrientation;
@@ -34,6 +49,12 @@ export class NewTetromino {
     NewTetromino.T_SHAPE_ORIENTATIONS,
     0,
     "T_SHAPE"
+  );
+
+  static I_SHAPE = new NewTetromino(
+    NewTetromino.I_SHAPE_ORIENTATIONS,
+    0,
+    "I_SHAPE"
   );
 
   constructor(orientations, currentOrientation, shape_enum) {
@@ -53,11 +74,12 @@ export class NewTetromino {
   }
 
   rotateRight() {
+    const state = this;
     const next = this.getNewRotationValue(this.currentOrientation + 1);
     return new NewTetromino(
-      NewTetromino.T_SHAPE_ORIENTATIONS,
+      state.orientations,
       next,
-      "T_SHAPE"
+      state.shape_enum
     );
   }
 
@@ -76,11 +98,12 @@ export class NewTetromino {
 
 
   rotateLeft() {
+    const state = this;
     const next = this.getNewRotationValue(this.currentOrientation - 1);
     return new NewTetromino(
-      NewTetromino.T_SHAPE_ORIENTATIONS,
+      state.orientations,
       next,
-      "T_SHAPE"
+      state.shape_enum
     );
   }
 
