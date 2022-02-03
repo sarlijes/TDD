@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 import { expect } from "chai";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { getCrowdedBoard } from "./TestUtils.mjs";
+import { getCrowdedBoard } from "./TestHelpers.mjs";
 
 describe("Rotating falling tetrominoes in limited space", () => {
 

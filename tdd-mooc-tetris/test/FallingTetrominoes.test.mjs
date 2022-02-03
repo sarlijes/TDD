@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { fallToBottom } from "./TestUtils.mjs";
+import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;

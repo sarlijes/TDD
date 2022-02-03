@@ -12,7 +12,7 @@ import {
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { fallToBottom } from "./TestUtils.mjs";
+import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {

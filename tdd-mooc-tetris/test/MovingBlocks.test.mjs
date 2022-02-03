@@ -3,7 +3,7 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { fallToBottom } from "./TestUtils.mjs";
+import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("Moving simple 1x1 blocks", () => {
 
