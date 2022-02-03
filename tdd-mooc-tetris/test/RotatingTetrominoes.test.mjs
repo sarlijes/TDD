@@ -38,7 +38,6 @@ function distinctOrientationsRotatingRight(shape) {
 }
 
 describe("The T shape", () => {
-  const shape = Tetromino.T_SHAPE;
   const shape_new = NewTetromino.T_SHAPE;
 
   it("initial orientation", () => {
@@ -66,15 +65,15 @@ describe("The T shape", () => {
   });
 
   it("has 4 distinct orientations when rotating left", () => {
-    expect(distinctOrientationsRotatingLeft(shape).size).to.equal(4);
+    expect(distinctOrientationsRotatingLeft(shape_new).size).to.equal(4);
   });
 
   it("has 4 distinct orientations when rotating right", () => {
-    expect(distinctOrientationsRotatingRight(shape).size).to.equal(4);
+    expect(distinctOrientationsRotatingRight(shape_new).size).to.equal(4);
   });
 
   it("has 4 distinct orientations", () => {
-    expect(distinctOrientations(shape).size).to.equal(4);
+    expect(distinctOrientations(shape_new).size).to.equal(4);
   });
 });
 
