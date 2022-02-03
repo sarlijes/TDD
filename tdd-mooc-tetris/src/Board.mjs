@@ -382,8 +382,5 @@ export class Board {
     rowsToErase.forEach(row =>
       this.board[row].fill(".")
     );
-    // TODO drop blocks that are dangling in the air
-
   }
-
 }
