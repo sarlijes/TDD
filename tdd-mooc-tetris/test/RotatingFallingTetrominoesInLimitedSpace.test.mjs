@@ -8,7 +8,7 @@ describe("Rotating falling tetrominoes in limited space", () => {
 
   let board;
   beforeEach(() => {
-    board = getCrowdedBoard();
+    board = getCrowdedBoard(8, 3);
   });
 
 

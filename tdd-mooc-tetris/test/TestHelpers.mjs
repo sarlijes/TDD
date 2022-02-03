@@ -2,9 +2,9 @@
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
-function getCrowdedBoard() {
+function getCrowdedBoard(width, height) {
   let board;
-  board = new Board(8, 3);
+  board = new Board(width, height);
   board.drop(Tetromino.I_SHAPE);
   board.moveLeft();
   board.moveLeft();
