@@ -12,6 +12,7 @@ import {
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { fallToBottom } from "./TestUtils.mjs";
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {
@@ -34,18 +35,6 @@ describe("2-dimensional array to string", () => {
   });
 });
 
-function blockFallToBottom(board) {
-  for (let i = 0; i < board.height; i++) {
-    board.tick();
-  }
-}
-
-function fallToBottom(board) {
-  for (let i = 0; i < 10; i++) {
-    board.tick();
-  }
-}
-
 describe("Blocks - list occupied Points", () => {
   it("No block has been dropped", () => {
     let board = new Board(3, 3);
@@ -56,7 +45,7 @@ describe("Blocks - list occupied Points", () => {
   it("One block has been dropped to the bottom - correct amount of Points", () => {
     let board = new Board(3, 3);
     board.drop(new Block("x"));
-    blockFallToBottom(board);
+    fallToBottom(board);
 
     const occupied = listOccupied(board);
     expect(occupied.length).to.equal(1);
@@ -65,7 +54,7 @@ describe("Blocks - list occupied Points", () => {
   it("One block has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
     board.drop(new Block("x"));
-    blockFallToBottom(board);
+    fallToBottom(board);
 
     const occupied = listOccupied(board);
     expect(occupied[0].x).to.equal(1);
@@ -76,9 +65,9 @@ describe("Blocks - list occupied Points", () => {
     () => {
       let board = new Board(3, 3);
       board.drop(new Block("x"));
-      blockFallToBottom(board);
+      fallToBottom(board);
       board.drop(new Block("x"));
-      blockFallToBottom(board);
+      fallToBottom(board);
 
       const occupied = listOccupied(board);
       expect(occupied.length).to.equal(2);
@@ -87,10 +76,10 @@ describe("Blocks - list occupied Points", () => {
   it("Two blocks have been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
     board.drop(new Block("x"));
-    blockFallToBottom(board);
+    fallToBottom(board);
 
     board.drop(new Block("x"));
-    blockFallToBottom(board);
+    fallToBottom(board);
 
     const occupied = listOccupied(board);
     expect(occupied[1].x).to.equal(1);

@@ -1,22 +1,7 @@
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-
-function fallToBottom(board) {
-  for (let i = 0; i < 10; i++) {
-    board.tick();
-  }
-}
-
-// TODO remove after everything works
-// eslint-disable-next-line no-unused-vars
-function printHelper(result) {
-  const splitted = result.split("\n");
-
-  for (let row in splitted) {
-    console.log(splitted[row]);
-  }
-}
+import { fallToBottom } from "./TestUtils.mjs";
 
 describe("T_SHAPE Tetromino: Falling tetrominoes", () => {
   let board;

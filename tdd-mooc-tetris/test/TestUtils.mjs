@@ -38,5 +38,6 @@ function fallToBottom(board) {
 }
 
 export {
-  getCrowdedBoard
+  getCrowdedBoard,
+  fallToBottom
 };
