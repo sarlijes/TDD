@@ -70,16 +70,17 @@ describe("Blocks - list occupied Points", () => {
     expect(occupied[0].y).to.equal(2);
   });
 
-  it("Two blocks have been dropped to the bottom - correct amount of occupied points", () => {
-    let board = new Board(3, 3);
-    board.drop(new Block("x"));
-    blockFallToBottom(board);
-    board.drop(new Block("x"));
-    blockFallToBottom(board);
+  it("2 blocks have been dropped to the bottom - correct amount of occupied points",
+    () => {
+      let board = new Board(3, 3);
+      board.drop(new Block("x"));
+      blockFallToBottom(board);
+      board.drop(new Block("x"));
+      blockFallToBottom(board);
 
-    const occupied = listOccupied(board);
-    expect(occupied.length).to.equal(2);
-  });
+      const occupied = listOccupied(board);
+      expect(occupied.length).to.equal(2);
+    });
 
   it("Two blocks have been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
@@ -111,36 +112,38 @@ describe("Tetrominoes - list occupied Points", () => {
     expect(occupied.length).to.equal(0);
   });
 
-  it("One T_SHAPE Tetromino has been dropped to the bottom - correct amount of Points", () => {
-    board.drop(Tetromino.T_SHAPE);
-    fallToBottom(board);
+  it("T_SHAPE has been dropped to the bottom - correct amount of occupied points",
+    () => {
+      board.drop(Tetromino.T_SHAPE);
+      fallToBottom(board);
 
-    const occupied = listOccupied(board);
-    expect(occupied.length).to.equal(4);
-  });
+      const occupied = listOccupied(board);
+      expect(occupied.length).to.equal(4);
+    });
 
-  it("One T_SHAPE Tetromino has been dropped to the bottom - correct coordinates", () => {
-    let board = new Board(3, 3);
-    board.drop(Tetromino.T_SHAPE);
-    fallToBottom(board);
+  it("One T_SHAPE has been dropped to the bottom - correct coordinates",
+    () => {
+      let board = new Board(3, 3);
+      board.drop(Tetromino.T_SHAPE);
+      fallToBottom(board);
 
-    // ...
-    // .T.
-    // TTT
+      // ...
+      // .T.
+      // TTT
 
-    const occupied = listOccupied(board);
-    expect(occupied[0].x).to.equal(1);
-    expect(occupied[0].y).to.equal(1);
+      const occupied = listOccupied(board);
+      expect(occupied[0].x).to.equal(1);
+      expect(occupied[0].y).to.equal(1);
 
-    expect(occupied[1].x).to.equal(0);
-    expect(occupied[1].y).to.equal(2);
+      expect(occupied[1].x).to.equal(0);
+      expect(occupied[1].y).to.equal(2);
 
-    expect(occupied[2].x).to.equal(1);
-    expect(occupied[2].y).to.equal(2);
+      expect(occupied[2].x).to.equal(1);
+      expect(occupied[2].y).to.equal(2);
 
-    expect(occupied[3].x).to.equal(2);
-    expect(occupied[3].y).to.equal(2);
-  });
+      expect(occupied[3].x).to.equal(2);
+      expect(occupied[3].y).to.equal(2);
+    });
 });
 
 
@@ -156,28 +159,30 @@ describe("List Points of moving items on a board", () => {
     expect(moving.length).to.equal(0);
   });
 
-  it("One Block has been dropped - correct amount of moving Points", () => {
+  it("1 Block has been dropped - correct amount of moving Points", () => {
     board.drop(new Block("y"));
 
     const moving = listMoving(board);
     expect(moving.length).to.equal(1);
   });
 
-  it("One Block has been dropped to the bottom - correct amount of moving Points", () => {
-    board.drop(new Block("y"));
-    fallToBottom(board);
-    const moving = listMoving(board);
-    expect(moving.length).to.equal(0);
-  });
+  it("1 Block has been dropped to the bottom - correct amount of moving Points",
+    () => {
+      board.drop(new Block("y"));
+      fallToBottom(board);
+      const moving = listMoving(board);
+      expect(moving.length).to.equal(0);
+    });
 
-  it("One Tetramino has been dropped to the bottom - correct amount of moving Points", () => {
-    board.drop(Tetromino.T_SHAPE);
-    fallToBottom(board);
-    const moving = listMoving(board);
-    expect(moving.length).to.equal(0);
-  });
+  it("1 Tetramino has been dropped to the bottom - correct amount of moving Points",
+    () => {
+      board.drop(Tetromino.T_SHAPE);
+      fallToBottom(board);
+      const moving = listMoving(board);
+      expect(moving.length).to.equal(0);
+    });
 
-  it("One Tetromino has been dropped to the bottom - correct coordinates", () => {
+  it("1 Tetromino has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
@@ -243,7 +248,8 @@ describe("New potential positions of moving items", () => {
 
   it("Basic X block", () => {
     board.drop(new Block("x"));
-    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
+    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(
+      listMoving(board), board);
     expect(tickedOnce.length).to.equal(1);
     expect(tickedOnce[0].x).to.equal(2);
     expect(tickedOnce[0].y).to.equal(1);
@@ -252,7 +258,8 @@ describe("New potential positions of moving items", () => {
   it("T tetramino", () => {
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
-    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
+    let tickedOnce = getPotentialNewCoordinatesOfMovingItem(
+      listMoving(board), board);
     expect(tickedOnce.length).to.equal(4);
 
     expect(tickedOnce[0].x).to.equal(4);
@@ -279,7 +286,10 @@ describe("New potential positions of moving items", () => {
   });
 });
 
-describe("New potential positions of moving items - corner cases regarding the bottom of the board", () => {
+let s = "New potential positions of moving items - " +
+  "corner cases regarding the bottom of the board";
+
+describe(s, () => {
   let board;
   beforeEach(() => {
     board = new Board(5, 5);
@@ -296,7 +306,8 @@ describe("New potential positions of moving items - corner cases regarding the b
     // .....
     // .....
     // ..X..
-    let newPosition = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
+    let newPosition = getPotentialNewCoordinatesOfMovingItem(
+      listMoving(board), board);
     expect(newPosition.length).to.equal(0);
   });
 
@@ -305,7 +316,8 @@ describe("New potential positions of moving items - corner cases regarding the b
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
     fallToBottom(board);
-    let newPosition = getPotentialNewCoordinatesOfMovingItem(listMoving(board), board);
+    let newPosition = getPotentialNewCoordinatesOfMovingItem(
+      listMoving(board), board);
     expect(newPosition.length).to.equal(0);
 
     // ..........
