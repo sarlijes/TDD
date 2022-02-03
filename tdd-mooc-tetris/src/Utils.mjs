@@ -108,14 +108,14 @@ function getPotentialNewCoordinatesOfRotatingItem(rotatedBlock, position,
 
       if (rotatedBlock.shape[j][i] !== ".") {
         potentialNewCoordinatesOfRotatingItem.push(
-          { x: yWithOffset, y: xWithOffset }
+          { x: xWithOffset, y: yWithOffset }
         );
       }
     }
   }
   let result = potentialNewCoordinatesOfRotatingItem
-    .filter(c => c.y < board.length
-      && c.x < board[0].length);
+    .filter(coord => coord.y < board.length
+      && coord.x < board[0].length);
 
   return result;
 }

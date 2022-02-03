@@ -5,8 +5,10 @@ import {
   twoDimensionalArraytoString,
   overlaps,
   getPotentialNewCoordinatesOfMovingItem,
-  twoDimensionalArraysMatch
+  twoDimensionalArraysMatch,
+  getPotentialNewCoordinatesOfRotatingItem
 } from "../src/Utils.mjs";
+
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
@@ -373,4 +375,49 @@ describe("Two dimensional arrays match", () => {
     expect(twoDimensionalArraysMatch(arr3, arr2)).to.be.false;
   });
 
+});
+
+describe("Can get potential new coordinates of rotating item", () => {
+
+  let board;
+  let shape;
+
+  beforeEach(() => {
+    board = new Board(10, 6);
+    shape = Tetromino.I_SHAPE;
+    board.drop(shape);
+    board.tick();
+    board.tick();
+  });
+
+  it("when there is plenty of space to rotate", () => {
+
+    const rotatedBlock = shape.rotateLeft();
+
+    const position = board.currentlyFallingBlock.currentPosition;
+
+    const newCoordinates = getPotentialNewCoordinatesOfRotatingItem(
+      rotatedBlock, position, board.board);
+
+    expect(newCoordinates.length).to.equal(4);
+
+    expect(newCoordinates[0].x).to.equal(5);
+    expect(newCoordinates[0].y).to.equal(2);
+
+    expect(newCoordinates[1].x).to.equal(5);
+    expect(newCoordinates[1].y).to.equal(3);
+
+    expect(newCoordinates[2].x).to.equal(5);
+    expect(newCoordinates[2].y).to.equal(4);
+
+    expect(newCoordinates[3].x).to.equal(5);
+    expect(newCoordinates[3].y).to.equal(5);
+
+    //    ..........
+    //    ..........
+    //    .....I....
+    //    .....I....
+    //    .....I....
+    //    .....I....
+  });
 });
