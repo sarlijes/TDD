@@ -369,16 +369,14 @@ describe("Two dimensional arrays match", () => {
 describe("Can get potential new coordinates of rotating item - 10*6 board", () => {
 
   let board;
-  let shape;
 
   beforeEach(() => {
     board = new Board(10, 6);
-    shape = Tetromino.I_SHAPE;
-    board.drop(shape);
   });
 
   it("when there is plenty of space to rotate", () => {
-
+    let shape = Tetromino.I_SHAPE;
+    board.drop(shape);
     board.tick();
     board.tick();
 
@@ -403,12 +401,53 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
     expect(newCoordinates[3].x).to.equal(5);
     expect(newCoordinates[3].y).to.equal(5);
 
-    //    ..........
-    //    ..........
-    //    .....I....
-    //    .....I....
-    //    .....I....
-    //    .....I....
+  });
+
+  it("when trying to rotate shape T", () => {
+    let shape = Tetromino.T_SHAPE;
+    board.drop(shape);
+    board.tick();
+    board.tick();
+    // ..........
+    // ..........
+    // ....T.....
+    // ...TTT....
+    // ..........
+    // ..........
+    const rotatedBlock = shape.rotateLeft();
+    // ............
+    // ............
+    // ....T.......
+    // ...TT.......
+    // ....T.......
+    // ............
+
+    const position = board.currentlyFallingBlock.currentPosition;
+
+    const newCoordinates = getPotentialNewCoordinatesOfRotatingItem(
+      rotatedBlock, position, board.board);
+
+    expect(newCoordinates.length).to.equal(4);
+
+    expect(newCoordinates
+      .some((coord) =>
+        coord.x === 4 && coord.y === 2
+      )).to.equal(true);
+
+    expect(newCoordinates
+      .some((coord) =>
+        coord.x === 3 && coord.y === 3
+      )).to.equal(true);
+
+    expect(newCoordinates
+      .some((coord) =>
+        coord.x === 4 && coord.y === 3
+      )).to.equal(true);
+
+    expect(newCoordinates
+      .some((coord) =>
+        coord.x === 4 && coord.y === 4
+      )).to.equal(true);
   });
 });
 
@@ -417,14 +456,13 @@ describe("Can get potential new coordinates of rotating item - 4*1 board", () =>
   let board;
   let shape;
 
-  beforeEach(() => {
+  // TODO fix
+  xit("when the space is limited - tiny board", () => {
+
+    board = undefined;
     board = new Board(4, 1);
     shape = Tetromino.I_SHAPE;
     board.drop(shape);
-    //    IIII
-  });
-
-  xit("when the space is limited - tiny board", () => {
 
     const rotatedBlock = shape.rotateLeft();
     const position = board.currentlyFallingBlock.currentPosition;
@@ -434,10 +472,6 @@ describe("Can get potential new coordinates of rotating item - 4*1 board", () =>
 
     expect(newCoordinates.length).to.equal(1);
   });
-
-  // it("when trying to rotate shape O (that doesn't rotate)", () => {
-
-  // });
 
   // it("when the space is limited - crowded board - I shape", () => {
 
