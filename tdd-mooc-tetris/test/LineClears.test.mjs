@@ -24,8 +24,7 @@ describe("Line clears", () => {
     board.tick(true);
     board.tick(true);
     board.tick(true);
-
-    board.checkClear();
+    board.tick(true);
 
     expect(board.toString()).to.equalShape(`
       ........
