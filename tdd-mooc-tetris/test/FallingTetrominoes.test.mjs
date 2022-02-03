@@ -213,7 +213,7 @@ describe(
     });
 
     it("T_SHAPE is moved one down", () => {
-      let shape = Tetromino.T_SHAPE;
+      let shape = NewTetromino.T_SHAPE;
       board.drop(shape);
       board.moveDown();
 

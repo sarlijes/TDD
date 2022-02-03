@@ -12,6 +12,7 @@ import {
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { NewTetromino } from "../src/NewTetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("2-dimensional array to string", () => {
@@ -404,7 +405,7 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   });
 
   it("when trying to rotate shape T", () => {
-    let shape = Tetromino.T_SHAPE;
+    let shape = NewTetromino.T_SHAPE;
     board.drop(shape);
     board.tick();
     board.tick();
