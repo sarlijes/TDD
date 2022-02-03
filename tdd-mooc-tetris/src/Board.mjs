@@ -290,7 +290,12 @@ export class Board {
   rotateRight() {
     // Rotate the block and save the rotated version into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateRight();
-    this.rotate(rotatedBlock);
+    const canBeRotated = this.canBeRotated(rotatedBlock);
+
+    // If yes, rotate
+    if (canBeRotated) {
+      this.rotate(rotatedBlock);
+    }
   }
 
   rotate(rotatedBlock) {
