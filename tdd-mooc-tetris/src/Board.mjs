@@ -252,6 +252,15 @@ export class Board {
     // Rotate the block, save it into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
 
+    const canBeRotated = this.canBeRotated(rotatedBlock);
+
+    // If yes, rotate
+    if (canBeRotated) {
+      this.rotate(rotatedBlock);
+    }
+  }
+
+  canBeRotated(rotatedBlock) {
     // Find the coordinates of the items currently moving - just the count is
     // relevant so no need to rotate it yet
     const coordinatesOfMovingItems = listMoving(this);
@@ -264,22 +273,18 @@ export class Board {
 
     // Find all the coordinates after the supposed rotation
     const potentialNewCoordinatesOfRotatingItem =
-      getPotentialNewCoordinatesOfRotatingItem(rotatedBlock, position,
+      getPotentialNewCoordinatesOfRotatingItem(
+        rotatedBlock, position,
         this.board);
 
     // Check whether change is allowed
-
-    const newPotentialPositionIsSafe =
-      !overlaps(potentialNewCoordinatesOfRotatingItem, occupied);
+    const newPotentialPositionIsSafe = !overlaps(
+      potentialNewCoordinatesOfRotatingItem, occupied);
     const allItemsCanBeRepositioned = potentialNewCoordinatesOfRotatingItem.length
       === coordinatesOfMovingItems.length;
 
     const canBeRotated = newPotentialPositionIsSafe && allItemsCanBeRepositioned;
-
-    // If yes, rotate
-    if (canBeRotated) {
-      this.rotate(rotatedBlock);
-    }
+    return canBeRotated;
   }
 
   rotateRight() {
