@@ -93,7 +93,9 @@ export class Board {
   }
 
   // TODO refactor to be shorter
-  tick() {
+  // TODO checkClear should default to true, which means refactoring tests
+  // to have it has false
+  tick(checkClear) {
     const { couldBeMoved,
       coordinatesOfMovingItems,
       potentialNewCoordinatesOfMovingItem
@@ -119,12 +121,15 @@ export class Board {
 
     } else {
       // Board cannot be ticked (= moving item cannot go downwards)
-      // Stop possible moving items, set hasFalling to false
+      // Stop possible moving items, set currentlyFallingBlock to undefined
       for (let i = 0; i < this.height; i++) {
         for (let j = 0; j < this.width; j++) {
           if (isLowerCase(this.board[i][j])) {
             this.board[i][j] = char.toUpperCase();
             this.currentlyFallingBlock = undefined;
+            if (checkClear) {
+              this.checkClear();
+            }
           }
         }
       }

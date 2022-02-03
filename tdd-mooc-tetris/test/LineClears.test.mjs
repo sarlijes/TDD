@@ -20,7 +20,10 @@ describe("Line clears", () => {
     board.drop(Tetromino.I_SHAPE);
     board.moveRight();
     board.moveRight();
-    fallToBottom(board);
+
+    board.tick(true);
+    board.tick(true);
+    board.tick(true);
 
     board.checkClear();
 
@@ -51,9 +54,11 @@ describe("Line clears", () => {
 
     board.drop(Tetromino.O_SHAPE);
     board.moveRight();
-    fallToBottom(board);
 
-    board.checkClear();
+    board.tick(true);
+    board.tick(true);
+    board.tick(true);
+
     expect(board.toString()).to.equalShape(`
     ........
     ........
