@@ -365,6 +365,8 @@ export class Board {
     }
   }
   // TODO temp - refactor later - should happen whenever a shape stops
+  // but doing that would break some tests
+
   checkClear() {
     // Check if a row is full, if yes, then replace the contents with dots
 
