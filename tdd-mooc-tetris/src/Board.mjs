@@ -1,5 +1,5 @@
 import { Block } from "./Block.mjs";
-import { Shape, Tetromino } from "./Tetromino.mjs";
+import { Tetromino } from "./Tetromino.mjs";
 import {
   twoDimensionalArraytoString,
   isLowerCase,
@@ -248,10 +248,19 @@ export class Board {
     };
   }
 
-  rotateLeftTemp() {
+  rotateLeft() {
     // Rotate the block, save it into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
 
+    const canBeRotated = this.canBeRotated(rotatedBlock);
+
+    // If yes, rotate
+    if (canBeRotated) {
+      this.rotate(rotatedBlock);
+    }
+  }
+
+  canBeRotated(rotatedBlock) {
     // Find the coordinates of the items currently moving - just the count is
     // relevant so no need to rotate it yet
     const coordinatesOfMovingItems = listMoving(this);
@@ -264,28 +273,29 @@ export class Board {
 
     // Find all the coordinates after the supposed rotation
     const potentialNewCoordinatesOfRotatingItem =
-      getPotentialNewCoordinatesOfRotatingItem(rotatedBlock, position,
+      getPotentialNewCoordinatesOfRotatingItem(
+        rotatedBlock, position,
         this.board);
 
     // Check whether change is allowed
-
-    const newPotentialPositionIsSafe =
-      !overlaps(potentialNewCoordinatesOfRotatingItem, occupied);
+    const newPotentialPositionIsSafe = !overlaps(
+      potentialNewCoordinatesOfRotatingItem, occupied);
     const allItemsCanBeRepositioned = potentialNewCoordinatesOfRotatingItem.length
       === coordinatesOfMovingItems.length;
 
     const canBeRotated = newPotentialPositionIsSafe && allItemsCanBeRepositioned;
-
-    // If yes, proceed as usual
-    if (canBeRotated) {
-      this.rotateLeft();
-    }
+    return canBeRotated;
   }
 
   rotateRight() {
     // Rotate the block and save the rotated version into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateRight();
-    this.rotate(rotatedBlock);
+    const canBeRotated = this.canBeRotated(rotatedBlock);
+
+    // If yes, rotate
+    if (canBeRotated) {
+      this.rotate(rotatedBlock);
+    }
   }
 
   rotate(rotatedBlock) {
@@ -338,7 +348,7 @@ export class Board {
     this.updateCurrentPosition_NEW_TEMP(currentCoordinates.x, currentCoordinates.y);
 
   }
-
+  // TODO temp
   updateCurrentPosition_NEW_TEMP(x, y) {
 
     if (this.currentlyFallingBlock.shape_enum !== undefined &&
@@ -348,17 +358,13 @@ export class Board {
     }
 
     if (twoDimensionalArraysMatch(this.currentlyFallingBlock.shape,
-      Shape.T_SHAPE_ROTATED_RIGHT.layout)) {
+      Tetromino.T_SHAPE_ORIENTATIONS[1])) {
       this.currentlyFallingBlock.currentPosition = { x: x + 1, y: y };
     } else {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
     }
   }
 
-  rotateLeft() {
-    // Rotate the block and save the rotated version into a new variable
-    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
-    this.rotate(rotatedBlock);
-  }
+
 
 }

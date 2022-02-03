@@ -1,34 +1,14 @@
 /* eslint-disable linebreak-style */
 import { expect } from "chai";
-import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { getCrowdedBoard } from "./TestHelpers.mjs";
+
 
 describe("Rotating falling tetrominoes in limited space", () => {
 
   let board;
   beforeEach(() => {
-    board = new Board(8, 3);
-    board.drop(Tetromino.I_SHAPE);
-    board.moveLeft();
-    board.moveLeft();
-    fallToBottom(board);
-
-    board.drop(Tetromino.I_SHAPE);
-    board.moveRight();
-    board.moveRight();
-    fallToBottom(board);
-
-    board.drop(Tetromino.O_SHAPE);
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    fallToBottom(board);
-
-    board.drop(Tetromino.O_SHAPE);
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    fallToBottom(board);
+    board = getCrowdedBoard();
   });
 
 
@@ -43,7 +23,7 @@ describe("Rotating falling tetrominoes in limited space", () => {
 
   it("Shape I is not rotated when there is no space to rotate", () => {
     board.drop(Tetromino.I_SHAPE);
-    board.rotateLeftTemp();
+    board.rotateLeft();
     expect(board.toString()).to.equalShape(`
       OOIIIIOO
       OO....OO
@@ -60,9 +40,3 @@ describe("Rotating falling tetrominoes in limited space", () => {
 //   room to rotate, move it away from the wall if possible
 
 // it("", () => {
-
-function fallToBottom(board) {
-  for (let i = 0; i < 10; i++) {
-    board.tick();
-  }
-}

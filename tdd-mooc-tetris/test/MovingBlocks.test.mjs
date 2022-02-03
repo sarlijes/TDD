@@ -3,6 +3,7 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
+import { fallToBottom } from "./TestHelpers.mjs";
 
 describe("Moving simple 1x1 blocks", () => {
 
@@ -170,16 +171,12 @@ describe("Moving falling tetrominoes - board corner cases", () => {
   });
 });
 
-function fallToBottom(board) {
-  for (let i = 0; i < 10; i++) {
-    board.tick();
-  }
-}
-
 describe(
   "Moving falling tetrominoes - when other shapes exist at at board", () => {
 
     let board;
+
+    // TODO use helper
     beforeEach(() => {
       board = new Board(8, 6);
       board.drop(Tetromino.I_SHAPE);

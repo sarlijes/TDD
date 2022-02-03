@@ -6,16 +6,17 @@ import { Tetromino } from "../src/Tetromino.mjs";
 describe("Rotating falling tetrominoes", () => {
 
   let board;
-  let shape;
+  let shape_new;
+
   beforeEach(() => {
     board = new Board(12, 6);
-    shape = Tetromino.T_SHAPE;
-    board.drop(shape);
+    shape_new = Tetromino.T_SHAPE;
+    board.drop(shape_new);
   });
 
   it("a falling tetromino can be rotated right", () => {
     board.rotateRight();
-    expect(shape.rotateRight().toString()).to.equalShape(
+    expect(shape_new.rotateRight().toString()).to.equalShape(
       `.T.
        .TT
        .T.`

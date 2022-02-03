@@ -1,138 +1,123 @@
-import { RotatingShape } from "./RotatingShape.mjs";
+/* eslint-disable linebreak-style */
 import { twoDimensionalArraytoString } from "./Utils.mjs";
 
-export class Shape {
-  static T_SHAPE_INITIAL = new Shape([
+export class Tetromino {
+  static T_SHAPE_ORIENTATIONS = [[
     [".", "t", "."],
     ["t", "t", "t"],
     [".", ".", "."],
-  ]);
-  static T_SHAPE_ROTATED_RIGHT = new Shape([
+  ], [
     [".", "t", "."],
     [".", "t", "t"],
     [".", "t", "."],
-  ]);
-  static T_SHAPE_UPSIDE_DOWN = new Shape([
+  ], [
     [".", ".", "."],
     ["t", "t", "t"],
     [".", "t", "."],
-  ]);
-  static T_SHAPE_ROTATED_LEFT = new Shape([
+  ], [
     [".", "t", "."],
     ["t", "t", "."],
     [".", "t", "."],
-  ]);
-  static I_SHAPE_INITIAL = new Shape([
+  ]
+  ];
+
+  static I_SHAPE_ORIENTATIONS = [[
     [".", ".", ".", ".", "."],
     [".", ".", ".", ".", "."],
     ["i", "i", "i", "i", "."],
     [".", ".", ".", ".", "."],
     [".", ".", ".", ".", "."],
-  ]);
-  static I_SHAPE_ROTATED = new Shape([
+  ], [
     [".", ".", "i", ".", "."],
     [".", ".", "i", ".", "."],
     [".", ".", "i", ".", "."],
     [".", ".", "i", ".", "."],
     [".", ".", ".", ".", "."],
-  ]);
-  static O_SHAPE = new Shape([
+  ]
+  ];
+
+  static O_SHAPE_ORIENTATIONS = [[
     [".", "o", "o"],
     [".", "o", "o"],
     [".", ".", "."],
-  ]);
-  static Right = new Shape("Right");
+  ]
+  ];
 
-  constructor(layout) {
-    this.layout = layout;
-  }
-}
-
-export class Tetromino extends RotatingShape {
-  static T_SHAPE = new Tetromino(Shape.T_SHAPE_INITIAL.layout,
-    0,
-    4,
-    "T_SHAPE"
-  );
-
-  static I_SHAPE = new Tetromino(Shape.I_SHAPE_INITIAL.layout,
-    0,
-    2,
-    "I_SHAPE"
-  );
-
-  static ROTATED_I_SHAPE = new Tetromino(Shape.I_SHAPE_ROTATED.layout,
-    0,
-    2,
-    "ROTATED_I_SHAPE"
-  );
-
-  static O_SHAPE = new Tetromino(Shape.O_SHAPE.layout,
-    0,
-    1,
-    "O_SHAPE"
-  );
-
+  shape;
   shape_enum;
-  currentOrientation; // TODO this is not used - remove
+  currentOrientation;
   orientations;
   color;
   currentPosition;
+  height;
+  width;
 
-  constructor(shape, currentOrientation, orientations, shape_enum) {
-    super(twoDimensionalArraytoString(shape));
+  static T_SHAPE = new Tetromino(
+    Tetromino.T_SHAPE_ORIENTATIONS,
+    0,
+    "T_SHAPE"
+  );
 
-    this.currentOrientation = currentOrientation;
+  static I_SHAPE = new Tetromino(
+    Tetromino.I_SHAPE_ORIENTATIONS,
+    0,
+    "I_SHAPE"
+  );
+
+  static O_SHAPE = new Tetromino(
+    Tetromino.O_SHAPE_ORIENTATIONS,
+    0,
+    "O_SHAPE"
+  );
+
+  constructor(orientations, currentOrientation, shape_enum) {
+    // super(twoDimensionalArraytoString(orientations[currentOrientation]));
     this.orientations = orientations;
+    this.currentOrientation = currentOrientation;
     this.shape_enum = shape_enum;
     this.color = shape_enum.substring(0, 1).toLowerCase();
+    this.shape = orientations[currentOrientation];
+
+    this.height = this.shape.length;
+    this.width = this.shape[0].length;
   }
 
   toString() {
     return twoDimensionalArraytoString(this.shape);
   }
 
-  rotateLeft() {
-    if (this.shape_enum !== "undefined") {
-      if (this.shape_enum === "I_SHAPE") {
-        // TODO not ideal
-        const rotated = Tetromino.ROTATED_I_SHAPE;
-        const result = new Tetromino(rotated.shape, 0, 2, "ROTATED_I_SHAPE");
-        return result;
-      }
-      if (this.shape_enum === "ROTATED_I_SHAPE") {
-        // TODO not ideal
-        const rotated = Tetromino.I_SHAPE;
-        const result = new Tetromino(rotated.shape, 0, 2, "I_SHAPE");
-        return result;
-      }
-
-      if (this.shape_enum === "O_SHAPE") {
-        const rotated = Tetromino.O_SHAPE;
-        const result = new Tetromino(rotated.shape, 0, 1, "O_SHAPE");
-        return result;
-      }
-    }
-    return super.rotateLeft();
+  rotateRight() {
+    const state = this;
+    const next = this.getNewRotationValue(this.currentOrientation + 1);
+    return new Tetromino(
+      state.orientations,
+      next,
+      state.shape_enum
+    );
   }
 
-  rotateRight() {
-    if (this.shape_enum !== "undefined") {
-      if (this.shape_enum === "ROTATED_I_SHAPE") {
-        const rotated = Tetromino.I_SHAPE;
-        const result = new Tetromino(rotated.shape, 0, 2, "I_SHAPE");
-        return result;
-      }
-      if (this.shape_enum === "I_SHAPE") {
-        const rotated = Tetromino.ROTATED_I_SHAPE;
-        const result = new Tetromino(rotated.shape, 0, 2, "ROTATED_I_SHAPE");
-        return result;
-      }
-      if (this.shape_enum === "O_SHAPE") {
-        return new Tetromino(this.shape, 0, 1, "O_SHAPE");
-      }
+  getNewRotationValue(newRotation) {
+    if (newRotation < 0) {
+      return newRotation + this.orientations.length;
     }
-    return super.rotateRight();
+    if (newRotation === 0) {
+      return 0;
+    }
+    if (newRotation >= this.orientations.length) {
+      return newRotation - this.orientations.length;
+    }
+    return newRotation;
+  }
+
+
+  rotateLeft() {
+    const state = this;
+    const next = this.getNewRotationValue(this.currentOrientation - 1);
+    return new Tetromino(
+      state.orientations,
+      next,
+      state.shape_enum
+    );
   }
 
 }
