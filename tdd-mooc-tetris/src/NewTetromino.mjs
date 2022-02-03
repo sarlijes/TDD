@@ -36,6 +36,13 @@ export class NewTetromino {
   ]
   ];
 
+  static O_SHAPE_ORIENTATIONS = [[
+    [".", "o", "o"],
+    [".", "o", "o"],
+    [".", ".", "."],
+  ]
+  ];
+
   shape;
   shape_enum;
   currentOrientation;
@@ -55,6 +62,12 @@ export class NewTetromino {
     NewTetromino.I_SHAPE_ORIENTATIONS,
     0,
     "I_SHAPE"
+  );
+
+  static O_SHAPE = new NewTetromino(
+    NewTetromino.O_SHAPE_ORIENTATIONS,
+    0,
+    "O_SHAPE"
   );
 
   constructor(orientations, currentOrientation, shape_enum) {
