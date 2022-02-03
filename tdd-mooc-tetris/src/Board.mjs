@@ -7,7 +7,8 @@ import {
   listMoving,
   overlaps,
   getPotentialNewCoordinatesOfMovingItem,
-  twoDimensionalArraysMatch
+  twoDimensionalArraysMatch,
+  getPotentialNewCoordinatesOfRotatingItem
 } from "./Utils.mjs";
 
 export class Board {
@@ -245,6 +246,40 @@ export class Board {
       coordinatesOfMovingItems,
       potentialNewCoordinatesOfMovingItem
     };
+  }
+
+  rotateLeftTemp() {
+    // Rotate the block, save it into a new variable
+    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
+
+    // Find the coordinates of the items currently moving - just the count is
+    // relevant so no need to rotate it yet
+    const coordinatesOfMovingItems = listMoving(this);
+
+    // 1. Find the coordinates of the already occupied spaces of the board
+    const occupied = listOccupied(this);
+
+    // Find the position of the currently falling block
+    const position = this.currentlyFallingBlock.currentPosition;
+
+    // Find all the coordinates after the supposed rotation
+    const potentialNewCoordinatesOfRotatingItem =
+      getPotentialNewCoordinatesOfRotatingItem(rotatedBlock, position,
+        this.board);
+
+    // Check whether change is allowed
+
+    const newPotentialPositionIsSafe =
+      !overlaps(potentialNewCoordinatesOfRotatingItem, occupied);
+    const allItemsCanBeRepositioned = potentialNewCoordinatesOfRotatingItem.length
+      === coordinatesOfMovingItems.length;
+
+    const canBeRotated = newPotentialPositionIsSafe && allItemsCanBeRepositioned;
+
+    // If yes, proceed as usual
+    if (canBeRotated) {
+      this.rotateLeft();
+    }
   }
 
   rotateRight() {

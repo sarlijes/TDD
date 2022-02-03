@@ -63,6 +63,7 @@ function findOverlappingPoints(list1, list2) {
 // This does not take other blocks into account -
 // only the potential
 function getPotentialNewCoordinatesOfMovingItem(
+
   coordinatesOfMovingItem, board, direction = "down") {
   let potentialNewCoordinatesOfMovingItem = [];
 
@@ -94,6 +95,31 @@ function getPotentialNewCoordinatesOfMovingItem(
   return potentialNewCoordinatesOfMovingItem;
 }
 
+function getPotentialNewCoordinatesOfRotatingItem(rotatedBlock, position,
+  board) {
+
+  let potentialNewCoordinatesOfRotatingItem = [];
+
+  for (let i = 0; i < rotatedBlock.shape.length; i++) {
+    for (let j = 0; j < rotatedBlock.shape[0].length; j++) {
+
+      let xWithOffset = i + position.x;
+      let yWithOffset = j + position.y;
+
+      if (rotatedBlock.shape[j][i] !== ".") {
+        potentialNewCoordinatesOfRotatingItem.push(
+          { x: yWithOffset, y: xWithOffset }
+        );
+      }
+    }
+  }
+  let result = potentialNewCoordinatesOfRotatingItem
+    .filter(c => c.y < board.length
+      && c.x < board[0].length);
+
+  return result;
+}
+
 function twoDimensionalArraysMatch(arr1, arr2) {
   let matching = 0;
   let totalCount = arr1[0].length * arr1.length;
@@ -117,5 +143,6 @@ export {
   listMoving,
   overlaps,
   getPotentialNewCoordinatesOfMovingItem,
-  twoDimensionalArraysMatch
+  twoDimensionalArraysMatch,
+  getPotentialNewCoordinatesOfRotatingItem
 };

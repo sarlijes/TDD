@@ -335,12 +335,3 @@ describe("Rotating falling tetrominoes I_SHAPE - coordinates update correctly",
   });
 
 
-// - a falling tetromino can be rotated
-// - it cannot be rotated when there is no room to rotate
-// - [wall kick](https://tetris.fandom.com/wiki/Wall_kick):
-//    when it is up against a wall and is rotated, but there is no
-//   room to rotate, move it away from the wall if possible
-
-// it("", () => {
-
-// });
