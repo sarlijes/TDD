@@ -185,7 +185,7 @@ describe("different tetrominoes have correct starting position", () => {
   });
 
   it("I_SHAPE start from the top middle", () => {
-    let shape = Tetromino.I_SHAPE;
+    let shape = NewTetromino.I_SHAPE;
     board.drop(shape);
     const position = shape.currentPosition;
 
@@ -259,7 +259,7 @@ describe(
     });
 
     it("I_SHAPE is moved one down", () => {
-      let shape = Tetromino.I_SHAPE;
+      let shape = NewTetromino.I_SHAPE;
       board.drop(shape);
       board.moveDown();
 
@@ -280,7 +280,7 @@ describe(
     });
 
     it("I_SHAPE is ticked moved one down", () => {
-      let shape = Tetromino.I_SHAPE;
+      let shape = NewTetromino.I_SHAPE;
       board.drop(shape);
       board.tick();
 

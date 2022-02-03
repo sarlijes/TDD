@@ -376,7 +376,7 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   });
 
   it("when there is plenty of space to rotate", () => {
-    let shape = Tetromino.I_SHAPE;
+    let shape = NewTetromino.I_SHAPE;
     board.drop(shape);
     board.tick();
     board.tick();
@@ -462,7 +462,7 @@ describe("Can get potential new coordinates of rotating item - 4*1 board", () =>
 
     board = undefined;
     board = new Board(4, 1);
-    shape = Tetromino.I_SHAPE;
+    shape = NewTetromino.I_SHAPE;
     board.drop(shape);
 
     const rotatedBlock = shape.rotateLeft();
