@@ -302,7 +302,6 @@ describe(s, () => {
     expect(newPosition.length).to.equal(0);
   });
 
-  // TODO pending implementation
   it("T tetramino", () => {
     board = new Board(10, 6);
     board.drop(Tetromino.T_SHAPE);
@@ -310,7 +309,6 @@ describe(s, () => {
     let newPosition = getPotentialNewCoordinatesOfMovingItem(
       listMoving(board), board);
     expect(newPosition.length).to.equal(0);
-
     // ..........
     // ..........
     // ..........
