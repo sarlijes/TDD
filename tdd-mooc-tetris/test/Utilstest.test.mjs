@@ -11,7 +11,6 @@ import {
 
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
-import { Tetromino } from "../src/Tetromino.mjs";
 import { NewTetromino } from "../src/NewTetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
 
@@ -106,7 +105,7 @@ describe("Tetrominoes - list occupied Points", () => {
 
   it("T_SHAPE has been dropped to the bottom - correct amount of occupied points",
     () => {
-      board.drop(Tetromino.T_SHAPE);
+      board.drop(NewTetromino.T_SHAPE);
       fallToBottom(board);
 
       const occupied = listOccupied(board);
@@ -116,7 +115,7 @@ describe("Tetrominoes - list occupied Points", () => {
   it("One T_SHAPE has been dropped to the bottom - correct coordinates",
     () => {
       let board = new Board(3, 3);
-      board.drop(Tetromino.T_SHAPE);
+      board.drop(NewTetromino.T_SHAPE);
       fallToBottom(board);
 
       // ...
@@ -168,7 +167,7 @@ describe("List Points of moving items on a board", () => {
 
   it("1 Tetramino has been dropped to the bottom - correct amount of moving Points",
     () => {
-      board.drop(Tetromino.T_SHAPE);
+      board.drop(NewTetromino.T_SHAPE);
       fallToBottom(board);
       const moving = listMoving(board);
       expect(moving.length).to.equal(0);
@@ -176,7 +175,7 @@ describe("List Points of moving items on a board", () => {
 
   it("1 Tetromino has been dropped to the bottom - correct coordinates", () => {
     let board = new Board(3, 3);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
 
     const moving = listMoving(board);
@@ -249,7 +248,7 @@ describe("New potential positions of moving items", () => {
 
   it("T tetramino", () => {
     board = new Board(10, 6);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     let tickedOnce = getPotentialNewCoordinatesOfMovingItem(
       listMoving(board), board);
     expect(tickedOnce.length).to.equal(4);
@@ -306,7 +305,7 @@ describe(s, () => {
   // TODO pending implementation
   it("T tetramino", () => {
     board = new Board(10, 6);
-    board.drop(Tetromino.T_SHAPE);
+    board.drop(NewTetromino.T_SHAPE);
     fallToBottom(board);
     let newPosition = getPotentialNewCoordinatesOfMovingItem(
       listMoving(board), board);
