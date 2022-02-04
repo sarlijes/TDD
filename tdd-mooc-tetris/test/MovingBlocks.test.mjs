@@ -2,7 +2,12 @@ import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
-import { fallToBottom, getCrowdedBoard } from "./TestHelpers.mjs";
+import {
+  fallToBottom,
+  getCrowdedBoard,
+  moveToLeftEdge,
+  moveToRightEdge
+} from "./TestHelpers.mjs";
 
 describe("Moving simple 1x1 blocks", () => {
 
@@ -116,14 +121,7 @@ describe("Moving falling tetrominoes - board corner cases", () => {
   });
 
   it("it cannot be moved left beyond the board", () => {
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-    board.moveLeft();
-
+    moveToLeftEdge(board);
     expect(board.toString()).to.equalShape(
       `.T..........
        TTT.........
@@ -134,17 +132,7 @@ describe("Moving falling tetrominoes - board corner cases", () => {
   });
 
   it("it cannot be moved right beyond the board", () => {
-
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-    board.moveRight();
-
+    moveToRightEdge(board);
     expect(board.toString()).to.equalShape(
       `..........T.
        .........TTT
@@ -155,12 +143,8 @@ describe("Moving falling tetrominoes - board corner cases", () => {
   });
 
   it("it cannot be moved down beyond the board (will stop falling)", () => {
-    board.moveDown();
-    board.moveDown();
-    board.moveDown();
-    board.moveDown();
-    board.moveDown();
-    board.moveDown();
+    fallToBottom(board);
+    fallToBottom(board);
     expect(board.toString()).to.equalShape(
       `............
        ............
@@ -197,11 +181,7 @@ describe(
       board.drop(Tetromino.T_SHAPE);
       board.tick();
       board.tick();
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
-      board.moveLeft();
+      moveToLeftEdge(board);
 
       expect(board.toString()).to.equalShape(`
     ........
@@ -218,11 +198,7 @@ describe(
       board.drop(Tetromino.T_SHAPE);
       board.tick();
       board.tick();
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
-      board.moveRight();
+      moveToRightEdge(board);
 
       expect(board.toString()).to.equalShape(`
     ........

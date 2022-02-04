@@ -10,6 +10,16 @@ import { Board } from "../src/Board.mjs";
 
 describe("", () => {
 
+
+  let board;
+  let shape;
+
+  beforeEach(() => {
+    board = new Board(8, 6);
+    shape = Tetromino.T_SHAPE;
+    board.drop(shape);
+  });
+
   it("", () => {
 
 

@@ -40,7 +40,21 @@ function fallToBottom(board) {
   }
 }
 
+function moveToLeftEdge(board) {
+  for (let i = 0; i < 10; i++) {
+    board.moveLeft();
+  }
+}
+
+function moveToRightEdge(board) {
+  for (let i = 0; i < 10; i++) {
+    board.moveRight();
+  }
+}
+
 export {
   getCrowdedBoard,
-  fallToBottom
+  fallToBottom,
+  moveToLeftEdge,
+  moveToRightEdge
 };
