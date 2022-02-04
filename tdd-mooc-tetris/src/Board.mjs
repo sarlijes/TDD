@@ -253,21 +253,6 @@ export class Board {
     };
   }
 
-  rotateLeft() {
-    if (this.currentlyFallingBlock === undefined) {
-      throw new Error("cannot rotate, no block is falling");
-    }
-    // Rotate the block, save it into a new variable
-    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
-
-    const canBeRotated = this.canBeRotated(rotatedBlock);
-
-    // If yes, rotate
-    if (canBeRotated) {
-      this.rotate(rotatedBlock, "left");
-    }
-  }
-
   canBeRotated(rotatedBlock) {
     // Find the coordinates of the items currently moving - just the count is
     // relevant so no need to rotate it yet
@@ -293,6 +278,21 @@ export class Board {
 
     const canBeRotated = newPotentialPositionIsSafe && allItemsCanBeRepositioned;
     return canBeRotated;
+  }
+
+  rotateLeft() {
+    if (this.currentlyFallingBlock === undefined) {
+      throw new Error("cannot rotate, no block is falling");
+    }
+    // Rotate the block, save it into a new variable
+    const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
+
+    const canBeRotated = this.canBeRotated(rotatedBlock);
+
+    // If yes, rotate
+    if (canBeRotated) {
+      this.rotate(rotatedBlock, "left");
+    }
   }
 
   rotateRight() {
