@@ -19,7 +19,14 @@ export class CustomerRegister {
         console.error(err);
         return;
       }
-      console.log(data);
+      let customers = [];
+      const splitted = data.split("\n");
+      splitted.forEach(item => {
+        const parts = item.split(";");
+        customers.push(new Customer(parts[1], parts[2], parts[3], parts[4], parts[5]));
+      });
+
+      console.log(customers);
     });
 
   }
