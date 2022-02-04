@@ -254,6 +254,9 @@ export class Board {
   }
 
   rotateLeft() {
+    if (this.currentlyFallingBlock === undefined) {
+      throw new Error("cannot rotate, no block is falling");
+    }
     // Rotate the block, save it into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateLeft();
 
@@ -293,6 +296,10 @@ export class Board {
   }
 
   rotateRight() {
+    if (this.currentlyFallingBlock === undefined) {
+      throw new Error("cannot rotate, no block is falling");
+    }
+
     // Rotate the block and save the rotated version into a new variable
     const rotatedBlock = this.currentlyFallingBlock.rotateRight();
     const canBeRotated = this.canBeRotated(rotatedBlock);
