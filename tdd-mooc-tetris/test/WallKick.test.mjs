@@ -62,6 +62,20 @@ describe("Wall kicks", () => {
   });
 
 
+  it("After rotating right, moved to left egde and rotated", () => {
+    board.rotateRight();
+    moveToLeftEdge(board);
+    board.rotateRight();
+    expect(board.toString()).to.equalShape(`
+       ............
+       TTT.........
+       .T..........
+       ............
+       ............
+       ............`
+    );
+  });
+
 
   it("", () => {
 
