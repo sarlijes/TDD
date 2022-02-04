@@ -264,7 +264,7 @@ export class Board {
 
     // If yes, rotate
     if (canBeRotated) {
-      this.rotate(rotatedBlock);
+      this.rotate(rotatedBlock, "left");
     }
   }
 
@@ -306,14 +306,14 @@ export class Board {
 
     // If yes, rotate
     if (canBeRotated) {
-      this.rotate(rotatedBlock);
+      this.rotate(rotatedBlock, "right");
     }
   }
 
   rotateAfterWallKick(direction) {
     if (direction === "right") {
       this.rotateRight();
-    } else {
+    } else if (direction === "left") {
       this.rotateLeft();
     }
   }
@@ -323,7 +323,7 @@ export class Board {
     // Try moving the rotated tetromino one space to the right
     if (this.couldBeMoved("right")) {
       this.moveRight();
-      this.rotateRight();
+      this.rotateAfterWallKick(direction);
       return;
     }
 
@@ -337,7 +337,7 @@ export class Board {
     return;
   }
 
-  rotate(rotatedBlock) {
+  rotate(rotatedBlock, direction) {
 
     if (this.currentlyFallingBlock.shape_enum === "O_SHAPE") {
       return;
@@ -354,6 +354,11 @@ export class Board {
 
         let xWithOffset = i + currentCoordinates.x;
         let yWithOffset = j + currentCoordinates.y;
+
+        if (xWithOffset < 0) { // TODO right side also
+          this.attemptWallKick(rotatedBlock, direction);
+          return;
+        }
 
         if (this.board[yWithOffset] !== undefined) {
           if (isLowerCase(this.board[yWithOffset][xWithOffset])) {
