@@ -331,7 +331,7 @@ export class Board {
 
     if (this.couldBeMoved("left")) {
       this.moveLeft();
-
+      this.rotateAfterWallKick(direction);
     }
     // Fail if neither can be done (= don't rotate at all).
     return;
