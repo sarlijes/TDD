@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { expect } from "chai";
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
@@ -48,22 +47,6 @@ describe("Rotating falling tetrominoes", () => {
        ............`
     );
   });
-
-  it("", () => {
-
-  });
-
-
-  it("", () => {
-
-  });
-
-
-  it("", () => {
-
-  });
-
-
 });
 
 describe("Rotating falling tetrominoes T_SHAPE - coordinates update correctly",

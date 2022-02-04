@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 import { Board } from "../src/Board.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 
