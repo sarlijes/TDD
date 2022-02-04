@@ -1,8 +1,16 @@
 import { expect } from "chai";
-import { sum } from "../src/example.mjs";
+import { CustomerRegister } from "../src/CustomerRegister.mjs";
 
 describe("Example test fixture", () => {
   it("Example test", () => {
-    expect(sum(1, 2)).to.equal(3);
+
+    const register = new CustomerRegister();
+
+    register.listGoldCustomersOfYesterday();
+    expect(3).to.equal(3);
+
+
+
   });
 });
+
