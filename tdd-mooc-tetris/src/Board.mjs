@@ -310,6 +310,33 @@ export class Board {
     }
   }
 
+  rotateAfterWallKick(direction) {
+    if (direction === "right") {
+      this.rotateRight();
+    } else {
+      this.rotateLeft();
+    }
+  }
+
+  attemptWallKick(rotatedBlock, direction) {
+
+    // Try moving the rotated tetromino one space to the right
+    if (this.couldBeMoved("right")) {
+      this.moveRight();
+      this.rotateRight();
+      return;
+    }
+
+    // Try moving the rotated tetromino one space to the left
+
+    if (this.couldBeMoved("left")) {
+      this.moveLeft();
+
+    }
+    // Fail if neither can be done (= don't rotate at all).
+    return;
+  }
+
   rotate(rotatedBlock) {
 
     if (this.currentlyFallingBlock.shape_enum === "O_SHAPE") {
