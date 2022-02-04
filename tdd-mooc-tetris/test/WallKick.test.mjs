@@ -48,7 +48,6 @@ describe("Wall kicks", () => {
     );
   });
 
-
   it("After rotating right, moved to left egde and rotated", () => {
     let board = new Board(12, 6);
     let shape = Tetromino.T_SHAPE;
@@ -56,15 +55,6 @@ describe("Wall kicks", () => {
 
     board.rotateRight();
     moveToLeftEdge(board);
-
-    // expect(board.toString()).to.equalShape(`
-    //    T...........
-    //    TT..........
-    //    T...........
-    //    ............
-    //    ............
-    //    ............`
-    // );
 
     board.rotateRight();
     expect(board.toString()).to.equalShape(`
@@ -77,6 +67,24 @@ describe("Wall kicks", () => {
     );
   });
 
+  it("After rotating left, moved to right egde and rotated", () => {
+    let board = new Board(12, 6);
+    let shape = Tetromino.T_SHAPE;
+    board.drop(shape);
+
+    board.rotateLeft();
+    moveToRightEdge(board);
+
+    board.rotateLeft();
+    expect(board.toString()).to.equalShape(`
+       ............
+       ........TTT.
+       .........T..
+       ............
+       ............
+       ............`
+    );
+  });
 
   it("", () => {
 
