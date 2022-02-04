@@ -280,7 +280,7 @@ export class Board {
     return canBeRotated;
   }
 
-  rotateLeft(withWallKick = false) {
+  rotateLeft(withWallKick = true) {
     if (this.currentlyFallingBlock === undefined) {
       throw new Error("cannot rotate, no block is falling");
     }
