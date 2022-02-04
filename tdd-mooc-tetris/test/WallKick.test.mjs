@@ -75,11 +75,11 @@ describe("Wall kicks", () => {
     board.rotateLeft();
     moveToRightEdge(board);
 
-    board.rotateLeft();
+    board.rotateLeft(true);
     expect(board.toString()).to.equalShape(`
        ............
-       ........TTT.
-       .........T..
+       .........TTT
+       ..........T.
        ............
        ............
        ............`

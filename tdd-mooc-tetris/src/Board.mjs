@@ -280,7 +280,7 @@ export class Board {
     return canBeRotated;
   }
 
-  rotateLeft() {
+  rotateLeft(withWallKick = false) {
     if (this.currentlyFallingBlock === undefined) {
       throw new Error("cannot rotate, no block is falling");
     }
@@ -292,6 +292,8 @@ export class Board {
     // If yes, rotate
     if (canBeRotated) {
       this.rotate(rotatedBlock, "left");
+    } else if (!canBeRotated && withWallKick) {
+      this.attemptWallKick(rotatedBlock, "left");
     }
   }
 
@@ -321,7 +323,7 @@ export class Board {
   attemptWallKick(rotatedBlock, direction) {
 
     // Try moving the rotated tetromino one space to the right
-    if (this.couldBeMoved("right")) {
+    if (direction === "right" && this.couldBeMoved("right")) {
       this.moveRight();
       this.rotateAfterWallKick(direction);
       return;
@@ -329,7 +331,7 @@ export class Board {
 
     // Try moving the rotated tetromino one space to the left
 
-    if (this.couldBeMoved("left")) {
+    if (direction === "left" && this.couldBeMoved("left")) {
       this.moveLeft();
       this.rotateAfterWallKick(direction);
     }
