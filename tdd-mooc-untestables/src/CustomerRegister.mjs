@@ -13,7 +13,7 @@ export class CustomerRegister {
   // Reads the customer data from CSV file
   // Then saves the email addresses as one comma-separated list into a new file
   listGoldCustomersOfYesterday() {
-    fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
+    fs.readFile(".\\src\\MOCK_DATA_big.txt", "utf8" , (err, data) => {
       if (err) {
         console.error(err);
         return;
@@ -30,7 +30,7 @@ export class CustomerRegister {
         const lotteryDrawNumber = this.getRandomInteger();
         console.log("🚀 ~ r",          lotteryDrawNumber);
 
-        if (parts[5] === todayString) {
+        if (parts[5] === todayString && totalPurchases >= goldLimit) {
           customers.push(new Customer(
             parts[1], parts[2], parts[3], totalPurchases, parts[5], lotteryDrawNumber
           ));
