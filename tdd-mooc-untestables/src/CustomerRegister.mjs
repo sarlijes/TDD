@@ -70,6 +70,11 @@ export class CustomerRegister {
   }
 
   getDateString(date) {
+
+    if (!(date instanceof Date)) {
+      throw new Error("invalid data type: ", + typeof Date);
+    }
+
     let days = date.getDate();
     if (parseInt(days) < 10) {
       days = "0" + days;

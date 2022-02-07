@@ -68,11 +68,33 @@ describe("Helper function: get date string", () => {
     expect(date4).to.equal("05/04/1986");
   });
 
-
-
   it("The type is correct", () => {
     for (let item in dates) {
       expect(typeof item).to.equal("string");
     }
   });
+
+  it("Error is thrown in case of invalid data type null", () => {
+    expect(() =>
+      register.getDateString(null)).to.throw("invalid data type");
+  });
+
+
+  it("Error is thrown in case of invalid data type undefined", () => {
+    expect(() =>
+      register.getDateString(undefined)).to.throw("invalid data type");
+  });
+
+
+  it("Error is thrown in case of invalid data type string", () => {
+    expect(() =>
+      register.getDateString("05/04/1986")).to.throw("invalid data type");
+  });
+
+  it("Error is thrown in case of invalid data type int", () => {
+    expect(() =>
+      register.getDateString(2)).to.throw("invalid data type");
+  });
+
+
 });
