@@ -15,4 +15,20 @@ export class Customer {
     this.lastPurchaseDate = lastPurchaseDate;
     this.lotteryDrawNumber = lotteryDrawNumber;
   }
+
+  toString() {
+    return "Customer: "
+    + this.firstName
+    + " "
+    + this.lastName
+    + " ("
+    + this.email
+    + ")"
+    + "\n"
+    + "total purchases: "
+    + this.totalPurchases
+    + "\n"
+    + "last purchase date: "
+    + this.lastPurchaseDate;
+  }
 }

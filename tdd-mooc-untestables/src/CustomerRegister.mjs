@@ -1,9 +1,9 @@
 /*
-* The manager of a busy department store wants to reward their valuable customers.
+* The manager of a busy department store wants to contact their valuable customers.
 * He wants us to create a program that, at the end of each day, reads the customer
 * data from a CSV file and draws one gold-level customer from among the customers
 * who have been shopping that day. The customer data is then written to a file on
-* so that the manager can send the customer a personal e-mail message.
+* so that the manager can send the customer a personal e-mail message with a prize.
 *
 */
 
@@ -14,11 +14,6 @@ const goldLimit = 8000;
 
 export class CustomerRegister {
 
-  constructor() {
-  }
-
-  // Reads the customer data from CSV file
-  // Then saves the email addresses as one comma-separated list into a new file
   listGoldCustomersOfYesterday() {
     fs.readFile(".\\src\\MOCK_DATA_big.txt", "utf8" , (err, data) => {
       if (err) {
@@ -35,7 +30,6 @@ export class CustomerRegister {
         const totalPurchases = parseFloat(parts[4].replace("$", ""));
 
         const lotteryDrawNumber = this.getRandomInteger();
-        console.log("🚀 ~ r",          lotteryDrawNumber);
 
         if (parts[5] === todayString && totalPurchases >= goldLimit) {
           customers.push(new Customer(
@@ -44,10 +38,15 @@ export class CustomerRegister {
         }
 
       });
-      console.log(customers[Math.floor(Math.random() * customers.length)]);
-      console.log("Customer count: " + customers.length);
+      const winner = customers.reduce(function(a, b) {
+        return a.lotteryDrawNumber < b.lotteryDrawNumber ? a : b;
+      });
 
-
+      if (winner !== undefined) {
+        console.log("Winner found!");
+        fs.writeFileSync("result.txt", winner.toString());
+        console.log("All done.");
+      }
     });
   }
 
@@ -59,8 +58,6 @@ export class CustomerRegister {
     const max = 999999;
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-
 
   getDayString() {
     let days = new Date().getDate();

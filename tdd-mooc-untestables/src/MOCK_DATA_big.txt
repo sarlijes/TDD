@@ -524,7 +524,7 @@
 524;Shamus;Brothers;sbrothersej@acquirethisname.com;$5114.58;04/02/2022
 525;Danni;Burdin;dburdinek@princeton.edu;$8336.97;19/02/2022
 526;Kristo;Duffyn;kduffynel@samsung.com;$8744.45;22/01/2022
-527;Theodosia;Paskin;tpaskinem@sourceforge.net;$8643.77;07/02/2022
+527;Theodosia;Paskin;tpaskinem@sourceforge.net;$1643.77;07/02/2022
 528;Jodie;Camidge;jcamidgeen@bbb.org;$8227.84;04/01/2022
 529;Huntley;Carlos;hcarloseo@unblog.fr;$8720.43;16/01/2022
 530;Lida;Pleaden;lpleadenep@state.gov;$7639.12;17/01/2022
