@@ -24,6 +24,9 @@ export class CustomerRegister {
       let todayString = this.getDayString();
 
       const splitted = data.split("\n");
+
+      console.log("... Starting to process " + splitted.length + " lines of data");
+
       splitted.forEach(item => {
         const parts = item.split(";");
 
@@ -38,6 +41,13 @@ export class CustomerRegister {
         }
 
       });
+      if (customers.length === 0) {
+        console.log("No customers found, cannot find winner.");
+      } else {
+        console.log(customers.length +
+          " suitable customers found, now finding the winner");
+      }
+
       const winner = customers.reduce(function(a, b) {
         return a.lotteryDrawNumber < b.lotteryDrawNumber ? a : b;
       });
@@ -45,7 +55,7 @@ export class CustomerRegister {
       if (winner !== undefined) {
         console.log("Winner found!");
         fs.writeFileSync("result.txt", winner.toString());
-        console.log("All done.");
+        console.log("... All done, see result.txt");
       }
     });
   }
@@ -73,15 +83,3 @@ export class CustomerRegister {
     return days + "/" + month + "/" + year;
   }
 }
-
-// Global variables
-// File system
-// Time
-// Randomness
-
-// Only add customers above silver limit to list -
-// adjust mock data if needed - see big file
-// Write result to file
-// Implement randomness - maybe a lottery ticket ID to all customers or something
-
-// Proceed to writing tests
