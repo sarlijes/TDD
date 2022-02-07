@@ -4,7 +4,6 @@ import fs from "fs";
 
 // eslint-disable-next-line no-undef
 const dirName = process.cwd() + "\\test\\tmp\\";
-const fileName = "test_result.txt";
 
 describe("Can write results into file", () => {
 
@@ -14,7 +13,12 @@ describe("Can write results into file", () => {
     register = new CustomerRegister();
   });
 
+  after(async () => {
+    console.log("--");
+  });
+
   it("Can create temporary file and delete it", function(done) {
+    const fileName = "test_file.txt";
     fs.writeFile(dirName + fileName, "file test", function (err) {
       if (err) console.log(err);
 
@@ -33,16 +37,32 @@ describe("Can write results into file", () => {
     });
   });
 
-  it("Can write results into file", () => {
-    register.listGoldCustomersOfYesterday(dirName + fileName);
-    fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      // console.log(data);
+  it("Can write results into file", function(done) {
 
+    const fileName = "test_result.txt";
+    const path = (dirName + fileName);
+
+    register.listGoldCustomersOfYesterday(path);
+    fs.readFile(".\\test\\tmp\\test_result.txt", "utf8" , (err, data) => {
+      if (err) console.log(err);
+      expect(data).to.have.string("Customer");
+      expect(data).to.have.string("total purchases");
+      expect(data).to.have.string("email");
+
+      fs.readdir(dirName, function(err, list) {
+      // Delete the file
+        fs.unlinkSync(dirName + fileName);
+        // Ensure the file is not found anymore
+        fs.readdir(dirName, function(err, list) {
+          if (err) throw err;
+          expect(list.indexOf(fileName)).to.equal(-1);
+          done();
+        });
+      });
     });
+
+
+
   });
 
 

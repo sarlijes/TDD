@@ -16,10 +16,7 @@ export class CustomerRegister {
 
   listGoldCustomersOfYesterday(resultPath) {
     fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
-      if (err) {
-        console.error(err);
-        return;
-      }
+      if (err) console.log(err);
       let customers = [];
       let todayString = this.getDateString(new Date());
 

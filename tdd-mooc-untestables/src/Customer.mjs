@@ -21,7 +21,7 @@ export class Customer {
     + this.firstName
     + " "
     + this.lastName
-    + " ("
+    + " (email: "
     + this.email
     + ")"
     + "\n"
