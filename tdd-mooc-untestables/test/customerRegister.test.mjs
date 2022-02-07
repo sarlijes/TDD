@@ -13,10 +13,6 @@ describe("Can write results into file", () => {
     register = new CustomerRegister();
   });
 
-  after(async () => {
-
-  });
-
   it("Can create temporary file and delete it", function(done) {
     const fileName = "test_file.txt";
     fs.writeFile(dirName + fileName, "file test", function (err) {
