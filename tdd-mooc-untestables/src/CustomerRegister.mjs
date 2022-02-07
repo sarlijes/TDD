@@ -74,11 +74,11 @@ export class CustomerRegister {
     if (parseInt(days) < 10) {
       days = "0" + days;
     }
-    let month = parseInt(new Date().getMonth()) + 1;
+    let month = parseInt(date.getMonth()) + 1;
     if (parseInt(month) < 10) {
       month = "0" + month;
     }
-    let year = new Date().getFullYear();
+    let year = date.getFullYear();
 
     return days + "/" + month + "/" + year;
   }
