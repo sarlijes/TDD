@@ -3,16 +3,12 @@ import { CustomerRegister } from "../src/CustomerRegister.mjs";
 import fs from "fs";
 
 // eslint-disable-next-line no-undef
-let dirName = process.cwd();
-dirName = dirName + "\\test\\tmp\\";
+const dirName = process.cwd() + "\\test\\tmp\\";
 const fileName = "test_result.txt";
 
 describe("Example test fixture", () => {
 
   it("Can create temporary file and delete it", function(done) {
-
-
-
     fs.writeFile(dirName + fileName, "file test", function (err) {
       if (err) console.log(err);
 
