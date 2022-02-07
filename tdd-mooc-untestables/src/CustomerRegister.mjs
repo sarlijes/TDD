@@ -1,8 +1,15 @@
+/*
+* The manager of a busy department store wants to reward their valuable customers.
+* He wants us to create a program that, at the end of each day, reads the customer
+* data from a CSV file and draws one gold-level customer from among the customers
+* who have been shopping that day. The customer data is then written to a file on
+* so that the manager can send the customer a personal e-mail message.
+*
+*/
+
 import { Customer } from "./Customer.mjs";
 import fs from "fs";
 
-// Customer programme limits
-const silverLimit = 2000;
 const goldLimit = 8000;
 
 export class CustomerRegister {
