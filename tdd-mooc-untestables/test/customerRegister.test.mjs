@@ -14,7 +14,7 @@ describe("Can write results into file", () => {
   });
 
   after(async () => {
-    console.log("--");
+
   });
 
   it("Can create temporary file and delete it", function(done) {
@@ -45,20 +45,19 @@ describe("Can write results into file", () => {
     register.listGoldCustomersOfYesterday(path);
     fs.readFile(".\\test\\tmp\\test_result.txt", "utf8" , (err, data) => {
       if (err) console.log(err);
+
+      if (data === undefined) {
+        setTimeout(() => {
+          // We need a short timeout to ensure the data is read
+        }, 1000);
+      }
+
+      expect(typeof data).to.equal("string");
       expect(data).to.have.string("Customer");
       expect(data).to.have.string("total purchases");
       expect(data).to.have.string("email");
+      done();
 
-      fs.readdir(dirName, function(err, list) {
-      // Delete the file
-        fs.unlinkSync(dirName + fileName);
-        // Ensure the file is not found anymore
-        fs.readdir(dirName, function(err, list) {
-          if (err) throw err;
-          expect(list.indexOf(fileName)).to.equal(-1);
-          done();
-        });
-      });
     });
 
 
