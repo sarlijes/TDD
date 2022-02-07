@@ -15,7 +15,7 @@ const goldLimit = 8000;
 export class CustomerRegister {
 
   listGoldCustomersOfYesterday() {
-    fs.readFile(".\\src\\MOCK_DATA_big.txt", "utf8" , (err, data) => {
+    fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
       if (err) {
         console.error(err);
         return;
