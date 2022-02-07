@@ -43,3 +43,9 @@ describe("Helper function: get random integer", () => {
     }
   });
 });
+
+describe("Helper function: get random integer", () => {
+  it("The type is correct", () => {
+
+  });
+});

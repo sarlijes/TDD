@@ -21,7 +21,7 @@ export class CustomerRegister {
         return;
       }
       let customers = [];
-      let todayString = this.getDayString();
+      let todayString = this.getDateString(new Date());
 
       const splitted = data.split("\n");
 
@@ -69,8 +69,8 @@ export class CustomerRegister {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  getDayString() {
-    let days = new Date().getDate();
+  getDateString(date) {
+    let days = date.getDate();
     if (parseInt(days) < 10) {
       days = "0" + days;
     }
