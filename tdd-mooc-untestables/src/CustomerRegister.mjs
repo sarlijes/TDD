@@ -44,8 +44,7 @@ export class CustomerRegister {
         }
 
       });
-
-      console.log(customers[0]);
+      console.log(customers[Math.floor(Math.random() * customers.length)]);
       console.log("Customer count: " + customers.length);
 
 
