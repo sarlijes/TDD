@@ -35,4 +35,11 @@ describe("Helper function: get random integer", () => {
       expect(rand).to.be.at.most(999998);
     }
   });
+
+  it("The type is correct", () => {
+    for (let x = 0; x < 1000; x++ ) {
+      const rand = register.getRandomInteger();
+      expect(typeof rand).to.equal("number");
+    }
+  });
 });
