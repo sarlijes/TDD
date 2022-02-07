@@ -5,8 +5,32 @@ import fs from "fs";
 // eslint-disable-next-line no-undef
 let dirName = process.cwd();
 dirName = dirName + "\\test\\tmp\\";
+const fileName = "test_result.txt";
 
 describe("Example test fixture", () => {
+
+  it("Can create temporary file and delete it", function(done) {
+
+
+
+    fs.writeFile(dirName + fileName, "file test", function (err) {
+      if (err) console.log(err);
+
+      fs.readdir(dirName, function(err, list) {
+        // Ensure the file was created
+        expect(list.indexOf(fileName)).to.be.greaterThan(-1);
+        // Delete the file
+        fs.unlinkSync(dirName + fileName);
+        // Ensure the file is not found anymore
+        fs.readdir(dirName, function(err, list) {
+          if (err) throw err;
+          expect(list.indexOf(fileName)).to.equal(-1);
+          done();
+        });
+      });
+    });
+  });
+
   it("Example test", () => {
 
     const register = new CustomerRegister();
@@ -15,30 +39,6 @@ describe("Example test fixture", () => {
     // register.listGoldCustomersOfYesterday(resultPath);
   });
 
-  it("CREATE (temporary) file tests create/write access to FS", function(done){
-    console.log("🚀 ~ file: dirName", dirName);
-
-
-    // setup
-    var newFile = "result.txt";
-
-    fs.writeFile(dirName + newFile, "hello!", function (err) {
-      if (err) console.log(err);
-      // console.log("Created file: "+newFile);
-      fs.readdir(dirName, function(err, list) {
-        expect(list.indexOf(newFile)).to.be.greaterThan(-1);
-
-        fs.unlinkSync(dirName + newFile);
-        console.log("successfully deleted "+newFile);
-        // console.log("Deleted: "+newFile)
-        fs.readdir(dirName, function(err, list) {
-          if (err) throw err;
-          expect(list.indexOf(newFile)).to.equal(-1);
-          done();
-        });
-      });
-    });
-  });
 
 });
 
