@@ -1,17 +1,45 @@
 import { expect } from "chai";
 import { CustomerRegister } from "../src/CustomerRegister.mjs";
+import fs from "fs";
+
+// eslint-disable-next-line no-undef
+let dirName = process.cwd();
+dirName = dirName + "\\test\\tmp\\";
 
 describe("Example test fixture", () => {
   it("Example test", () => {
 
     const register = new CustomerRegister();
+    const resultPath = ".\\test\\tmp\\test.txt";
 
-    register.listGoldCustomersOfYesterday();
-    expect(3).to.equal(3);
-
-
-
+    // register.listGoldCustomersOfYesterday(resultPath);
   });
+
+  it("CREATE (temporary) file tests create/write access to FS", function(done){
+    console.log("🚀 ~ file: dirName", dirName);
+
+
+    // setup
+    var newFile = "result.txt";
+
+    fs.writeFile(dirName + newFile, "hello!", function (err) {
+      if (err) console.log(err);
+      // console.log("Created file: "+newFile);
+      fs.readdir(dirName, function(err, list) {
+        expect(list.indexOf(newFile)).to.be.greaterThan(-1);
+
+        fs.unlinkSync(dirName + newFile);
+        console.log("successfully deleted "+newFile);
+        // console.log("Deleted: "+newFile)
+        fs.readdir(dirName, function(err, list) {
+          if (err) throw err;
+          expect(list.indexOf(newFile)).to.equal(-1);
+          done();
+        });
+      });
+    });
+  });
+
 });
 
 describe("Helper function: get random integer", () => {

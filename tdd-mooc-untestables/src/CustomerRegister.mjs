@@ -14,7 +14,7 @@ const goldLimit = 8000;
 
 export class CustomerRegister {
 
-  listGoldCustomersOfYesterday() {
+  listGoldCustomersOfYesterday(resultPath) {
     fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
       if (err) {
         console.error(err);
@@ -54,7 +54,7 @@ export class CustomerRegister {
 
       if (winner !== undefined) {
         console.log("Winner found!");
-        fs.writeFileSync("result.txt", winner.toString());
+        fs.writeFileSync(resultPath, winner.toString());
         console.log("... All done, see result.txt");
       }
     });
