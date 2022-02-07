@@ -1,24 +1,43 @@
+/*
+* The manager of a busy department store wants to reward their valuable customers.
+* He wants us to create a program that, at the end of each day, reads the customer
+* data from a CSV file and draws one gold-level customer from among the customers
+* who have been shopping that day. The customer data is then written to a file on
+* so that the manager can send the customer a personal e-mail message.
+*
+*/
+
 import { Customer } from "./Customer.mjs";
 import fs from "fs";
 
 // Customer programme limits
-const silverLimit = 2000;
-const goldLimit = 8000;
+const goldLimit = 7000;
 
 export class CustomerRegister {
 
   constructor() {
   }
 
+  /**
+ * Reads customer data from CSV file - format of the data is as follows:
+ *
+ * id/firstname/lastname/email;total purchases;last purchase data
+ * 476;Florina;Shambroke;fshambroked7@theglobeandmail.com;$8693.58;08/02/2022
+ */
+
   // Reads the customer data from CSV file
   // Then saves the email addresses as one comma-separated list into a new file
   listGoldCustomersOfYesterday() {
-    fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
+
+
+
+    let customers = [];
+    fs.readFileSync(".\\src\\MOCK_DATA_big.txt", "utf8" , (err, data) => {
       if (err) {
         console.error(err);
         return;
       }
-      let customers = [];
+
       let todayString = this.getDayString();
 
       const splitted = data.split("\n");
@@ -28,22 +47,24 @@ export class CustomerRegister {
         const totalPurchases = parseFloat(parts[4].replace("$", ""));
 
         const lotteryDrawNumber = this.getRandomInteger();
-        console.log("🚀 ~ r",          lotteryDrawNumber);
 
-        if (parts[5] === todayString) {
+        if (parts[5] === todayString && totalPurchases >= goldLimit) {
           customers.push(new Customer(
             parts[1], parts[2], parts[3], totalPurchases, parts[5], lotteryDrawNumber
           ));
+          console.log("added");
         }
 
       });
 
-      console.log(customers[0]);
-      console.log("Customer count: " + customers.length);
 
 
     });
+    console.log(customers[0]);
+    console.log("Customer count: " + customers.length);
+
   }
+
 
   /**
  * Returns a random number between min (inclusive) and max (exclusive)
