@@ -6,7 +6,13 @@ import fs from "fs";
 const dirName = process.cwd() + "\\test\\tmp\\";
 const fileName = "test_result.txt";
 
-describe("Example test fixture", () => {
+describe("Can write results into file", () => {
+
+  let register;
+
+  beforeEach(() => {
+    register = new CustomerRegister();
+  });
 
   it("Can create temporary file and delete it", function(done) {
     fs.writeFile(dirName + fileName, "file test", function (err) {
@@ -27,12 +33,16 @@ describe("Example test fixture", () => {
     });
   });
 
-  it("Example test", () => {
+  it("Can write results into file", () => {
+    register.listGoldCustomersOfYesterday(dirName + fileName);
+    fs.readFile(".\\src\\MOCK_DATA.txt", "utf8" , (err, data) => {
+      if (err) {
+        console.error(err);
+        return;
+      }
+      // console.log(data);
 
-    const register = new CustomerRegister();
-    const resultPath = ".\\test\\tmp\\test.txt";
-
-    // register.listGoldCustomersOfYesterday(resultPath);
+    });
   });
 
 
