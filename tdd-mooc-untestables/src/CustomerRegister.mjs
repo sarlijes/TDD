@@ -1,5 +1,4 @@
 import { Customer } from "./Customer.mjs";
-import Papa from "papaparse";
 import fs from "fs";
 
 // Customer programme limits
@@ -26,21 +25,35 @@ export class CustomerRegister {
       splitted.forEach(item => {
         const parts = item.split(";");
 
-        if (parts[5] === this.getDayString()) {
+        const totalPurchases = parseFloat(parts[4].replace("$", ""));
+
+        const lotteryDrawNumber = this.getRandomInteger();
+        console.log("🚀 ~ r",          lotteryDrawNumber);
+
+        if (parts[5] === todayString) {
           customers.push(new Customer(
-            parts[1], parts[2], parts[3], parts[4], parts[5]
+            parts[1], parts[2], parts[3], totalPurchases, parts[5], lotteryDrawNumber
           ));
         }
 
       });
 
-      console.log(customers);
+      console.log(customers[0]);
       console.log("Customer count: " + customers.length);
 
 
     });
-    this.getDayString();
   }
+
+  /**
+ * Returns a random number between min (inclusive) and max (exclusive)
+ */
+  getRandomInteger() {
+    const min = 100000;
+    const max = 999999;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
 
 
   getDayString() {
@@ -63,8 +76,8 @@ export class CustomerRegister {
 // Time
 // Randomness
 
-// Parse purchase total to double
-// Only add customers above silver limit to list - adjust mock data if needed - see big file
+// Only add customers above silver limit to list -
+// adjust mock data if needed - see big file
 // Write result to file
 // Implement randomness - maybe a lottery ticket ID to all customers or something
 
