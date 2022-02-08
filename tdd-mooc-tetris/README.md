@@ -1,24 +1,16 @@
 # [TDD MOOC](https://tdd.mooc.fi): Tetris
 
-In this exercise you will be implementing a Tetris game using Test-Driven Development (TDD). The first couple dozen
-tests have already been written for you - just uncomment them one by one. This should help to get over the initial
-hurdle of knowing what tests to write when getting started with TDD. After that the training wheels are removed, and
-it's time to write your own tests in the latter part of this exercise.
+This project contains exercises for [TDD MOOC's Exercise 1](https://tdd.mooc.fi/exercises#exercise-1-tetris).
 
-This exercise uses [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6/ECMAScript 2015),
-[Mocha](https://mochajs.org/) testing framework and [Chai](https://www.chaijs.com/)
-assertions, but the concepts are language agnostic. It would be quite easy to translate the example tests to another
-programming language as you go. There also exists an
-older [Java-based predecessor](https://github.com/luontola/tdd-tetris-tutorial) of this exercise.
+Technologies:
 
-Refer to [the course material](https://tdd.mooc.fi) to learn more about TDD.
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6/ECMAScript 2015)
+
+[Mocha](https://mochajs.org/) testing framework
+
+[Chai](https://www.chaijs.com/) assertions
 
 ---
-
-_This exercise is part of the [TDD MOOC](https://tdd.mooc.fi) at the University of Helsinki, brought to you
-by [Esko Luontola](https://twitter.com/EskoLuontola) and [Nitor](https://nitor.com/)._
-
-## 🚀 [Start the exercise](docs/level-1.md)
 
 ## Prerequisites
 
@@ -39,3 +31,6 @@ Run tests continuously
 Code reformat
 
     npm run format
+
+_This exercise is part of the [TDD MOOC](https://tdd-mooc.luontola.fi/) at the University of Helsinki, brought to you
+by [Esko Luontola](https://twitter.com/EskoLuontola) and [Nitor](https://nitor.com/)._
