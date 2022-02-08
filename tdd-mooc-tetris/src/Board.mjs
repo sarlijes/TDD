@@ -205,12 +205,12 @@ export class Board {
       this.board[new_y][new_x] = char;
     }
     const firstNewCoordinate = potentialNewCoordinatesOfMovingItem[0];
-    this.updateCurrentPosition(firstNewCoordinate.x, firstNewCoordinate.y);
+    this.updateCurrentPositionAfterMoving(firstNewCoordinate.x,
+      firstNewCoordinate.y);
   }
 
-  updateCurrentPosition(x, y) {
+  updateCurrentPositionAfterMoving(x, y) {
     if (this.currentlyFallingBlock.shape_enum === "T_SHAPE") {
-
       if (this.board[y][x] !== "."
         && this.board[y + 1][x - 1] !== ".") {
         this.currentlyFallingBlock.currentPosition =
@@ -220,7 +220,6 @@ export class Board {
     }
     this.currentlyFallingBlock.currentPosition =
       { x: x, y: y };
-
   }
 
   couldBeMoved(direction) {
@@ -391,11 +390,12 @@ export class Board {
 
     // Update coordinates
 
-    this.updateCurrentPosition_NEW_TEMP(currentCoordinates.x, currentCoordinates.y);
+    this.updateCurrentPositionAfterRotating(currentCoordinates.x,
+      currentCoordinates.y);
 
   }
-  // TODO temp
-  updateCurrentPosition_NEW_TEMP(x, y) {
+
+  updateCurrentPositionAfterRotating(x, y) {
 
     if (this.currentlyFallingBlock.shape_enum !== undefined &&
       this.currentlyFallingBlock.shape_enum.includes("I_SHAPE")) {
@@ -410,8 +410,8 @@ export class Board {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
     }
   }
-  // TODO temp - refactor later - should happen whenever a shape stops
-  // but doing that would break some tests
+  // TODO refactor should happen whenever a shape stops
+  // but doing that would break some old tests
 
   checkClear() {
     // Check if a row is full, if yes, then replace the contents with dots
