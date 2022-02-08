@@ -198,6 +198,31 @@ describe("Monstera Albo Variegata", function () {
     expect(items[0].quality).to.equal(5);
   });
 
+  it("When sellIn is smaller than 0 and quality smaller than 50, quality goes down by 2", function () {
+    gildedRose = new Shop([new Item(itemName, -1, 7)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(5);
+  });
+
+  it("When sellIn is smaller than 0 and quality equal to 50, quality goes down by 2", function () {
+    gildedRose = new Shop([new Item(itemName, -1, 50)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(48);
+  });
+
+  it("When sellIn is greater than 0 and quality smaller than 50, quality goes down by 1", function () {
+    gildedRose = new Shop([new Item(itemName, 5, 7)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(6);
+  });
+
+  it("When sellIn is greater than 0 and quality equal to 50, quality goes down by 1", function () {
+    gildedRose = new Shop([new Item(itemName, 5, 50)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(49);
+  });
+
+
 });
 
 describe("", function () {
