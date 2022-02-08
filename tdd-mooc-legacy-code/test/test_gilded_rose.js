@@ -1,4 +1,6 @@
+// eslint-disable-next-line no-undef
 var { expect } = require("chai");
+// eslint-disable-next-line no-undef
 var { Shop, Item } = require("../src/gilded_rose.js");
 
 describe("Gilded Rose", function () {
