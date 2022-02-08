@@ -11,9 +11,9 @@
     "@stryker-mutator/core": "^5.4.1",
     "@stryker-mutator/mocha-runner": "^5.4.1",
     "chai": "^4.2.0",
+    "eslint": "^8.8.0",
     "mocha": "^8.4.0",
     "nyc": "^15.1.0",
-    "prettier": "^2.4.1",
     "stryker-cli": "^1.0.2"
   },
   "scripts": {
@@ -21,6 +21,6 @@
     "autotest": "npm run test -- --watch",
     "coverage": "nyc --reporter=text npm run test",
     "mutation": "stryker run",
-    "format": "prettier --write ."
+    "format": "npx eslint . --fix"
   }
 }
