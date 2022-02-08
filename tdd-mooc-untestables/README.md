@@ -1,6 +1,16 @@
-# New JavaScript Project
+# [TDD MOOC](https://tdd.mooc.fi): Small, safe steps
 
-An empty project with JavaScript testing tools preconfigured. Do whatever you like with it.
+This project contains exercises for [TDD MOOC's Exercise 2](https://tdd.mooc.fi/exercises#exercise-2-small-safe-steps).
+
+Technologies:
+
+[JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6/ECMAScript 2015)
+
+[Mocha](https://mochajs.org/) testing framework
+
+[Chai](https://www.chaijs.com/) assertions
+
+---
 
 ## Prerequisites
 
@@ -21,3 +31,12 @@ Run tests continuously
 Code reformat
 
     npm run format
+---
+## Work load
+|Hours   |
+|---|
+|3.00|
+---
+
+_This exercise is part of the [TDD MOOC](https://tdd-mooc.luontola.fi/) at the University of Helsinki, brought to you
+by [Esko Luontola](https://twitter.com/EskoLuontola) and [Nitor](https://nitor.com/)._
