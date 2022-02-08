@@ -33,7 +33,7 @@ describe("Line clears", () => {
     );
   });
 
-  it("Four O shapes land at the bottom, the line clears", () => {
+  it("Four O shapes land at the bottom, the lines clear", () => {
     board.drop(Tetromino.O_SHAPE);
     board.moveLeft();
     board.moveLeft();

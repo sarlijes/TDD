@@ -1,5 +1,6 @@
 import { Block } from "./Block.mjs";
 import { Tetromino } from "./Tetromino.mjs";
+import { Scoring } from "./Scoring.mjs";
 import {
   twoDimensionalArraytoString,
   isLowerCase,
@@ -16,6 +17,7 @@ export class Board {
   height;
   board;
   currentlyFallingBlock;
+  scores;
 
   constructor(width, height) {
     this.width = width;
@@ -28,6 +30,7 @@ export class Board {
       }
       this.board.push(this.temp);
     }
+    this.scores = new Scoring;
   }
 
   hasFalling() {
@@ -424,6 +427,7 @@ export class Board {
         rowsToErase.push(row);
       }
     }
+    this.scores.update(rowsToErase.length);
     rowsToErase.sort((a, b) => b - a); // sort descending
     rowsToErase.forEach(row =>
       this.board[row].fill(".")
