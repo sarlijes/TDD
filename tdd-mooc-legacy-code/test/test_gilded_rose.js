@@ -18,6 +18,12 @@ describe("Gilded Rose", function () {
     expect(items[0]).to.equal(undefined);
   });
 
+  it("when sellIn is negative, and the item name is an empty string, the quality goes two down", function () {
+    const gildedRose = new Shop([new Item("", -15, 25)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(23);
+  });
+
 });
 
 
@@ -133,6 +139,12 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     gildedRose = new Shop([new Item(passes, 1, 25)]);
     items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(0);
+  });
+
+  it("when sellIn is negative, the quality is 0", function () {
+    gildedRose = new Shop([new Item(passes, -15, 25)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(0);
   });
 
 });
