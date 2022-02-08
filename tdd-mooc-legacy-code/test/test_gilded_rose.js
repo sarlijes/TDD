@@ -191,6 +191,12 @@ describe("Sulfuras, Hand of Ragnaros", function () {
     });
   });
 
+  it("when sellIn is negative, and quality is greater to 0, the quality stays the same", function () {
+    const gildedRose = new Shop([new Item(itemName, -15, 25)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(25);
+  });
+
 });
 
 // Additional item to cover all rows
