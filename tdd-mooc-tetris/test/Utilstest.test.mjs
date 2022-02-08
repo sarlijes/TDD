@@ -6,13 +6,48 @@ import {
   overlaps,
   getPotentialNewCoordinatesOfMovingItem,
   twoDimensionalArraysMatch,
-  getPotentialNewCoordinatesOfRotatingItem
+  getPotentialNewCoordinatesOfRotatingItem,
+  isLowerCase,
+  isUpperCase
 } from "../src/Utils.mjs";
 
 import { Board } from "../src/Board.mjs";
 import { Block } from "../src/Block.mjs";
 import { Tetromino } from "../src/Tetromino.mjs";
 import { fallToBottom } from "./TestHelpers.mjs";
+
+
+describe("Helper functions: lower case", () => {
+
+  it("a is lower case", () => {
+    expect(isLowerCase("a")).to.be.true;
+  });
+
+  it("A is not lower case", () => {
+    expect(isLowerCase("A")).to.be.false;
+  });
+
+  it(". is not lower case", () => {
+    expect(isLowerCase(".")).to.be.false;
+  });
+
+});
+
+describe("Helper functions: upper case", () => {
+
+  it("a is upper case", () => {
+    expect(isUpperCase("a")).to.be.false;
+  });
+
+  it("A is not upper case", () => {
+    expect(isUpperCase("A")).to.be.true;
+  });
+
+  it(". is not upper case", () => {
+    expect(isUpperCase(".")).to.be.false;
+  });
+
+});
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {

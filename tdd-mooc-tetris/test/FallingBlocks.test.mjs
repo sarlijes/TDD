@@ -22,14 +22,6 @@ describe("Empty boards", () => {
   });
 });
 
-describe("Helper functions", () => {
-  let board = new Board(3, 3);
-  xit("is lower case", () => {
-    expect(board.isLowerCase(".").to.equal(true));
-    // TODO how to test this?
-  });
-});
-
 describe("Falling blocks", () => {
   let board;
   beforeEach(() => {

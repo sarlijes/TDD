@@ -347,16 +347,14 @@ export class Board {
     // Find the coordinates of the currently falling block
     const currentCoordinates = this.currentlyFallingBlock.currentPosition;
 
-
     // Wipe the block away from the board
-
     for (let i = 0; i < this.currentlyFallingBlock.shape.length; i++) {
       for (let j = 0; j < this.currentlyFallingBlock.shape[0].length; j++) {
 
         let xWithOffset = i + currentCoordinates.x;
         let yWithOffset = j + currentCoordinates.y;
 
-        if (xWithOffset < 0) { // TODO right side also
+        if (xWithOffset < 0) {
           this.attemptWallKick(rotatedBlock, direction);
           return;
         }
@@ -366,12 +364,10 @@ export class Board {
             this.board[yWithOffset][xWithOffset] = ".";
           }
         }
-
       }
     }
 
     // Re-draw the rotated block to the board
-
     for (let i = 0; i < rotatedBlock.shape.length; i++) {
       for (let j = 0; j < rotatedBlock.shape[0].length; j++) {
 

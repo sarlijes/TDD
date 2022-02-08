@@ -3,7 +3,7 @@ import { twoDimensionalArraytoString } from "./Utils.mjs";
 export class RotatingShape {
   shape = [];
   height = 0;
-  width = -1; // TODO
+  width = 0;
 
   constructor(str) {
     let parts = str.split("\n");
