@@ -406,8 +406,6 @@ export class Board {
       this.currentlyFallingBlock.currentPosition = { x: x, y: y };
     }
   }
-  // TODO refactor should happen whenever a shape stops
-  // but doing that would break some old tests
 
   checkClear() {
     // Check if a row is full, if yes, then replace the contents with dots

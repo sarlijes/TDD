@@ -145,8 +145,6 @@ describe("different tetrominoes have correct starting position", () => {
       0,
       "T_SHAPE"
     );
-    // TODO why does the above need the whole constructor?
-    // - NewTetromino.T_SHAPE should do
     board.drop(shape);
     const position = board.currentlyFallingBlock.currentPosition;
 

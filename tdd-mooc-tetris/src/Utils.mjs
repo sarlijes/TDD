@@ -15,7 +15,6 @@ function twoDimensionalArraytoString(arr) {
 function isUpperCase(str) {
   return str === str.toUpperCase() && str !== ".";
 }
-// TODO tests for helper functions
 
 function isLowerCase(str) {
   return str === str.toLowerCase() && str !== ".";

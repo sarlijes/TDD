@@ -505,9 +505,4 @@ describe("Can get potential new coordinates of rotating item - 4*1 board", () =>
 
     expect(newCoordinates.length).to.equal(1);
   });
-
-  // it("when the space is limited - crowded board - I shape", () => {
-
-  // });
-
 });
