@@ -25,26 +25,27 @@ describe("Aged Brie", function () {
 
   let gildedRose;
   let items;
+  const itemName = "Aged Brie";
 
   beforeEach(() => {
-    gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
+    gildedRose = new Shop([new Item(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
   });
 
   it("the product is returned", function () {
-    expect(items[0].name).to.equal("Aged Brie");
+    expect(items[0].name).to.equal(itemName);
   });
 
   describe("Quality is updated", function () {
 
     it("When quality is 0, it's raised to 1", function () {
-      gildedRose = new Shop([new Item("Aged Brie", 7, 0)]);
+      gildedRose = new Shop([new Item(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(1);
     });
 
     it("When quality is max, it stays at max", function () {
-      gildedRose = new Shop([new Item("Aged Brie", 7, 50)]);
+      gildedRose = new Shop([new Item(itemName, 7, 50)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
@@ -53,28 +54,35 @@ describe("Aged Brie", function () {
   describe("SellIn is updated", function () {
 
     it("When sellIn is 7", function () {
-      gildedRose = new Shop([new Item("Aged Brie", 7, 0)]);
+      gildedRose = new Shop([new Item(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(6);
     });
 
     it("When sellIn is 0", function () {
-      gildedRose = new Shop([new Item("Aged Brie", 0, 0)]);
+      gildedRose = new Shop([new Item(itemName, 0, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(-1);
     });
   });
 
   it("When sellIn is negative - it's still decreased", function () {
-    let gildedRose = new Shop([new Item("Aged Brie", -1, 12)]);
+    let gildedRose = new Shop([new Item(itemName, -1, 12)]);
     let items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-2);
   });
 
   it("When sellIn is negative - quality gets better", function () {
-    let gildedRose = new Shop([new Item("Aged Brie", -1, 12)]);
+    let gildedRose = new Shop([new Item(itemName, -1, 12)]);
     let items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(14);
+  });
+
+  it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
+    gildedRose = new Shop([new Item(itemName, -5, 50)]);
+    items = gildedRose.updateQuality();
+    // expect(items[0].quality).to.equal(51);
+    expect(items[0].quality).to.equal(50);
   });
 
 });
@@ -198,29 +206,6 @@ describe("Monstera Albo Variegata", function () {
     expect(items[0].quality).to.equal(5);
   });
 
-  it("When sellIn is smaller than 0 and quality smaller than 50, quality goes down by 2", function () {
-    gildedRose = new Shop([new Item(itemName, -1, 7)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(5);
-  });
-
-  it("When sellIn is smaller than 0 and quality equal to 50, quality goes down by 2", function () {
-    gildedRose = new Shop([new Item(itemName, -1, 50)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(48);
-  });
-
-  it("When sellIn is greater than 0 and quality smaller than 50, quality goes down by 1", function () {
-    gildedRose = new Shop([new Item(itemName, 5, 7)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(6);
-  });
-
-  it("When sellIn is greater than 0 and quality equal to 50, quality goes down by 1", function () {
-    gildedRose = new Shop([new Item(itemName, 5, 50)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(49);
-  });
 
 
 });
