@@ -31,6 +31,22 @@ Run tests continuously
 Code reformat
 
     npm run format
+---
+## Work load
+|Level |Hours   |
+|---|---|
+|1|3.00|
+|2|2.75|
+|3|7.75|
+|4|14.00|
+|5|2.5|
+|6|11.00|
+|7|6.00|
+|8|1.5|
+|9|2.00|
+|10|2.00|
+|total|52.5|
+---
 
 _This exercise is part of the [TDD MOOC](https://tdd-mooc.luontola.fi/) at the University of Helsinki, brought to you
 by [Esko Luontola](https://twitter.com/EskoLuontola) and [Nitor](https://nitor.com/)._
