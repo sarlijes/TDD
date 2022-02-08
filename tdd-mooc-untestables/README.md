@@ -1,6 +1,10 @@
 # [TDD MOOC](https://tdd.mooc.fi): Small, safe steps
 
-This project contains exercises for [TDD MOOC's Exercise 2](https://tdd.mooc.fi/exercises#exercise-2-small-safe-steps).
+This project contains exercises for [TDD MOOC's Exercise 2 (Small, safe steps)](https://tdd.mooc.fi/exercises#exercise-2-small-safe-steps).
+
+[Round 1](https://github.com/sarlijes/TDD/commits/1-refactor/tdd-mooc-small-steps)
+
+[Round 2](https://github.com/sarlijes/TDD/commits/2-refactor/tdd-mooc-small-steps)
 
 Technologies:
 
