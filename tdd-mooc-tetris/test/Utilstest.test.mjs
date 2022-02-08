@@ -288,10 +288,10 @@ describe(s, () => {
 
   it("Basic X block", () => {
     board.drop(new Block("x"));
-    board.tick();
-    board.tick();
-    board.tick();
-    board.tick();
+    board.tick(false);
+    board.tick(false);
+    board.tick(false);
+    board.tick(false);
     // .....
     // .....
     // .....
@@ -375,8 +375,8 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   it("when there is plenty of space to rotate", () => {
     let shape = Tetromino.I_SHAPE;
     board.drop(shape);
-    board.tick();
-    board.tick();
+    board.tick(false);
+    board.tick(false);
 
     const rotatedBlock = shape.rotateLeft();
 
@@ -404,8 +404,8 @@ describe("Can get potential new coordinates of rotating item - 10*6 board", () =
   it("when trying to rotate shape T", () => {
     let shape = Tetromino.T_SHAPE;
     board.drop(shape);
-    board.tick();
-    board.tick();
+    board.tick(false);
+    board.tick(false);
     // ..........
     // ..........
     // ....T.....

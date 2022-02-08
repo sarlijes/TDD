@@ -107,8 +107,8 @@ describe(s,
       board = new Board(12, 6);
       let shape = Tetromino.T_SHAPE;
       board.drop(shape);
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
     });
 
     it("after rotating left", () => {
@@ -207,8 +207,8 @@ describe("Rotating falling tetrominoes O_SHAPE - coordinates update correctly",
       board = new Board(10, 6);
       let shape = Tetromino.O_SHAPE;
       board.drop(shape);
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
     });
 
     it("after rotating left", () => {
@@ -257,8 +257,8 @@ describe("Rotating falling tetrominoes I_SHAPE - coordinates update correctly",
       board = new Board(10, 6);
       let shape = Tetromino.I_SHAPE;
       board.drop(shape);
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
     });
 
     it("after rotating left", () => {

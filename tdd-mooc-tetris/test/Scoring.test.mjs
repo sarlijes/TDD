@@ -81,8 +81,8 @@ describe("Scoring (clearing rows)", () => {
     `);
 
     board.drop(Tetromino.I_SHAPE);
-    board.tick();
-    board.tick();
+    board.tick(false);
+    board.tick(false);
     board.rotateRight();
     moveToRightEdge(board);
     fallToBottom(board);
@@ -113,8 +113,8 @@ describe("Scoring (clearing rows)", () => {
     `);
 
     board.drop(Tetromino.I_SHAPE);
-    board.tick();
-    board.tick();
+    board.tick(false);
+    board.tick(false);
     board.rotateRight();
     moveToRightEdge(board);
     fallToBottom(board);

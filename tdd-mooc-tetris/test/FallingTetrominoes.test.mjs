@@ -235,7 +235,7 @@ describe(
     it("T_SHAPE is ticked moved one down", () => {
       let shape = Tetromino.T_SHAPE;
       board.drop(shape);
-      board.tick();
+      board.tick(false);
 
       const position = board.currentlyFallingBlock.currentPosition;
 
@@ -281,7 +281,7 @@ describe(
     it("I_SHAPE is ticked moved one down", () => {
       let shape = Tetromino.I_SHAPE;
       board.drop(shape);
-      board.tick();
+      board.tick(false);
 
       const position = board.currentlyFallingBlock.currentPosition;
 
@@ -323,7 +323,7 @@ describe(
     it("O_SHAPE is ticked moved one down", () => {
       let shape = Tetromino.O_SHAPE;
       board.drop(shape);
-      board.tick();
+      board.tick(false);
 
       const position = board.currentlyFallingBlock.currentPosition;
 

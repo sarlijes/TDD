@@ -95,10 +95,7 @@ export class Board {
     this.currentlyFallingBlock = block;
   }
 
-  // TODO refactor to be shorter
-  // TODO checkClear should default to true, which means refactoring tests
-  // to have it has false
-  tick(checkClear) {
+  tick(checkClear = true) {
     const { couldBeMoved,
       coordinatesOfMovingItems,
       potentialNewCoordinatesOfMovingItem

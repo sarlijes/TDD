@@ -179,8 +179,8 @@ describe(
     it(" it cannot be moved left through other blocks", () => {
 
       board.drop(Tetromino.T_SHAPE);
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
       moveToLeftEdge(board);
 
       expect(board.toString()).to.equalShape(`
@@ -196,8 +196,8 @@ describe(
 
     it("it cannot be moved right through other blocks", () => {
       board.drop(Tetromino.T_SHAPE);
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
       moveToRightEdge(board);
 
       expect(board.toString()).to.equalShape(`

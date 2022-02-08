@@ -60,7 +60,7 @@ describe("Falling blocks", () => {
     });
 
     it("it moves down one row per tick", () => {
-      board.tick();
+      board.tick(false);
 
       expect(board.toString()).to.equalShape(
         `...
@@ -80,8 +80,8 @@ describe("Falling blocks", () => {
   describe("When a block reaches the bottom", () => {
     beforeEach(() => {
       board.drop(new Block("X"));
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
     });
 
     it("it is still moving on the last row", () => {
@@ -97,7 +97,7 @@ describe("Falling blocks", () => {
     });
 
     it("it stops when it hits the bottom", () => {
-      board.tick();
+      board.tick(false);
 
       expect(board.toString()).to.equalShape(
         `...
@@ -111,11 +111,11 @@ describe("Falling blocks", () => {
   describe("When a block lands on another block", () => {
     beforeEach(() => {
       board.drop(new Block("X"));
-      board.tick();
-      board.tick();
-      board.tick();
+      board.tick(false);
+      board.tick(false);
+      board.tick(false);
       board.drop(new Block("Y"));
-      board.tick();
+      board.tick(false);
     });
 
     it("it is still moving on the row above the other block", () => {
@@ -131,7 +131,7 @@ describe("Falling blocks", () => {
     });
 
     it("it stops when it hits the other block", () => {
-      board.tick();
+      board.tick(false);
 
       expect(board.toString()).to.equalShape(
         `...
