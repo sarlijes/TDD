@@ -9,6 +9,15 @@ describe("Gilded Rose", function () {
     const items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("foo");
   });
+
+
+  it("no items if Shop created without any items", function () {
+    const gildedRose = new Shop([]);
+    const items = gildedRose.updateQuality();
+    expect(items.length).to.equal(0);
+    expect(items[0]).to.equal(undefined);
+  });
+
 });
 
 
@@ -54,6 +63,18 @@ describe("Aged Brie", function () {
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(-1);
     });
+  });
+
+  it("When sellIn is negative - it's still decreased", function () {
+    let gildedRose = new Shop([new Item("Aged Brie", -1, 12)]);
+    let items = gildedRose.updateQuality();
+    expect(items[0].sellIn).to.equal(-2);
+  });
+
+  it("When sellIn is negative - quality gets better", function () {
+    let gildedRose = new Shop([new Item("Aged Brie", -1, 12)]);
+    let items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(14);
   });
 
 });
