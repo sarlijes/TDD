@@ -24,6 +24,13 @@ describe("Gilded Rose", function () {
     expect(items[0]).to.equal(undefined);
   });
 
+  it("no items if Shop created without any items", function () {
+    const gildedRose = new Shop();
+    const items = gildedRose.updateQuality();
+    expect(items.length).to.equal(0);
+    expect(items[0]).to.equal(undefined);
+  });
+
   it("when sellIn is negative, and the item name is an empty string, the quality goes two down", function () {
     const gildedRose = new Shop([new Item("", -15, 25)]);
     const items = gildedRose.updateQuality();
