@@ -89,19 +89,13 @@ class ConcertTickets extends Item {
   }
 }
 
-
 class Shop {
   constructor(items = []) {
     this.items = items;
   }
 
   updateQuality() {
-
-    for (var i = 0; i < this.items.length; i++) {
-      this.items[i].update();
-
-
-    }
+    this.items.forEach(item => item.update());
     return this.items;
   }
 }
