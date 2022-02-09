@@ -4,13 +4,6 @@ class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-}
-
-class OtherItem extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
-  }
-
   update() {
     this.sellIn -= 1;
 
@@ -22,6 +15,12 @@ class OtherItem extends Item {
     if (this.sellIn <= 0) {
       this.quality++;
     }
+  }
+}
+
+class OtherItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
   }
 }
 
@@ -47,19 +46,6 @@ class LegendaryItem extends Item {
 class AgedBrie extends Item {
   constructor(name, sellIn, quality) {
     super("Aged Brie", sellIn, quality);
-  }
-
-  update() {
-    this.sellIn -= 1;
-
-    if (this.quality >= 50) {
-      return;
-    }
-    this.quality++;
-
-    if (this.sellIn <= 0) {
-      this.quality++;
-    }
   }
 }
 
