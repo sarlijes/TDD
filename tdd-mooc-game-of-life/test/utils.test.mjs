@@ -58,6 +58,20 @@ describe("Check cell validity", () => {
     });
 
   });
+
+
+  describe("for an larger semi-full board's", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([0, 1, 0, 0]);
+      arr.push([1, 0, 0, 1]);
+      arr.push([0, 1, 0, 1]);
+    });
+  });
+
 });
 
 
@@ -167,9 +181,6 @@ describe("Can get living neighbor count", () => {
       });
     });
 
-
-
-
   });
 
   describe("for an larger semi-full board's", () => {
@@ -185,15 +196,19 @@ describe("Can get living neighbor count", () => {
 
     describe("borders at the", () => {
       it("top", () => {
+        expect(getLivingNeighborCount(arr, 0, 1)).to.equal(1);
+        // expect(getLivingNeighborCount(arr, 0, 2)).to.equal(2);
 
       });
 
       it("left", () => {
-
+        expect(getLivingNeighborCount(arr, 1, 0)).to.equal(2);
       });
-      it("bottom", () => {
 
+      xit("bottom", () => {
+        expect(getLivingNeighborCount(arr, 2, 1)).to.equal(1);
       });
+
       it("right", () => {
 
       });
