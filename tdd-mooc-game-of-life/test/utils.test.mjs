@@ -205,27 +205,28 @@ describe("Can get living neighbor count", () => {
     describe("borders at the", () => {
       it("top", () => {
         expect(getLivingNeighborCount(arr, 0, 1)).to.equal(1);
-        // expect(getLivingNeighborCount(arr, 0, 2)).to.equal(2);
-
+        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(2);
       });
 
       it("left", () => {
         expect(getLivingNeighborCount(arr, 1, 0)).to.equal(2);
       });
 
-      xit("bottom", () => {
+      it("bottom", () => {
         expect(getLivingNeighborCount(arr, 2, 1)).to.equal(1);
+        expect(getLivingNeighborCount(arr, 2, 2)).to.equal(3);
       });
 
       it("right", () => {
-
+        expect(getLivingNeighborCount(arr, 1, 3)).to.equal(1);
       });
-
 
     });
 
     describe("mid-areas", () => {
       it("", () => {
+        expect(getLivingNeighborCount(arr, 1, 1)).to.equal(3);
+        expect(getLivingNeighborCount(arr, 1, 2)).to.equal(4);
       });
     });
   });
