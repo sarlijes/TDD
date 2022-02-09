@@ -26,19 +26,10 @@ class OtherItem extends Item {
 
 class LegendaryItem extends Item {
   constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
+    super(name, sellIn, 80);
   }
   update() {
     this.sellIn -= 1;
-
-    if (this.quality >= 50) {
-      return;
-    }
-    this.quality++;
-
-    if (this.sellIn <= 0) {
-      this.quality++;
-    }
   }
 }
 

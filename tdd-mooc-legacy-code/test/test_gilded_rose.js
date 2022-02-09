@@ -211,55 +211,55 @@ describe("Sulfuras, Hand of Ragnaros", function () {
     expect(items[0].name).to.equal(itemName);
   });
 
-  describe("Quality is updated", function () {
+  describe("Quality is not updated", function () {
 
-    it("When quality is 0, stays in 0", function () {
+    it("When quality was inputted as 0, it's still 80", function () {
       gildedRose = new Shop([new LegendaryItem(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(0);
+      expect(items[0].quality).to.equal(80);
     });
 
-    it("When quality is max, it stays at max", function () {
+    it("When quality was inputted as 50, it's still 80", function () {
       gildedRose = new Shop([new LegendaryItem(itemName, 7, 50)]);
       items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(50);
+      expect(items[0].quality).to.equal(80);
     });
-
-    it("when sellIn is negative, and quality is greater to 0, the quality stays the same", function () {
+    // TODO these seem excess now
+    it("when sellIn is negative, and quality is greater to 0, the quality is still 80", function () {
       const gildedRose = new Shop([new LegendaryItem(itemName, -15, 25)]);
       const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(25);
+      expect(items[0].quality).to.equal(80);
     });
 
-    it("when sellIn is negative, and quality is 0, the quality stays the same", function () {
+    it("when sellIn is negative, and quality is inputted as 0, the quality is still 80", function () {
       const gildedRose = new Shop([new LegendaryItem(itemName, -15, 0)]);
       const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(0);
+      expect(items[0].quality).to.equal(80);
     });
 
-    it("when sellIn is negative, and quality is < 0, the quality stays the same", function () {
+    it("when sellIn is negative, and quality is inputted as < 0, the quality is still 80", function () {
       const gildedRose = new Shop([new LegendaryItem(itemName, -15, -15)]);
       const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(-15);
+      expect(items[0].quality).to.equal(80);
     });
 
-    it("when sellIn is 0, and quality is 7, the quality stays the same", function () {
+    it("when sellIn is 0, and quality is 7, the quality is still 80", function () {
       const gildedRose = new Shop([new LegendaryItem(itemName, 0, 7)]);
       const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(7);
+      expect(items[0].quality).to.equal(80);
     });
   });
 
   describe("SellIn is updated", function () {
 
     it("When sellIn is 7, it stays the same", function () {
-      gildedRose = new Shop([new LegendaryItem(itemName, 7, 0)]);
+      gildedRose = new Shop([new Item(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(7);
     });
 
     it("When sellIn is 0, it stays the same", function () {
-      gildedRose = new Shop([new LegendaryItem(itemName, 0, 0)]);
+      gildedRose = new Shop([new Item(itemName, 0, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(0);
     });
