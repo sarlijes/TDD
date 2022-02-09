@@ -9,7 +9,7 @@ describe("Check cell validity", () => {
     arr.push([0, 0, 0]);
     arr.push([0, 0, 0]);
 
-    expect(isValid([0][0])).to.be.true;
+    expect(isValid(arr, 0, 0)).to.be.true;
   });
 
 });
