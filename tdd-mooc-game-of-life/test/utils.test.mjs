@@ -11,8 +11,22 @@ describe("Check cell validity", () => {
     arr.push([0, 0, 0]);
     arr.push([0, 0, 0]);
   });
-  describe("Valid coordinates", () => {
 
+  describe("General tests", () => {
+
+    describe("Return type is correct", () => {
+      arr.push([0, 0, 0]);
+      const result = isValid(arr, 0, 0);
+      expect(typeof result).to.equal("boolean");
+    });
+
+    describe("Undefined or null throws an Error", () => {
+      expect(() => isValid(undefined).to.throw("undefined"));
+    });
+    // TODO could add validation to parameters x and y
+  });
+
+  describe("Valid coordinates", () => {
 
 
 
@@ -44,8 +58,6 @@ describe("Check cell validity", () => {
     it("Cell is invalid when y is too great", () => {
       expect(isValid(arr, 0, 3)).to.be.false;
     });
-
-
 
   });
 });

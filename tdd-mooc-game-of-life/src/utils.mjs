@@ -1,5 +1,9 @@
 export function isValid(arr, x, y) {
 
+  if (arr === undefined) {
+    throw new Error ("undefined");
+  }
+
   const height = arr.length;
   const width = arr[0].length;
 
