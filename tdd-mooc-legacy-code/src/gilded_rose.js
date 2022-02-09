@@ -6,6 +6,25 @@ class Item {
   }
 }
 
+class AgedBrie extends Item {
+  constructor(name, sellIn, quality) {
+    super("Aged Brie", sellIn, quality);
+  }
+
+  update() {
+    this.sellIn -= 1;
+
+    if (this.quality >= 50) {
+      return;
+    }
+    this.quality++;
+
+    if (this.sellIn <= 0) {
+      this.quality++;
+    }
+  }
+}
+
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -70,4 +89,5 @@ class Shop {
 module.exports = {
   Item,
   Shop,
+  AgedBrie
 };

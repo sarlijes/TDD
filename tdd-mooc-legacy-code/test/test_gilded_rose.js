@@ -2,9 +2,9 @@
 // eslint-disable-next-line no-undef
 var { expect } = require("chai");
 // eslint-disable-next-line no-undef
-var { Shop, Item } = require("../src/gilded_rose.js");
+var { Shop, Item, AgedBrie } = require("../src/gilded_rose.js");
 
-describe("Gilded Ros - general", function () {
+describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
     const items = gildedRose.updateQuality();
@@ -39,7 +39,7 @@ describe("Aged Brie", function () {
   const itemName = "Aged Brie";
 
   it("the correct product name is returned", function () {
-    gildedRose = new Shop([new Item(itemName, 0, 0)]);
+    gildedRose = new Shop([new AgedBrie(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("Aged Brie");
   });
@@ -47,19 +47,19 @@ describe("Aged Brie", function () {
   describe("Quality is updated", function () {
 
     it("When sellIn is negative - quality gets better", function () {
-      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
+      let gildedRose = new Shop([new AgedBrie(itemName, -1, 12)]);
       let items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(14);
     });
 
     it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
-      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const gildedRose = new Shop([new AgedBrie(itemName, 0, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(9);
     });
 
     it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, -5, 50)]);
+      gildedRose = new Shop([new Item(AgedBrie, -5, 50)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
