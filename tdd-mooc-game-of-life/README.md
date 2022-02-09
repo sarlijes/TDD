@@ -21,8 +21,16 @@ Code reformat
 ## Work load
 | |Hours   |
 |---|---|
-|?|---|
-|?|---|
+|Planning & repo setup, linter|0.25|
+|Helper function for getting the count of living neighbors of a cell|1.5|
+||---|
 |?|---|
 |?|---|
 |total||
+
+## Plan
+
+[x] implement helper for getting the living neighbor count (+ isValid that uses it)
+[] Investigate RLE format & how to utilize it in the tests
+[] actual gameplay, inc. iterations
+[] UI
