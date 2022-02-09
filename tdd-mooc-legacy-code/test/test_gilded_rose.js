@@ -133,7 +133,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
       expect(items[0].quality).to.equal(50);
     });
 
-    it("When sellIn is 6, and quality is 6. the quality goes to 8", function () {
+    it("When sellIn is 6, and quality is 6, the quality goes to 8", function () {
       gildedRose = new Shop([new ConcertTickets(passes, 6, 6)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(8);
@@ -158,7 +158,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     });
 
     it("when sellIn is 1, and quality is 7, the quality goes to 10", function () {
-      const gildedRose = new Shop([new Item(passes, 1, 7)]);
+      const gildedRose = new Shop([new ConcertTickets(passes, 1, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(10);
     });

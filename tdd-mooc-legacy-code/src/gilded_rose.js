@@ -33,30 +33,26 @@ class ConcertTickets extends Item {
   update() {
     this.sellIn -= 1;
 
+    if (this.quality >= 49) {
+      this.quality = 50;
+      return;
+    }
     if (this.sellIn < 0) {
       this.quality = 0;
       return;
     }
-
-    if (this.quality >= 50) {
+    if (this.sellIn <= 5) {
+      this.quality = this.quality + 3;
       return;
     }
-
-    if (this.quality <= 0) {
-      this.quality++;
+    if (this.sellIn <= 10) {
+      this.quality = this.quality + 2;
+      return;
     }
-
-    if (this.quality === 40) {
-      this.quality++;
-      this.quality++;
-    }
-
-    if (this.sellIn === 5) {
-      this.quality++;
-    }
-    this.quality++;
+    this.quality + 1;
   }
 }
+
 
 class Shop {
   constructor(items = []) {
