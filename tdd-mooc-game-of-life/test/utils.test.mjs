@@ -77,26 +77,6 @@ describe("Can get living neighbor count", () => {
     // TODO could add validation to parameters x and y
   });
 
-  /*
-  Different cases:
-
-  Empty board:
-    Corners
-    Borders
-    Mid-areas
-
-  Semi-full board:
-    Corners
-    Borders
-    Mid-areas
-
-  Full board:
-    Corners
-    Borders
-    Mid-areas
-
-  */
-
   describe("for an full board's", () => {
 
     let arr;
@@ -164,7 +144,7 @@ describe("Can get living neighbor count", () => {
 
     beforeEach(() => {
       arr = [];
-      arr.push([0, 1, 3]);
+      arr.push([0, 1, 0]);
       arr.push([1, 0, 0]);
       arr.push([0, 1, 0]);
     });
@@ -184,6 +164,45 @@ describe("Can get living neighbor count", () => {
 
       it("bottom right", () => {
         expect(getLivingNeighborCount(arr, 2, 2)).to.equal(1);
+      });
+    });
+
+
+
+
+  });
+
+  describe("for an larger semi-full board's", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([0, 1, 0, 0]);
+      arr.push([1, 0, 0, 1]);
+      arr.push([0, 1, 0, 1]);
+    });
+
+    describe("borders at the", () => {
+      it("top", () => {
+
+      });
+
+      it("left", () => {
+
+      });
+      it("bottom", () => {
+
+      });
+      it("right", () => {
+
+      });
+
+
+    });
+
+    describe("mid-areas", () => {
+      it("", () => {
       });
     });
   });
