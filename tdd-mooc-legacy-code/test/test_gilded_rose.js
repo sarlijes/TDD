@@ -105,7 +105,6 @@ describe("Aged Brie", function () {
   it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
     gildedRose = new Shop([new Item(itemName, -5, 50)]);
     items = gildedRose.updateQuality();
-    // expect(items[0].quality).to.equal(51);
     expect(items[0].quality).to.equal(50);
   });
 
@@ -166,6 +165,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(-1);
     });
+
   });
 
   it("quality goes to 0 after the concert has taken place", function () {
@@ -187,7 +187,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     expect(items[0].quality).to.equal(0);
   });
 
-  it("when sellIn is 0, and quality is 7, the quality goes to 0", function () {
+  it("when sellIn is 5, and quality is 49, the quality goes to 50", function () {
     const gildedRose = new Shop([new Item(passes, 5, 49)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(50);
@@ -211,6 +211,12 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     gildedRose = new Shop([new Item(passes, 10, 6)]);
     items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(8);
+  });
+
+  it("when sellIn is 1, and quality is 7, the quality goes to 10", function () {
+    const gildedRose = new Shop([new Item(passes, 1, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(10);
   });
 
 });
