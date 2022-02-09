@@ -11,6 +11,11 @@ describe("Gilded Rose", function () {
     expect(items[0].name).to.equal("foo");
   });
 
+  it("", function () {
+    const gildedRose = new Shop([new Item("t", 1, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(0);
+  });
 
   it("no items if Shop created without any items", function () {
     const gildedRose = new Shop([]);
@@ -92,6 +97,14 @@ describe("Aged Brie", function () {
     expect(items[0].quality).to.equal(50);
   });
 
+  it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
+    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(9);
+  });
+
+
+
 });
 
 
@@ -112,12 +125,19 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
       gildedRose = new Shop([new Item(passes, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(2);
+      expect(items[0].quality).not.to.equal(1);
     });
 
     it("When quality is max, it stays at max", function () {
       gildedRose = new Shop([new Item(passes, 7, 50)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
+    });
+
+    it("When quality is 49, it goes to 50", function () {
+      gildedRose = new Shop([new Item(passes, 5, 40)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(43);
     });
   });
 
@@ -146,6 +166,19 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     gildedRose = new Shop([new Item(passes, -15, 25)]);
     items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(0);
+  });
+
+
+  it("when sellIn is 0, and quality is 7, the quality goes to 0", function () {
+    const gildedRose = new Shop([new Item(passes, 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(0);
+  });
+
+  it("when sellIn is 0, and quality is 7, the quality goes to 0", function () {
+    const gildedRose = new Shop([new Item(passes, 5, 49)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(50);
   });
 
 });
@@ -210,7 +243,11 @@ describe("Sulfuras, Hand of Ragnaros", function () {
     expect(items[0].quality).to.equal(-15);
   });
 
-
+  it("when sellIn is 0, and quality is 7, the quality stays the same", function () {
+    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(7);
+  });
 
 });
 
@@ -262,6 +299,13 @@ describe("Monstera Albo Variegata", function () {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(0);
   });
+
+  it("when sellIn is 0, and quality is 7, the quality goes down by two", function () {
+    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(5);
+  });
+
 
 });
 
