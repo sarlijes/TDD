@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { isValid } from "../src/utils.mjs";
+import { isValid, getLivingNeighborCount } from "../src/utils.mjs";
 
 describe("Check cell validity", () => {
 
@@ -27,8 +27,6 @@ describe("Check cell validity", () => {
   });
 
   describe("Valid coordinates", () => {
-
-
 
     it("Cell is valid when both coordinates are 0", () => {
       expect(isValid(arr, 0, 0)).to.be.true;
@@ -61,5 +59,86 @@ describe("Check cell validity", () => {
 
   });
 });
+
+
+describe("Can get living neighbor count", () => {
+
+
+  describe("General tests", () => {
+
+    describe("Return type is correct", () => {
+      const result = getLivingNeighborCount([0, 0, 0], 0, 0);
+      expect(typeof result).to.equal("number");
+    });
+
+    describe("Undefined or null throws an Error", () => {
+      expect(() => getLivingNeighborCount(undefined).to.throw("undefined"));
+    });
+    // TODO could add validation to parameters x and y
+  });
+
+  /*
+  Different cases:
+
+  Empty board:
+    Corners
+    Borders
+    Mid-areas
+
+  Semi-full board:
+    Corners
+    Borders
+    Mid-areas
+
+  Full board:
+    Corners
+    Borders
+    Mid-areas
+
+  */
+  describe("for an empty board's", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([0, 0, 0]);
+      arr.push([0, 0, 0]);
+      arr.push([0, 0, 0]);
+    });
+
+    xit("corners - top left", () => {
+      expect(getLivingNeighborCount(arr, 0, 0)).to.equal(0);
+    });
+
+    xit("corners - top right", () => {
+      expect(getLivingNeighborCount(arr, 2, 0)).to.equal(0);
+    });
+
+    xit("corners - bottom left", () => {
+      expect(getLivingNeighborCount(arr, 0, 2)).to.equal(0);
+    });
+
+    xit("corners - bottom right", () => {
+      expect(getLivingNeighborCount(arr, 2, 2)).to.equal(0);
+    });
+  });
+
+  // describe("", () => {
+
+  //   beforeEach(() => {
+  //     arr = [];
+  //     arr.push([0, 0, 0]);
+  //     arr.push([0, 0, 0]);
+  //     arr.push([0, 0, 0]);
+  //   });
+
+  // });
+
+});
+
+describe("", () => {
+});
+
 it("", () => {
 });
