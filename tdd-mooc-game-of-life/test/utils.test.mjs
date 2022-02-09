@@ -108,21 +108,24 @@ describe("Can get living neighbor count", () => {
       arr.push([1, 1, 1]);
     });
 
-    it("corners - top left", () => {
-      expect(getLivingNeighborCount(arr, 0, 0)).to.equal(3);
+    describe("corners:", () => {
+      it("top left", () => {
+        expect(getLivingNeighborCount(arr, 0, 0)).to.equal(3);
+      });
+
+      it("top right", () => {
+        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(3);
+      });
+
+      it("bottom left", () => {
+        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(3);
+      });
+
+      it("bottom right", () => {
+        expect(getLivingNeighborCount(arr, 2, 2)).to.equal(3);
+      });
     });
 
-    xit("corners - top right", () => {
-      expect(getLivingNeighborCount(arr, 2, 0)).to.equal(0);
-    });
-
-    xit("corners - bottom left", () => {
-      expect(getLivingNeighborCount(arr, 0, 2)).to.equal(0);
-    });
-
-    xit("corners - bottom right", () => {
-      expect(getLivingNeighborCount(arr, 2, 2)).to.equal(0);
-    });
   });
 
   describe("for an empty board's", () => {
