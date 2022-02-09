@@ -10,13 +10,31 @@ describe("Check cell validity", () => {
     arr.push([0, 0, 0]);
     arr.push([0, 0, 0]);
   });
+  describe("Valid coordinates", () => {
 
 
-  it("Cell is valid when both coordinates are 0", () => {
 
 
+    it("Cell is valid when both coordinates are 0", () => {
+      expect(isValid(arr, 0, 0)).to.be.true;
+    });
 
-    expect(isValid(arr, 0, 0)).to.be.true;
+    it("Cell is valid when both coordinates are 1", () => {
+      expect(isValid(arr, 1, 1)).to.be.true;
+    });
+
+    it("Cell is valid when both coordinates are 2", () => {
+      expect(isValid(arr, 2, 2)).to.be.true;
+    });
+
   });
 
+  describe("Invalid coordinates", () => {
+
+    it("Cell is valid when one of the coordinates is -1", () => {
+      expect(isValid(arr, -1, 0)).to.be.false;
+      expect(isValid(arr, 0, -1)).to.be.false;
+    });
+
+  });
 });
