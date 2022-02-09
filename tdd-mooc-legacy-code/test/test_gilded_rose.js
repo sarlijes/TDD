@@ -4,46 +4,33 @@ var { expect } = require("chai");
 // eslint-disable-next-line no-undef
 var { Shop, Item } = require("../src/gilded_rose.js");
 
-describe("Gilded Rose", function () {
+describe("Gilded Ros - general", function () {
   it("returns the Item's name", function () {
     const gildedRose = new Shop([new Item("foo", 0, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("foo");
   });
 
-  it("", function () {
-    const gildedRose = new Shop([new Item("t", 1, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(0);
-  });
-
-  it("no items if Shop created without any items", function () {
+  it("no items if Shop was created without items (empty list)", function () {
     const gildedRose = new Shop([]);
     const items = gildedRose.updateQuality();
     expect(items.length).to.equal(0);
     expect(items[0]).to.equal(undefined);
   });
 
-  it("no items if Shop created without any items", function () {
+  it("no items if Shop was created without items parameter", function () {
     const gildedRose = new Shop();
     const items = gildedRose.updateQuality();
     expect(items.length).to.equal(0);
     expect(items[0]).to.equal(undefined);
   });
 
-  it("when sellIn is negative, and the item name is an empty string, the quality goes two down", function () {
-    const gildedRose = new Shop([new Item("", -15, 25)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(23);
-  });
-
-  it("Correct data type", function () {
+  it("Shop's item has correct data type", function () {
     const gildedRose = new Shop([new Item("t", 1, 0)]);
     expect(gildedRose.items[0] instanceof Item).to.be,true;
   });
 
 });
-
 
 describe("Aged Brie", function () {
 
@@ -51,13 +38,10 @@ describe("Aged Brie", function () {
   let items;
   const itemName = "Aged Brie";
 
-  beforeEach(() => {
+  it("the correct product name is returned", function () {
     gildedRose = new Shop([new Item(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
-  });
-
-  it("the product is returned", function () {
-    expect(items[0].name).to.equal(itemName);
+    expect(items[0].name).to.equal("Aged Brie");
   });
 
   describe("Quality is updated", function () {
@@ -73,14 +57,33 @@ describe("Aged Brie", function () {
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
+
+    it("When sellIn is negative - quality gets better", function () {
+      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
+      let items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(14);
+    });
+
+    it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
+      gildedRose = new Shop([new Item(itemName, -5, 50)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(50);
+    });
+
+    it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
+      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(9);
+    });
+
   });
 
   describe("SellIn is updated", function () {
 
-    it("When sellIn is 7", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 0)]);
-      items = gildedRose.updateQuality();
-      expect(items[0].sellIn).to.equal(6);
+    it("When sellIn is negative - it's still decreased", function () {
+      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
+      let items = gildedRose.updateQuality();
+      expect(items[0].sellIn).to.equal(-2);
     });
 
     it("When sellIn is 0", function () {
@@ -88,31 +91,18 @@ describe("Aged Brie", function () {
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(-1);
     });
+
+    it("When sellIn is 7", function () {
+      gildedRose = new Shop([new Item(itemName, 7, 0)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].sellIn).to.equal(6);
+    });
+
+
   });
 
-  it("When sellIn is negative - it's still decreased", function () {
-    let gildedRose = new Shop([new Item(itemName, -1, 12)]);
-    let items = gildedRose.updateQuality();
-    expect(items[0].sellIn).to.equal(-2);
-  });
 
-  it("When sellIn is negative - quality gets better", function () {
-    let gildedRose = new Shop([new Item(itemName, -1, 12)]);
-    let items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(14);
-  });
 
-  it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
-    gildedRose = new Shop([new Item(itemName, -5, 50)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(50);
-  });
-
-  it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
-    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(9);
-  });
 
 
 
