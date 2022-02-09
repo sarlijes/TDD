@@ -140,19 +140,19 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     });
 
     it("When quality is 0, it goes to 2", function () {
-      gildedRose = new Shop([new Item(passes, 7, 0)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(2);
     });
 
     it("When quality is max, it stays at max", function () {
-      gildedRose = new Shop([new Item(passes, 7, 50)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 7, 50)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
 
     it("When quality is 40, it goes to 43", function () {
-      gildedRose = new Shop([new Item(passes, 5, 40)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 5, 40)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(43);
     });

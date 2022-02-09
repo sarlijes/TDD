@@ -42,6 +42,15 @@ class ConcertTickets extends Item {
       return;
     }
 
+    if (this.quality <= 0) {
+      this.quality++;
+    }
+
+    if (this.quality === 40) {
+      this.quality++;
+      this.quality++;
+    }
+
     if (this.sellIn === 5) {
       this.quality++;
     }
