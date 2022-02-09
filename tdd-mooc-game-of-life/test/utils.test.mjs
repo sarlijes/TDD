@@ -3,9 +3,10 @@ import { isValid } from "../src/utils.mjs";
 
 describe("Check cell validity", () => {
 
-  const arr = [];
+  let arr = [];
 
   beforeEach(() => {
+    arr = [];
     arr.push([0, 0, 0]);
     arr.push([0, 0, 0]);
     arr.push([0, 0, 0]);
@@ -40,5 +41,13 @@ describe("Check cell validity", () => {
       expect(isValid(arr, 3, 0)).to.be.false;
     });
 
+    it("Cell is invalid when y is too great", () => {
+      expect(isValid(arr, 0, 3)).to.be.false;
+    });
+
+
+
   });
+});
+it("", () => {
 });
