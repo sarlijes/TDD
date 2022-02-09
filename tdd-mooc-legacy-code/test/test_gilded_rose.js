@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line no-undef
-var { expect } = require("chai");
+const { expect } = require("chai");
 // eslint-disable-next-line no-undef
-var { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem, OtherItem } = require("../src/gilded_rose.js");
+const { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem, OtherItem } = require("../src/gilded_rose.js");
 
 describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
