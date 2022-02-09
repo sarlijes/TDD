@@ -96,6 +96,35 @@ describe("Can get living neighbor count", () => {
     Mid-areas
 
   */
+
+  describe("for an full board's", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([1, 1, 1]);
+      arr.push([1, 1, 1]);
+      arr.push([1, 1, 1]);
+    });
+
+    it("corners - top left", () => {
+      expect(getLivingNeighborCount(arr, 0, 0)).to.equal(3);
+    });
+
+    xit("corners - top right", () => {
+      expect(getLivingNeighborCount(arr, 2, 0)).to.equal(0);
+    });
+
+    xit("corners - bottom left", () => {
+      expect(getLivingNeighborCount(arr, 0, 2)).to.equal(0);
+    });
+
+    xit("corners - bottom right", () => {
+      expect(getLivingNeighborCount(arr, 2, 2)).to.equal(0);
+    });
+  });
+
   describe("for an empty board's", () => {
 
     let arr;
