@@ -59,7 +59,6 @@ describe("Check cell validity", () => {
 
   });
 
-
   describe("for an larger semi-full board's", () => {
 
     let arr;
@@ -84,7 +83,6 @@ describe("Check cell validity", () => {
 
 
 describe("Can get living neighbor count", () => {
-
 
   describe("General tests", () => {
 
@@ -125,6 +123,12 @@ describe("Can get living neighbor count", () => {
 
       it("bottom right", () => {
         expect(getLivingNeighborCount(arr, 2, 2)).to.equal(3);
+      });
+    });
+
+    describe("middle cell", () => {
+      it("", () => {
+        expect(getLivingNeighborCount(arr, 1, 1)).to.equal(8);
       });
     });
 
