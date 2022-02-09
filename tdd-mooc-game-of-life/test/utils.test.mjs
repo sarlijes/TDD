@@ -31,9 +31,13 @@ describe("Check cell validity", () => {
 
   describe("Invalid coordinates", () => {
 
-    it("Cell is valid when one of the coordinates is -1", () => {
+    it("Cell is invalid when one of the coordinates is -1", () => {
       expect(isValid(arr, -1, 0)).to.be.false;
       expect(isValid(arr, 0, -1)).to.be.false;
+    });
+
+    it("Cell is invalid when x is too great", () => {
+      expect(isValid(arr, 3, 0)).to.be.false;
     });
 
   });
