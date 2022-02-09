@@ -1,12 +1,12 @@
 import fs from "fs";
 
 export function readFile(fileName) {
-
-  let result = [];
-
   // Read the file
   fs.readFile(".\\patterns\\" + fileName, "utf8" , (err, data) => {
     if (err) console.log(err);
+
+    let result = [];
+
     const fileRows = data.split("\n");
 
     let x, y;
@@ -29,19 +29,22 @@ export function readFile(fileName) {
 
     const decoded = [] ; // array of strings
 
-    for (let i = 0; i <= rleSplitted.length; i++) {
-      decoded.push(decode(rleSplitted[i]));
+    // Convert the chars to integers: b -> 0, o -> 1
+    for (let i = 0; i < rleSplitted.length; i++) {
+      let s = rleSplitted[i];
+      s = decode(s);
+      s = s.replace(/b/g, 0);
+      s = s.replace (/o/g, 1);
+      decoded.push(s);
     }
+    // Place the integers into 2-dimensional array (result)
+    for (let i = 0; i < decoded.length; i++) {
+      result.push(Array.from(decoded[i]));
+
+    }
+    return result;
   });
-
-
-
-  // Convert the chars to integers: b -> 0, o -> 1
-
-  // Place the integers into 2-dimensional array (result)
-
-  return result;
-
+  return [];
 }
 
 // Helper functions by DeepBSD - source: https://bit.ly/3rE2kRk
