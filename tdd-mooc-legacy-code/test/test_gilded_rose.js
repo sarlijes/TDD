@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-undef
 var { expect } = require("chai");
 // eslint-disable-next-line no-undef
-var { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem } = require("../src/gilded_rose.js");
+var { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem, OtherItem } = require("../src/gilded_rose.js");
 
 describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
@@ -180,19 +180,19 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
   describe("SellIn is updated", function () {
 
     it("When sellIn goes to 0 (= after the concert has taken place), quality goes to 0", function () {
-      gildedRose = new Shop([new Item(passes, 1, 25)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 1, 25)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(0);
     });
 
     it("When sellIn is 0, quality goes negative", function () {
-      gildedRose = new Shop([new Item(passes, 0, 0)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 0, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(-1);
     });
 
     it("When sellIn is 7, quality goes to 6", function () {
-      gildedRose = new Shop([new Item(passes, 7, 0)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(6);
     });
@@ -274,50 +274,50 @@ describe("Monstera Albo Variegata", function () {
   const itemName = "Monstera Albo Variegata";
 
   it("the product is returned", function () {
-    gildedRose = new Shop([new Item(itemName, 0, 0)]);
+    gildedRose = new Shop([new OtherItem(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("Monstera Albo Variegata");
   });
 
   describe("quality is updated", function () {
     it("When quality is 7, it goes to 6", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 7)]);
+      gildedRose = new Shop([new OtherItem(itemName, 7, 7)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(6);
     });
 
     it("when item was supposed to be sold yesterday, quality goes down", function () {
-      gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      gildedRose = new Shop([new OtherItem(itemName, 0, 7)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(5);
     });
 
     it("when sellIn is negative, and quality is greater than 0, the quality goes down by two", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, 25)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, 25)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(23);
     });
 
     it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, -15)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(-15);
     });
 
     it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, -15)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(-15);
     });
 
     it("when sellIn is negative, and quality is 0, the quality stays at 0", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, 0)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, 0)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("when sellIn is 0, and quality is 7, the quality goes down by two", function () {
-      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const gildedRose = new Shop([new OtherItem(itemName, 0, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(5);
     });
