@@ -114,11 +114,11 @@ describe("Can get living neighbor count", () => {
       });
 
       it("top right", () => {
-        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(3);
+        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(3);
       });
 
       it("bottom left", () => {
-        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(3);
+        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(3);
       });
 
       it("bottom right", () => {
@@ -144,15 +144,46 @@ describe("Can get living neighbor count", () => {
       });
 
       it("top right", () => {
-        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(0);
+        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(0);
       });
 
       it("bottom left", () => {
-        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(0);
+        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(0);
       });
 
       it("bottom right", () => {
         expect(getLivingNeighborCount(arr, 2, 2)).to.equal(0);
+      });
+    });
+  });
+
+
+  describe("for an semi-full board's", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([0, 1, 3]);
+      arr.push([1, 0, 0]);
+      arr.push([0, 1, 0]);
+    });
+
+    describe("corners:", () => {
+      it("top left", () => {
+        expect(getLivingNeighborCount(arr, 0, 0)).to.equal(2);
+      });
+
+      it("top right", () => {
+        expect(getLivingNeighborCount(arr, 0, 2)).to.equal(1);
+      });
+
+      it("bottom left", () => {
+        expect(getLivingNeighborCount(arr, 2, 0)).to.equal(2);
+      });
+
+      it("bottom right", () => {
+        expect(getLivingNeighborCount(arr, 2, 2)).to.equal(1);
       });
     });
   });
