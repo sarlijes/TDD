@@ -6,6 +6,25 @@ class Item {
   }
 }
 
+class LegendaryItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn -= 1;
+
+    if (this.quality >= 50) {
+      return;
+    }
+    this.quality++;
+
+    if (this.sellIn <= 0) {
+      this.quality++;
+    }
+  }
+}
+
 class AgedBrie extends Item {
   constructor(name, sellIn, quality) {
     super("Aged Brie", sellIn, quality);
@@ -126,5 +145,6 @@ module.exports = {
   Item,
   Shop,
   AgedBrie,
-  ConcertTickets
+  ConcertTickets,
+  LegendaryItem
 };

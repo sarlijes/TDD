@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-undef
 var { expect } = require("chai");
 // eslint-disable-next-line no-undef
-var { Shop, Item, AgedBrie, ConcertTickets } = require("../src/gilded_rose.js");
+var { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem } = require("../src/gilded_rose.js");
 
 describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
@@ -206,7 +206,7 @@ describe("Sulfuras, Hand of Ragnaros", function () {
   const itemName = "Sulfuras, Hand of Ragnaros";
 
   it("the product name is returned", function () {
-    gildedRose = new Shop([new Item(itemName, 0, 0)]);
+    gildedRose = new Shop([new LegendaryItem(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
     expect(items[0].name).to.equal(itemName);
   });
@@ -214,37 +214,37 @@ describe("Sulfuras, Hand of Ragnaros", function () {
   describe("Quality is updated", function () {
 
     it("When quality is 0, stays in 0", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 0)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("When quality is max, it stays at max", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 50)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 7, 50)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
 
     it("when sellIn is negative, and quality is greater to 0, the quality stays the same", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, 25)]);
+      const gildedRose = new Shop([new LegendaryItem(itemName, -15, 25)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(25);
     });
 
     it("when sellIn is negative, and quality is 0, the quality stays the same", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, 0)]);
+      const gildedRose = new Shop([new LegendaryItem(itemName, -15, 0)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("when sellIn is negative, and quality is < 0, the quality stays the same", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const gildedRose = new Shop([new LegendaryItem(itemName, -15, -15)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(-15);
     });
 
     it("when sellIn is 0, and quality is 7, the quality stays the same", function () {
-      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const gildedRose = new Shop([new LegendaryItem(itemName, 0, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(7);
     });
@@ -253,13 +253,13 @@ describe("Sulfuras, Hand of Ragnaros", function () {
   describe("SellIn is updated", function () {
 
     it("When sellIn is 7, it stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 0)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(7);
     });
 
     it("When sellIn is 0, it stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, 0, 0)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 0, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(0);
     });
