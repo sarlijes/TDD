@@ -13,7 +13,7 @@ describe("Can read RLE files into 2-dimensional array", () => {
 
   it(": glider", () => {
     const result = readFile("glider.rle");
-    // expect(result[0]).to.equal([0,1,0]);
+    expect(result[0]).to.equal([0,1,0]);
     // expect(result[0]).to.equal([0,0,1]);
     // expect(result[0]).to.equal([1,1,1]);
   });
