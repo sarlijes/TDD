@@ -28,13 +28,17 @@ class OtherItem extends Item {
     if (this.quality >= 50) {
       return;
     }
+
+
     this.quality--;
 
     if (this.sellIn <= 0) {
       this.quality--;
+    }
 
-
-
+    if (this.sellIn < 0 && this.quality < 0) {
+      this.quality++;
+      this.quality++;
     }
   }
 }
