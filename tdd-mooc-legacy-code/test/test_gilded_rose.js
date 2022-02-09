@@ -46,6 +46,24 @@ describe("Aged Brie", function () {
 
   describe("Quality is updated", function () {
 
+    it("When sellIn is negative - quality gets better", function () {
+      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
+      let items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(14);
+    });
+
+    it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
+      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(9);
+    });
+
+    it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
+      gildedRose = new Shop([new Item(itemName, -5, 50)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(50);
+    });
+
     it("When quality is 0, it's raised to 1", function () {
       gildedRose = new Shop([new Item(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
@@ -58,33 +76,9 @@ describe("Aged Brie", function () {
       expect(items[0].quality).to.equal(50);
     });
 
-    it("When sellIn is negative - quality gets better", function () {
-      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
-      let items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(14);
-    });
-
-    it("When sellIn is greater than 0 and quality greater than 50, quality stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, -5, 50)]);
-      items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(50);
-    });
-
-    it("when sellIn is 0, and quality is 7, the quality goes up by 2", function () {
-      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
-      const items = gildedRose.updateQuality();
-      expect(items[0].quality).to.equal(9);
-    });
-
   });
 
   describe("SellIn is updated", function () {
-
-    it("When sellIn is negative - it's still decreased", function () {
-      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
-      let items = gildedRose.updateQuality();
-      expect(items[0].sellIn).to.equal(-2);
-    });
 
     it("When sellIn is 0", function () {
       gildedRose = new Shop([new Item(itemName, 0, 0)]);
@@ -92,12 +86,17 @@ describe("Aged Brie", function () {
       expect(items[0].sellIn).to.equal(-1);
     });
 
+    it("When sellIn is negative - it's still decreased", function () {
+      let gildedRose = new Shop([new Item(itemName, -1, 12)]);
+      let items = gildedRose.updateQuality();
+      expect(items[0].sellIn).to.equal(-2);
+    });
+
     it("When sellIn is 7", function () {
       gildedRose = new Shop([new Item(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(6);
     });
-
 
   });
 
