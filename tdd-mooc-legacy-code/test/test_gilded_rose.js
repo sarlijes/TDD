@@ -253,13 +253,13 @@ describe("Sulfuras, Hand of Ragnaros", function () {
   describe("SellIn is updated", function () {
 
     it("When sellIn is 7, it stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, 7, 0)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 7, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(7);
     });
 
     it("When sellIn is 0, it stays the same", function () {
-      gildedRose = new Shop([new Item(itemName, 0, 0)]);
+      gildedRose = new Shop([new LegendaryItem(itemName, 0, 0)]);
       items = gildedRose.updateQuality();
       expect(items[0].sellIn).to.equal(0);
     });

@@ -28,8 +28,9 @@ class LegendaryItem extends Item {
   constructor(name, sellIn, quality) {
     super(name, sellIn, 80);
   }
+
   update() {
-    this.sellIn -= 1;
+    return;
   }
 }
 
