@@ -4,24 +4,13 @@ class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-  // update() {
-  //   this.sellIn -= 1;
-
-  //   if (this.quality >= 50) {
-  //     return;
-  //   }
-  //   this.quality++;
-
-  //   if (this.sellIn <= 0) {
-  //     this.quality++;
-  //   }
-  // }
 }
 
 class OtherItem extends Item {
   constructor(name, sellIn, quality) {
     super(name, sellIn, quality);
   }
+
   update() {
     this.sellIn -= 1;
 
@@ -32,13 +21,14 @@ class OtherItem extends Item {
       return;
     }
 
+    if (this.sellIn < 0 && this.quality === 0) {
+      this.quality = 0;
+      return;
+    }
     this.quality--;
-
     if (this.sellIn <= 0) {
       this.quality--;
     }
-
-
   }
 }
 
@@ -56,6 +46,7 @@ class AgedBrie extends Item {
   constructor(name, sellIn, quality) {
     super(name, sellIn, quality);
   }
+
   update() {
     this.sellIn -= 1;
 
@@ -74,8 +65,8 @@ class ConcertTickets extends Item {
   constructor(name, sellIn, quality) {
     super(name, sellIn, quality);
   }
-  update() {
 
+  update() {
     if (this.sellIn > 10) {
       this.quality = this.quality + 1;
     }
@@ -87,7 +78,6 @@ class ConcertTickets extends Item {
     } else {
       this.quality = 0;
     }
-
     if (this.quality >= 50) {
       this.quality = 50;
     }

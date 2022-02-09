@@ -305,19 +305,19 @@ describe("Monstera Albo Variegata", function () {
     });
 
     it("when sellIn is negative, and quality is smaller than 0, the quality stays the same", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, -15)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(-15);
     });
 
     it("when sellIn is negative, and quality is 0, the quality stays at 0", function () {
-      const gildedRose = new Shop([new Item(itemName, -15, 0)]);
+      const gildedRose = new Shop([new OtherItem(itemName, -15, 0)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("when sellIn is 0, and quality is 7, the quality goes down by two", function () {
-      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const gildedRose = new Shop([new OtherItem(itemName, 0, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(5);
     });
