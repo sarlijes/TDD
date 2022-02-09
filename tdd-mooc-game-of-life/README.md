@@ -23,7 +23,7 @@ Code reformat
 |---|---|
 |Planning & repo setup, linter|0.25|
 |Helper function for getting the count of living neighbors of a cell|1.5|
-||---|
+|RLE|0.25|
 |?|---|
 |?|---|
 |total||
