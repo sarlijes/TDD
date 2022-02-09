@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-undef
 var { expect } = require("chai");
 // eslint-disable-next-line no-undef
-var { Shop, Item, AgedBrie } = require("../src/gilded_rose.js");
+var { Shop, Item, AgedBrie, ConcertTickets } = require("../src/gilded_rose.js");
 
 describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
@@ -108,7 +108,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
   const passes = "Backstage passes to a TAFKAL80ETC concert";
 
   it("the correct product is returned", function () {
-    gildedRose = new Shop([new Item(passes, 0, 0)]);
+    gildedRose = new Shop([new ConcertTickets(passes, 0, 0)]);
     items = gildedRose.updateQuality();
     expect(items[0].name).to.equal("Backstage passes to a TAFKAL80ETC concert");
   });
@@ -116,19 +116,19 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
   describe("Quality is updated", function () {
 
     it("when sellIn is negative, the quality is 0", function () {
-      gildedRose = new Shop([new Item(passes, -15, 25)]);
+      gildedRose = new Shop([new ConcertTickets(passes, -15, 25)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("when sellIn is 0, and quality is 7, the quality goes to 0", function () {
-      const gildedRose = new Shop([new Item(passes, 0, 7)]);
+      const gildedRose = new Shop([new ConcertTickets(passes, 0, 7)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(0);
     });
 
     it("when sellIn is 5, and quality is 49, the quality goes to 50", function () {
-      const gildedRose = new Shop([new Item(passes, 5, 49)]);
+      const gildedRose = new Shop([new ConcertTickets(passes, 5, 49)]);
       const items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });

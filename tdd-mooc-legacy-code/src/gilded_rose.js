@@ -25,6 +25,30 @@ class AgedBrie extends Item {
   }
 }
 
+class ConcertTickets extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn -= 1;
+
+    if (this.sellIn < 0) {
+      this.quality = 0;
+      return;
+    }
+
+    if (this.quality >= 50) {
+      return;
+    }
+    this.quality++;
+
+    if (this.sellIn <= 0) {
+      this.quality++;
+    }
+  }
+}
+
 class Shop {
   constructor(items = []) {
     this.items = items;
@@ -33,7 +57,8 @@ class Shop {
   updateQuality() {
 
     for (var i = 0; i < this.items.length; i++) {
-      if (this.items[i] instanceof AgedBrie) {
+      if (this.items[i] instanceof AgedBrie
+        || this.items[i] instanceof ConcertTickets) {
         this.items[i].update();
         return this.items;
       }
@@ -98,5 +123,6 @@ class Shop {
 module.exports = {
   Item,
   Shop,
-  AgedBrie
+  AgedBrie,
+  ConcertTickets
 };
