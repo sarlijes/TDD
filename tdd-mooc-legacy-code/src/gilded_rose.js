@@ -36,6 +36,18 @@ class OtherItem extends Item {
   }
 }
 
+class ConjuredItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+
+  update() {
+    this.sellIn -= 1;
+    this.quality--;
+    this.quality--;
+  }
+}
+
 class LegendaryItem extends Item {
   constructor(name, sellIn) {
     super(name, sellIn, 80);
@@ -107,5 +119,6 @@ module.exports = {
   AgedBrie,
   ConcertTickets,
   LegendaryItem,
-  OtherItem
+  OtherItem,
+  ConjuredItem
 };

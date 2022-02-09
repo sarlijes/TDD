@@ -1,8 +1,14 @@
 /* eslint-disable max-len */
 // eslint-disable-next-line no-undef
 const { expect } = require("chai");
-// eslint-disable-next-line no-undef
-const { Shop, Item, AgedBrie, ConcertTickets, LegendaryItem, OtherItem } = require("../src/gilded_rose.js");
+const { Shop,
+  Item,
+  AgedBrie,
+  ConcertTickets,
+  LegendaryItem, OtherItem,
+  ConjuredItem
+  // eslint-disable-next-line no-undef
+} = require("../src/gilded_rose.js");
 
 describe("Gilded Rose - general", function () {
   it("returns the Item's name", function () {
@@ -323,4 +329,25 @@ describe("Monstera Albo Variegata", function () {
     });
 
   });
+});
+
+describe("Monstera Albo Variegata", function () {
+
+  let gildedRose;
+  let items;
+  const itemName = "Love & Passion Conjured Candle";
+
+  it("The quality goes two steps down in one day", function () {
+    gildedRose = new Shop([new ConjuredItem(itemName, 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(5);
+  });
+
+  it("The quality goes four steps down in two days", function () {
+    gildedRose = new Shop([new ConjuredItem(itemName, 0, 7)]);
+    items = gildedRose.updateQuality();
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(3);
+  });
+
 });
