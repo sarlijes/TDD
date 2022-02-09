@@ -32,5 +32,8 @@ Code reformat
 
 [x] implement helper for getting the living neighbor count (+ isValid that uses it)
 [] Investigate RLE format & how to utilize it in the tests
+
+[] tests + reading the RLE file into a 2-dim array
+
 [] actual gameplay, inc. iterations
 [] UI
