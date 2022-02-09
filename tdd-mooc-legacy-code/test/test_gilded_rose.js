@@ -157,6 +157,23 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
       expect(items[0].quality).to.equal(43);
     });
 
+    it("when sellIn is 1, and quality is 7, the quality goes to 10", function () {
+      const gildedRose = new Shop([new Item(passes, 1, 7)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(10);
+    });
+
+    it("When sellIn is 11, and quality is 6. the quality goes to 7", function () {
+      gildedRose = new Shop([new Item(passes, 11, 6)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(7);
+    });
+
+    it("When sellIn is 14, and quality is 6. the quality goes to 7", function () {
+      gildedRose = new Shop([new Item(passes, 10, 6)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(8);
+    });
 
   });
 
@@ -180,42 +197,15 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
       expect(items[0].sellIn).to.equal(6);
     });
 
-
-
   });
-
-
-
-
-
-  it("When sellIn is 11, and quality is 6. the quality goes to 7", function () {
-    gildedRose = new Shop([new Item(passes, 11, 6)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(7);
-  });
-
-
-  it("When sellIn is 14, and quality is 6. the quality goes to 7", function () {
-    gildedRose = new Shop([new Item(passes, 10, 6)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(8);
-  });
-
-  it("when sellIn is 1, and quality is 7, the quality goes to 10", function () {
-    const gildedRose = new Shop([new Item(passes, 1, 7)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(10);
-  });
-
 });
-
 
 describe("Sulfuras, Hand of Ragnaros", function () {
   let gildedRose;
   let items;
   const itemName = "Sulfuras, Hand of Ragnaros";
 
-  it("the product is returned", function () {
+  it("the product name is returned", function () {
     gildedRose = new Shop([new Item(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
     expect(items[0].name).to.equal(itemName);
@@ -234,6 +224,30 @@ describe("Sulfuras, Hand of Ragnaros", function () {
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(50);
     });
+
+    it("when sellIn is negative, and quality is greater to 0, the quality stays the same", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, 25)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(25);
+    });
+
+    it("when sellIn is negative, and quality is 0, the quality stays the same", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(0);
+    });
+
+    it("when sellIn is negative, and quality is < 0, the quality stays the same", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(-15);
+    });
+
+    it("when sellIn is 0, and quality is 7, the quality stays the same", function () {
+      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(7);
+    });
   });
 
   describe("SellIn is updated", function () {
@@ -250,31 +264,6 @@ describe("Sulfuras, Hand of Ragnaros", function () {
       expect(items[0].sellIn).to.equal(0);
     });
   });
-
-  it("when sellIn is negative, and quality is greater to 0, the quality stays the same", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, 25)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(25);
-  });
-
-  it("when sellIn is negative, and quality is 0, the quality stays the same", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(0);
-  });
-
-  it("when sellIn is negative, and quality is < 0, the quality stays the same", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, -15)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(-15);
-  });
-
-  it("when sellIn is 0, and quality is 7, the quality stays the same", function () {
-    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(7);
-  });
-
 });
 
 // Additional item to cover all rows
@@ -287,56 +276,51 @@ describe("Monstera Albo Variegata", function () {
   it("the product is returned", function () {
     gildedRose = new Shop([new Item(itemName, 0, 0)]);
     items = gildedRose.updateQuality();
-    expect(items[0].name).to.equal(itemName);
+    expect(items[0].name).to.equal("Monstera Albo Variegata");
   });
 
-  it("When quality is 7, it goes to 6", function () {
-    gildedRose = new Shop([new Item(itemName, 7, 7)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(6);
-  });
+  describe("quality is updated", function () {
+    it("When quality is 7, it goes to 6", function () {
+      gildedRose = new Shop([new Item(itemName, 7, 7)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(6);
+    });
 
-  it("when item was supposed to be sold yesterday, quality goes down", function () {
-    gildedRose = new Shop([new Item(itemName, 0, 7)]);
-    items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(5);
-  });
+    it("when item was supposed to be sold yesterday, quality goes down", function () {
+      gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(5);
+    });
 
-  it("when sellIn is negative, and quality is greater than 0, the quality goes down by two", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, 25)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(23);
-  });
+    it("when sellIn is negative, and quality is greater than 0, the quality goes down by two", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, 25)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(23);
+    });
 
-  it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, -15)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(-15);
-  });
+    it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(-15);
+    });
 
-  it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, -15)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(-15);
-  });
+    it("when sellIn is negative, and quality is smaller than 0, the quality goes down by two", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, -15)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(-15);
+    });
 
-  it("when sellIn is negative, and quality is 0, the quality stays at 0", function () {
-    const gildedRose = new Shop([new Item(itemName, -15, 0)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(0);
-  });
+    it("when sellIn is negative, and quality is 0, the quality stays at 0", function () {
+      const gildedRose = new Shop([new Item(itemName, -15, 0)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(0);
+    });
 
-  it("when sellIn is 0, and quality is 7, the quality goes down by two", function () {
-    const gildedRose = new Shop([new Item(itemName, 0, 7)]);
-    const items = gildedRose.updateQuality();
-    expect(items[0].quality).to.equal(5);
-  });
-
-
-});
-
-describe("", function () {
-  it("", function () {
+    it("when sellIn is 0, and quality is 7, the quality goes down by two", function () {
+      const gildedRose = new Shop([new Item(itemName, 0, 7)]);
+      const items = gildedRose.updateQuality();
+      expect(items[0].quality).to.equal(5);
+    });
 
   });
 });
