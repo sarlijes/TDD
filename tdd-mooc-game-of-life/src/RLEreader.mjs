@@ -6,6 +6,17 @@ export function readFile(fileName) {
 
 }
 
+// Helper functions by DeepBSD - source: https://bit.ly/3rE2kRk
+export const decode = (text) => {
+  return text.replace(/(\d+)([ \w])/g, (_, count, chr) => chr.repeat(count));
+};
+
+// Helper functions by DeepBSD - source: https://bit.ly/3rE2kRk
+export const encode = (text) => {
+  return text.replace(/([ \w])\1+/g, (group, chr) => group.length + chr );
+};
+
+
 /*
 #N Glider
 #O Richard K. Guy
