@@ -9,8 +9,8 @@ export function isValid(arr, y, x) {
 
   if (x >= 0
     && y >= 0
-    && y < width
-    && x < height) {
+    && y < height
+    && x < width) {
     return true;
   }
 

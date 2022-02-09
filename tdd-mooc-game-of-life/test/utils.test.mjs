@@ -70,6 +70,14 @@ describe("Check cell validity", () => {
       arr.push([1, 0, 0, 1]);
       arr.push([0, 1, 0, 1]);
     });
+
+    it("bottom row", () => {
+      expect(isValid(arr, 2, 0)).to.be.true;
+      expect(isValid(arr, 2, 1)).to.be.true;
+      expect(isValid(arr, 2, 2)).to.be.true;
+      expect(isValid(arr, 2, 3)).to.be.true;
+    });
+
   });
 
 });
