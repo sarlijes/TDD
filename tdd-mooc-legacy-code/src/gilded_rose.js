@@ -28,7 +28,9 @@ class OtherItem extends Item {
     if (this.quality >= 50) {
       return;
     }
-
+    if (this.sellIn < 0 && this.quality < 0) {
+      return;
+    }
 
     this.quality--;
 
@@ -36,10 +38,7 @@ class OtherItem extends Item {
       this.quality--;
     }
 
-    if (this.sellIn < 0 && this.quality < 0) {
-      this.quality++;
-      this.quality++;
-    }
+
   }
 }
 
