@@ -170,7 +170,7 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     });
 
     it("When sellIn is 14, and quality is 6. the quality goes to 7", function () {
-      gildedRose = new Shop([new Item(passes, 10, 6)]);
+      gildedRose = new Shop([new ConcertTickets(passes, 10, 6)]);
       items = gildedRose.updateQuality();
       expect(items[0].quality).to.equal(8);
     });
