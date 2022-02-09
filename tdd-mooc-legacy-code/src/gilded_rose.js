@@ -37,7 +37,7 @@ class OtherItem extends Item {
 }
 
 class LegendaryItem extends Item {
-  constructor(name, sellIn, quality) {
+  constructor(name, sellIn) {
     super(name, sellIn, 80);
   }
 
