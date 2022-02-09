@@ -30,6 +30,11 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).to.equal(23);
   });
 
+  it("Correct data type", function () {
+    const gildedRose = new Shop([new Item("t", 1, 0)]);
+    expect(gildedRose.items[0] instanceof Item).to.be,true;
+  });
+
 });
 
 
@@ -181,8 +186,22 @@ describe("Backstage passes to a TAFKAL80ETC concert", function () {
     expect(items[0].quality).to.equal(50);
   });
 
-  it("When sellIn is 6, and quality is 6. the quality goes to 7", function () {
+  it("When sellIn is 6, and quality is 6. the quality goes to 8", function () {
     gildedRose = new Shop([new Item(passes, 6, 6)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(8);
+  });
+
+
+  it("When sellIn is 11, and quality is 6. the quality goes to 7", function () {
+    gildedRose = new Shop([new Item(passes, 11, 6)]);
+    items = gildedRose.updateQuality();
+    expect(items[0].quality).to.equal(7);
+  });
+
+
+  it("When sellIn is 14, and quality is 6. the quality goes to 7", function () {
+    gildedRose = new Shop([new Item(passes, 10, 6)]);
     items = gildedRose.updateQuality();
     expect(items[0].quality).to.equal(8);
   });
