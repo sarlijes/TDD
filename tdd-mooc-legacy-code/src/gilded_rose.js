@@ -4,6 +4,30 @@ class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+  // update() {
+  //   this.sellIn -= 1;
+
+  //   if (this.quality >= 50) {
+  //     return;
+  //   }
+  //   this.quality++;
+
+  //   if (this.sellIn <= 0) {
+  //     this.quality++;
+  //   }
+  // }
+}
+
+class OtherItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
+}
+
+class LegendaryItem extends Item {
+  constructor(name, sellIn, quality) {
+    super(name, sellIn, quality);
+  }
   update() {
     this.sellIn -= 1;
 
@@ -18,21 +42,21 @@ class Item {
   }
 }
 
-class OtherItem extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
-  }
-}
-
-class LegendaryItem extends Item {
-  constructor(name, sellIn, quality) {
-    super(name, sellIn, quality);
-  }
-}
-
 class AgedBrie extends Item {
   constructor(name, sellIn, quality) {
     super(name, sellIn, quality);
+  }
+  update() {
+    this.sellIn -= 1;
+
+    if (this.quality >= 50) {
+      return;
+    }
+    this.quality++;
+
+    if (this.sellIn <= 0) {
+      this.quality++;
+    }
   }
 }
 
@@ -71,7 +95,8 @@ class Shop {
 
     for (var i = 0; i < this.items.length; i++) {
       if (this.items[i] instanceof AgedBrie
-        || this.items[i] instanceof ConcertTickets) {
+        || this.items[i] instanceof ConcertTickets
+        || this.items[i] instanceof LegendaryItem) {
         this.items[i].update();
         return this.items;
       }
