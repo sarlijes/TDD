@@ -31,6 +31,15 @@ class Shop {
   }
 
   updateQuality() {
+
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i] instanceof AgedBrie) {
+        this.items[i].update();
+        return this.items;
+      }
+
+    }
+
     for (var i = 0; i < this.items.length; i++) {
       // eslint-disable-next-line max-len
       if (this.items[i].name !== "Aged Brie"
