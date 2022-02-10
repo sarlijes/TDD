@@ -18,6 +18,26 @@ export function tick(arr) {
       if (cell === 1 && livingNeighborCount < 2) {
         copy[row][column] = 0;
       }
+      // TODO it this even needed?
+      // 2. Each living cell that has 2 living neighbors, stays alive
+      if (cell === 1 && livingNeighborCount === 2) {
+        copy[row][column] = 1;
+      }
+      // TODO it this even needed?
+      // 3. Each living cell that has 3 living neighbors, stays alive
+      if (cell === 1 && livingNeighborCount === 3) {
+        copy[row][column] = 1;
+      }
+
+      // 4. Each living cell that has 4 or more living neighbors, dies
+      if (cell === 1 && livingNeighborCount >= 4) {
+        copy[row][column] = 0;
+      }
+
+      // 5. Each dead cell that has exactly 3 living neighbors, becomes alive
+      if (cell === 0 && livingNeighborCount === 3) {
+        copy[row][column] = 1;
+      }
     }
   }
 
