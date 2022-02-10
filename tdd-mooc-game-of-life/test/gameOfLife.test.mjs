@@ -215,7 +215,7 @@ describe("Tick function alters the cells", () => {
         arr.push([1, 1, 1]);
         arr.push([1, 1, 0]);
       });
-
+      // TODO combine
       it(rule3, () => {
         const result = tick(arr);
         expect(result[0][0]).to.equal(1);
@@ -277,13 +277,37 @@ describe("The game function", () => {
   it("returns a string", () => {
     async () => {
       try {
-        const result = await gameOfLife("glider.rle", 1);
+        const result = gameOfLife("glider.rle", 1);
         expect(typeof result).to.equal("string");
       } catch (err) {
         return console.error("readFile() failed", err);
       }
     };
   });
+
+  // describe("returns the correct result for Glider pattern", async () => {
+  //   it("with one iteration", () => {
+  //     const result = await gameOfLife("glider.rle", 1);
+  //     console.log("🚀 ~ file:  result", result.result);
+  //     expect(true).to.equal(false);
+  //   });
+  // });
+
+  describe("returns the correct result for Glider pattern", () => {
+    it("with one iteration", () => {
+      async () => {
+        try {
+          const result = gameOfLife("glider.rle", 1);
+          expect(result).to.equal(-1);
+          expect(true).to.equal(false);
+          // done();
+        } catch (err) {
+          return console.error("readFile() failed", err);
+        }
+      };
+    });
+  });
+
 });
 
 describe("", () => {

@@ -1,10 +1,9 @@
 import _ from "lodash";
 import { getLivingNeighborCount,
   twoDimensionalArraytoString } from "./utils.mjs";
-import { readFile, parseFile, decode, encode } from "./RLEreader.mjs";
+import { readFile, parseFile, encode } from "./RLEreader.mjs";
 
 export function gameOfLife(fileName, iterations) {
-
   async () => {
     try {
       const fileContent = await readFile("glider.rle");
@@ -16,8 +15,6 @@ export function gameOfLife(fileName, iterations) {
       return console.error("readFile() failed", err);
     }
   };
-
-
 }
 
 export function play(arr, iterations) {
