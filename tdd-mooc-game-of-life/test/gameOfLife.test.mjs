@@ -289,7 +289,6 @@ describe("The game function", () => {
 
     it("with one iteration", () => {
       gameOfLife("glider.rle", 1)
-        .then((result) => expect(result).to.equal("TODO does this work"))
         .then((result) => expect(result).to.equal("3b$2bo$b2o!"))
 
 

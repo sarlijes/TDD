@@ -1,7 +1,7 @@
 import { expect } from "chai";
 import { isValid,
   getLivingNeighborCount,
-  twoDimensionalArraytoString } from "../src/utils.mjs";
+  twoDimensionalArraytoOBString } from "../src/utils.mjs";
 
 describe("Check cell validity", () => {
 
@@ -237,38 +237,26 @@ describe("Can get living neighbor count", () => {
       });
     });
   });
-
-  // describe("", () => {
-
-  //   beforeEach(() => {
-  //     arr = [];
-  //     arr.push([0, 0, 0]);
-  //     arr.push([0, 0, 0]);
-  //     arr.push([0, 0, 0]);
-  //   });
-
-  // });
-// TODO clean up
 });
 
 describe("2-dimensional array to string", () => {
   it("2-dimensional array of integers", () => {
     let arr = [
-      [1, 2, 3],
-      [4, 5, 6],
-      [7, 8, 9],
+      [0,0,0],
+      [0,0,1],
+      [0,1,1],
     ];
-    const result = twoDimensionalArraytoString(arr);
-    expect(result.toString()).to.equal("123456789");
+    const result = twoDimensionalArraytoOBString(arr);
+    expect(result.toString()).to.equal("bbb$bbo$boo!");
   });
 
-  it("2-dimensional array of chars", () => {
+  it("shorter 2-dimensional array of integers", () => {
     let arr = [
-      ["1", "2", "3"],
-      ["4", "5", "6"],
+      [1,0,1],
+      [0,1,0]
     ];
-    const result = twoDimensionalArraytoString(arr);
-    expect(result.toString()).to.equal("123456");
+    const result = twoDimensionalArraytoOBString(arr);
+    expect(result.toString()).to.equal("obo$bob!");
   });
 });
 

@@ -36,8 +36,11 @@ Code reformat
 
 [x] implement helper for getting the living neighbor count (+ isValid that uses it)
 [x] Investigate RLE format & how to utilize it in the tests
-
 [x] tests + reading the RLE file into a 2-dim array
-
-[] actual gameplay, inc. iterations
+[x] actual gameplay, inc. iterations
+[] tests + logic to for a function that takes input: 
+    parsed file (2-dim array)
+    iteration count
+and calls play(arr, iterations)
+and returns the new arr as encoded 
 [] UI

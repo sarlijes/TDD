@@ -67,16 +67,29 @@ export function getLivingNeighborCount(arr, y, x) {
   return count;
 }
 
-export function twoDimensionalArraytoString(arr) {
+// [0,0,0]
+// [0,0,1]
+// [0,1,1]
+// =
+// [b,b,b]
+// [b,b,o]
+// [b,o,o]
+
+export function twoDimensionalArraytoOBString(arr) {
   const height = arr.length;
 
   let result = "";
   for (let i = 0; i < height; i++) {
     let temp = "";
     for (let j = 0; j < arr[i].length; j++) {
-      temp = temp.concat("", arr[i][j]);
+      const newChar = arr[i][j] === 0 ? "b" : "o";
+      temp = temp.concat("", newChar);
     }
     result = result.concat("", temp);
+    if (i !== height -1) {
+      result = result.concat("", "$");
+    }
   }
+  result = result.concat("", "!");
   return result;
 }

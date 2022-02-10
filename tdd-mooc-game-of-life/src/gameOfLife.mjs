@@ -1,6 +1,6 @@
 import _ from "lodash";
 import { getLivingNeighborCount,
-  twoDimensionalArraytoString } from "./utils.mjs";
+  twoDimensionalArraytoOBString } from "./utils.mjs";
 import { readFile, parseFile, encode } from "./RLEreader.mjs";
 
 export async function gameOfLife(fileName, iterations) {
@@ -9,14 +9,9 @@ export async function gameOfLife(fileName, iterations) {
     const fileContent = await readFile(fileName);
     const arr = parseFile(fileContent);
     const result = play(arr, iterations);
-    let resultAsString = twoDimensionalArraytoString(result);
-
-    resultAsString = resultAsString.replace(/0/g, "b");
-    resultAsString = resultAsString.replace (/1/g, "o");
-
+    let resultAsString = twoDimensionalArraytoOBString(result);
     const encoded = encode(resultAsString);
-    return encoded; // 501021 // this need to be converted
-
+    return encoded;
   } catch (err) {
     return console.error("readFile() failed", err);
   }
