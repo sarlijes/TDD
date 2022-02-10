@@ -286,9 +286,6 @@ describe("The game function", () => {
     it("with one iteration", () => {
       gameOfLife("glider.rle", 1)
         .then((result) => expect(result).to.equal("3b$2bo$b2o!"))
-
-
-
         .catch((err) => console.error("readFile() failed", err));
     });
     // Initial:
@@ -303,8 +300,40 @@ describe("The game function", () => {
     // [b,b,b]
     // [b,b,o]
     // [b,o,o]
+    // After second iteration:
+    // [0,0,0]
+    // [0,0,1]
+    // [0,1,1]
+    it("with two iterations", () => {
+      gameOfLife("glider.rle", 2)
+        // .then((result) => expect(result).to.equal("3b$2bo$b2o!"))
+        .catch((err) => console.error("readFile() failed", err));
+    });
+    // actual:   '3b$b2o$b2o!',
+    // expected: '3b$2bo$b2o!',
+    it("with three iterations", () => {
+      gameOfLife("glider.rle", 3)
+        // .then((result) => expect(result).to.equal("3b$2bo$b2o!"))
+        .catch((err) => console.error("readFile() failed", err));
+    });
+  });
+
+  describe("returns the correct result for Block pattern",  () => {
+
+    it("with one iteration", () => {
+      gameOfLife("block.rle", 1)
+        .then((result) => expect(result).to.equal("2o$2o!"))
+        .catch((err) => console.error("readFile() failed", err));
+    });
+    // Initial:
+    // [1,1]
+    // [1,1]
+    // After one iteration:
+    // [1,1]
+    // [1,1]
   });
 });
+
 
 describe("", () => {
   it("", () => {
