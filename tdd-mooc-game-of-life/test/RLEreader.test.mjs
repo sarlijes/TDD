@@ -1,32 +1,49 @@
 import { expect } from "chai";
 import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
-describe("Return type is correct", () => {
-  it("", () => {
-    const content = readFile("glider.rle");
-    expect(content).not.to.equal(undefined);
+//TEMP
 
+describe("Can read RLE files", () => {
+
+  it("and return type is not undefined", () => {
+    readFile("glider.rle")
+      .then((d) => expect(d).not.to.equal(undefined))
+      .catch((err) => console.error("readFile() failed", err));
   });
+
+  it("The return value contains the RLE", () => {
+    readFile("glider.rle")
+      .then((d) => expect(d).to.contain("bob$2bo$3o!"))
+      .catch((err) => console.error("readFile() failed", err));
+  });
+
 });
 
+describe("Can parse the RLE content into 2-dimensional array", () => {
 
-describe("Can read RLE files into 2-dimensional array", () => {
-
-  it("the file if first read", () => {
-    const content = readFile("glider.rle");
-    expect(content).not.to.equal(undefined);
+  it("and return type is not undefined", () => {
+    readFile("glider.rle")
+      .then((d) => expect(d).not.to.equal(undefined))
+      .catch((err) => console.error("readFile() failed", err));
   });
 
-  xit("and then parsed into two-dimensional array", () => {
-    const content = readFile("glider.rle");
-    const result = parseFile(content);
-    // async issue
-    // TODO below could be separate
-    expect(content instanceof Array).to.be.true;
-    expect(result[0]).to.equal([0,1,0]);
-    // expect(result[0]).to.equal([0,0,1]);
-    // expect(result[0]).to.equal([1,1,1]);
+  it("The return value no longer contains the RLE", () => {
+    readFile("glider.rle")
+      .then((d) => expect(parseFile(d)).not.to.contain("bob$2bo$3o!"))
+      .catch((err) => console.error("readFile() failed", err));
   });
+
+  it("and then parsed into two-dimensional array with the correct values", () => {
+    return readFile("glider.rle")
+      .then(d => {
+        expect(parseFile(d)[0]).to.have.deep.members([0,1,0]);
+        expect(parseFile(d)[1]).to.have.deep.members([0,0,1]);
+        expect(parseFile(d)[2]).to.have.deep.members([1,1,1]);
+      })
+      .catch((err) => console.error("readFile() failed", err));
+
+  });
+
 
 
 });

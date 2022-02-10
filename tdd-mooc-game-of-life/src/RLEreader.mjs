@@ -1,14 +1,12 @@
 import fs from "fs";
 
-export function readFile(fileName) {
-  let content;
-  // Read the file
-  fs.readFile(".\\patterns\\" + fileName, "utf8" , (err, data) => {
-    if (err) console.log(err);
-    content = data;
-  });
-
-  return content;
+export async function readFile(fileName) {
+  const fsPromises = fs.promises;
+  const data = await fsPromises
+    .readFile(".\\patterns\\" + fileName)
+    .catch((err) =>
+      console.error("Error reading file ", fileName, err));
+  return data.toString();
 }
 
 // TODO refactor into shorter functions
@@ -49,7 +47,7 @@ export function parseFile(content) {
   }
   // Place the integers into 2-dimensional array (result)
   for (let i = 0; i < decoded.length; i++) {
-    result.push(Array.from(decoded[i]));
+    result.push(Array.from(decoded[i], x => parseInt(x)));
 
   }
   return result;
