@@ -32,12 +32,106 @@ describe("Game alters the cells", () => {
       arr.push([1]);
     });
 
-    it("", () => {
+    it("One iteration", () => {
       const result = play(arr, 1);
       expect(result[0][0]).to.equal(0);
     });
 
+    it("two iterations", () => {
+      const result = play(arr, 2);
+      expect(result[0][0]).to.equal(0);
+    });
+
   });
+
+  describe("on a 2x2 board", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([1, 0]);
+      arr.push([1, 0]);
+    });
+
+    it("One iteration", () => {
+      const result = play(arr, 1);
+      expect(result[0][0]).to.equal(0);
+      expect(result[0][1]).to.equal(0);
+      expect(result[1][0]).to.equal(0);
+      expect(result[1][1]).to.equal(0);
+    });
+
+    it("Two iterations", () => {
+      arr = [];
+      arr.push([1, 1]);
+      arr.push([1, 1]);
+      // after first tick
+      // [1,1]
+      // [1,1]
+      // after second tick
+      // [1,1]
+      // [1,1]
+      const result = play(arr, 2);
+      expect(result[0][0]).to.equal(1);
+      expect(result[0][1]).to.equal(1);
+      expect(result[1][0]).to.equal(1);
+      expect(result[1][1]).to.equal(1);
+    });
+  });
+
+  describe("on a 3x3 board", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([1, 1, 1]);
+      arr.push([1, 1, 1]);
+      arr.push([1, 1, 0]);
+    });
+
+    it("Three iterations", () => {
+
+      // after first tick
+      // [1, 0, 1]
+      // [0, 0, 1]
+      // [0, 0, 0]
+
+      // arr.push([1, 1, 1]);
+      // arr.push([1, 1, 1]);
+      // arr.push([1, 1, 0]);
+
+      // TEMP - should test play()
+      const result = tick(arr);
+      expect(result[0][0]).to.equal(1);
+      expect(result[0][1]).to.equal(0);
+      expect(result[0][2]).to.equal(1);
+
+      expect(result[1][0]).to.equal(0);
+      expect(result[1][1]).to.equal(0);
+      expect(result[1][2]).to.equal(1);
+
+      expect(result[2][0]).to.equal(0);
+      expect(result[2][1]).to.equal(0);
+      expect(result[2][2]).to.equal(0);
+
+      // after second tick
+      // after third tick
+
+    });
+  });
+  // expect(result[0][0]).to.equal(-1);
+  // expect(result[0][1]).to.equal(-1);
+  // expect(result[0][2]).to.equal(-1);
+
+  // expect(result[1][0]).to.equal(-1);
+  // expect(result[1][1]).to.equal(-1);
+  // expect(result[1][2]).to.equal(-1);
+
+  // expect(result[2][0]).to.equal(-1);
+  // expect(result[2][1]).to.equal(-1);
+  // expect(result[2][2]).to.equal(-1);
 
 });
 
@@ -180,10 +274,6 @@ describe("Tick function alters the cells", () => {
         const result = tick(arr);
         expect(result[1][2]).to.equal(0);
       });
-
-      // TODO should we add test for when the board has been ticked
-      // several times?
     });
-
   });
 });

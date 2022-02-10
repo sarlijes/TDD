@@ -24,8 +24,8 @@ export function tick(arr) {
 
     for (let column = 0; column < arr[0].length; column++) {
 
-      const cell = arr[row][column];
-      const livingNeighborCount = getLivingNeighborCount(arr, row, column);
+      const cell = copy[row][column];
+      const livingNeighborCount = getLivingNeighborCount(copy, row, column);
 
       // 1. Each living cell that has less than 2 living neighbors, will die
       if (cell === 1 && livingNeighborCount < 2) {
