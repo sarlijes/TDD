@@ -81,7 +81,6 @@ describe("Check cell validity", () => {
     });
 
   });
-
 });
 
 
@@ -258,10 +257,4 @@ describe("2-dimensional array to string", () => {
     const result = twoDimensionalArraytoOBString(arr);
     expect(result.toString()).to.equal("obo$bob!");
   });
-});
-
-describe("", () => {
-});
-
-it("", () => {
 });

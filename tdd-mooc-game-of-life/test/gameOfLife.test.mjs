@@ -333,10 +333,3 @@ describe("The game function", () => {
     // [1,1]
   });
 });
-
-
-describe("", () => {
-  it("", () => {
-
-  });
-});

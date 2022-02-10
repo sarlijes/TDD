@@ -1,9 +1,6 @@
 import { expect } from "chai";
 import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
-//TEMP
-//TODO temp?
-
 describe("Can read RLE files - Glider pattern", () => {
 
   it("and return type is not undefined", () => {
@@ -58,7 +55,6 @@ describe("Can parse the RLE content into 2-dimensional array", () => {
     });
 
 });
-
 
 describe("Can read & parse RLE files - Blinker pattern", () => {
 

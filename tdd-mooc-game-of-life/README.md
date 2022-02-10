@@ -27,8 +27,8 @@ Code reformat
 |RLE|1.25|
 |RLE reader + parser|1.5|
 |Gameplay logic for ticking|2|
-|?|---|
-|?|---|
+|Gameplay logic to utilize existing functions (1:40)|1.75|
+|UI|---|
 |?|---|
 |total|??|
 
@@ -38,9 +38,9 @@ Code reformat
 [x] Investigate RLE format & how to utilize it in the tests
 [x] tests + reading the RLE file into a 2-dim array
 [x] actual gameplay, inc. iterations
-[] tests + logic to for a function that takes input: 
+[x] tests + logic to for a function that takes input: 
     parsed file (2-dim array)
     iteration count
 and calls play(arr, iterations)
-and returns the new arr as encoded 
+and returns the new arr as encoded
 [] UI
