@@ -25,6 +25,7 @@ Code reformat
 |Helper function for getting the count of living neighbors of a cell|1.5|
 |RLE|0.25|
 |RLE|1.25|
+|RLE reader + parser|1.25|
 |?|---|
 |?|---|
 |total|??|
