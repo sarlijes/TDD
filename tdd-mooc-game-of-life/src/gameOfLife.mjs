@@ -6,6 +6,10 @@ export function play(arr, iterations) {
     throw new Error ("undefined");
   }
   let copy = _.cloneDeep(arr);
+
+  for (let i = 0; i < iterations; i++) {
+    copy = tick(copy);
+  }
   return copy;
 }
 

@@ -21,7 +21,33 @@ describe("Game alters the cells", () => {
     });
 
   });
+
+
+  describe("on a 1x1 board", () => {
+
+    let arr;
+
+    beforeEach(() => {
+      arr = [];
+      arr.push([1]);
+    });
+
+    it("", () => {
+      const result = play(arr, 1);
+      expect(result[0][0]).to.equal(0);
+    });
+
+  });
+
 });
+
+
+describe("", () => {
+  it("", () => {
+
+  });
+});
+
 
 const rule1 = "1. Each living cell that has less than 2 living neighbors, will die";
 const rule2 = "2. Each living cell that has 2 living neighbors, stays alive";
@@ -160,13 +186,4 @@ describe("Tick function alters the cells", () => {
     });
 
   });
-
-
 });
-
-describe("", () => {
-  it("", () => {
-
-  });
-});
-
