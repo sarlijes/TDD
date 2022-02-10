@@ -1,5 +1,16 @@
 import _ from "lodash";
-import { getLivingNeighborCount } from "./utils.mjs";
+import { getLivingNeighborCount,
+  twoDimensionalArraytoString } from "./utils.mjs";
+import { readFile, parseFile, decode, encode } from "./RLEreader.mjs";
+
+export function gameOfLife(fileName, iterations) {
+
+
+
+  const result = play(arr, iterations);
+  const resultAsString = twoDimensionalArraytoString(result);
+  return encode(resultAsString);
+}
 
 export function play(arr, iterations) {
   if (arr === undefined || iterations === undefined) {

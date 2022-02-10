@@ -66,3 +66,17 @@ export function getLivingNeighborCount(arr, y, x) {
 
   return count;
 }
+
+export function twoDimensionalArraytoString(arr) {
+  const height = arr.length;
+
+  let result = "";
+  for (let i = 0; i < height; i++) {
+    let temp = "";
+    for (let j = 0; j < arr[i].length; j++) {
+      temp = temp.concat("", arr[i][j]);
+    }
+    result = result.concat("", temp);
+  }
+  return result;
+}

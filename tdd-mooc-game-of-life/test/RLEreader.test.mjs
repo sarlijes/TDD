@@ -2,6 +2,7 @@ import { expect } from "chai";
 import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
 //TEMP
+//TODO temp?
 
 describe("Can read RLE files - Glider pattern", () => {
 

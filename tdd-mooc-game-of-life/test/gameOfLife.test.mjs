@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { tick, play } from "../src/gameOfLife.mjs";
+import { tick, play, gameOfLife } from "../src/gameOfLife.mjs";
 import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
 
@@ -115,14 +115,6 @@ describe("Game alters the cells", () => {
     });
   });
 });
-
-
-describe("", () => {
-  it("", () => {
-
-  });
-});
-
 
 const rule1 = "1. Each living cell that has less than 2 living neighbors, will die";
 const rule2 = "2. Each living cell that has 2 living neighbors, stays alive";
@@ -270,5 +262,26 @@ describe("Tick function alters the cells", () => {
       });
 
     });
+  });
+});
+describe("The game function", () => {
+
+  it("requires an array as parameter", () => {
+    expect(() => gameOfLife(undefined, 1).to.throw("undefined"));
+  });
+
+  it("requires a number as parameter", () => {
+    expect(() => gameOfLife([]).to.throw("undefined"));
+  });
+
+
+  it("returns a string", () => {
+    expect(typeof gameOfLife([], 1)).to.equal("string");
+  });
+});
+
+describe("", () => {
+  it("", () => {
+
   });
 });

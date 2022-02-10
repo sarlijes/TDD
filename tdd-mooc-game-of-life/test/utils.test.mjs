@@ -1,5 +1,7 @@
 import { expect } from "chai";
-import { isValid, getLivingNeighborCount } from "../src/utils.mjs";
+import { isValid,
+  getLivingNeighborCount,
+  twoDimensionalArraytoString } from "../src/utils.mjs";
 
 describe("Check cell validity", () => {
 
@@ -246,7 +248,28 @@ describe("Can get living neighbor count", () => {
   //   });
 
   // });
+// TODO clean up
+});
 
+describe("2-dimensional array to string", () => {
+  it("2-dimensional array of integers", () => {
+    let arr = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    const result = twoDimensionalArraytoString(arr);
+    expect(result.toString()).to.equal("123456789");
+  });
+
+  it("2-dimensional array of chars", () => {
+    let arr = [
+      ["1", "2", "3"],
+      ["4", "5", "6"],
+    ];
+    const result = twoDimensionalArraytoString(arr);
+    expect(result.toString()).to.equal("123456");
+  });
 });
 
 describe("", () => {
