@@ -14,14 +14,15 @@ describe("Check cell validity", () => {
 
   describe("General tests", () => {
 
-    describe("Return type is correct", () => {
+    it("Return type is correct", () => {
       arr.push([0, 0, 0]);
       const result = isValid(arr, 0, 0);
       expect(typeof result).to.equal("boolean");
     });
 
-    describe("Undefined or null throws an Error", () => {
+    it("Undefined or null throws an Error", () => {
       expect(() => isValid(undefined).to.throw("undefined"));
+      expect(() => isValid(null).to.throw("undefined"));
     });
     // TODO could add validation to parameters x and y
   });
