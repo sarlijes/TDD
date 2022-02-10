@@ -1,50 +1,61 @@
 import fs from "fs";
 
 export function readFile(fileName) {
+  let content;
   // Read the file
   fs.readFile(".\\patterns\\" + fileName, "utf8" , (err, data) => {
     if (err) console.log(err);
-
-    let result = [];
-
-    const fileRows = data.split("\n");
-
-    let x, y;
-    let sizeRow; // is this needed?
-    let rleRow;
-
-    for (let i = 0; i <= fileRows.length; i++) {
-      const row = fileRows[i];
-      if (row.startsWith("x")) {
-        sizeRow = row;
-        // Find the actual RLE from it (ends with !)
-        rleRow = fileRows[i + 1].trim().replace("!", "");
-        break;
-      }
-    }
-
-    const rleSplitted = rleRow.split("$");
-
-    // Decode
-
-    const decoded = [] ; // array of strings
-
-    // Convert the chars to integers: b -> 0, o -> 1
-    for (let i = 0; i < rleSplitted.length; i++) {
-      let s = rleSplitted[i];
-      s = decode(s);
-      s = s.replace(/b/g, 0);
-      s = s.replace (/o/g, 1);
-      decoded.push(s);
-    }
-    // Place the integers into 2-dimensional array (result)
-    for (let i = 0; i < decoded.length; i++) {
-      result.push(Array.from(decoded[i]));
-
-    }
-    return result;
+    content = data;
+    console.log("🚀 ~ file: RLEreader.mjs ~ line 9 ~ fs.readFile ~ data", data);
   });
-  return [];
+  console.log("🚀 ~ file: RLEreader.mjs ~ line 13 ~ readFile ~ content", content);
+
+  return content;
+}
+
+// TODO refactor into shorter functions
+// TODO use forEach more
+export function parseFile(content) {
+
+  let result = [];
+
+  const fileRows = content.split("\n");
+
+  let x, y;
+  let sizeRow; // is this needed?
+  let rleRow;
+
+  for (let i = 0; i <= fileRows.length; i++) {
+    const row = fileRows[i];
+    if (row.startsWith("x")) {
+      sizeRow = row;
+      // Find the actual RLE from it (ends with !)
+      rleRow = fileRows[i + 1].trim().replace("!", "");
+      break;
+    }
+  }
+
+  const rleSplitted = rleRow.split("$");
+
+  // Decode
+
+  const decoded = [] ; // array of strings
+
+  // Convert the chars to integers: b -> 0, o -> 1
+  for (let i = 0; i < rleSplitted.length; i++) {
+    let s = rleSplitted[i];
+    s = decode(s);
+    s = s.replace(/b/g, 0);
+    s = s.replace (/o/g, 1);
+    decoded.push(s);
+  }
+  // Place the integers into 2-dimensional array (result)
+  for (let i = 0; i < decoded.length; i++) {
+    result.push(Array.from(decoded[i]));
+
+  }
+  return result;
+
 }
 
 // Helper functions by DeepBSD - source: https://bit.ly/3rE2kRk

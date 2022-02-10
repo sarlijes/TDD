@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { readFile, decode, encode } from "../src/RLEreader.mjs";
+import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
 describe("Return type is correct", () => {
   it("", () => {
@@ -12,7 +12,9 @@ describe("Return type is correct", () => {
 describe("Can read RLE files into 2-dimensional array", () => {
 
   it(": glider", () => {
-    const result = readFile("glider.rle");
+    const content = readFile("glider.rle");
+    const result = parseFile(content);
+    // async issue
 
     expect(result[0]).to.equal([0,1,0]);
     // expect(result[0]).to.equal([0,0,1]);
