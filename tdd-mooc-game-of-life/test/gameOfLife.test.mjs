@@ -1,8 +1,5 @@
 import { expect } from "chai";
 import { tick, play, gameOfLife } from "../src/gameOfLife.mjs";
-import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
-
-
 
 describe("Game alters the cells", () => {
 
@@ -21,7 +18,6 @@ describe("Game alters the cells", () => {
     });
 
   });
-
 
   describe("on a 1x1 board", () => {
 
