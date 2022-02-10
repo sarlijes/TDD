@@ -1,6 +1,8 @@
 import _ from "lodash";
 import { getLivingNeighborCount } from "./utils.mjs";
 
+// TODO consider naming "arr" to board everywhere
+
 export function tick(arr) {
 
   if (arr === undefined) {
@@ -40,9 +42,5 @@ export function tick(arr) {
       }
     }
   }
-
-
   return copy;
 }
-
-// TODO consider naming "arr" to board everywhere

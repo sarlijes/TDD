@@ -17,8 +17,8 @@ describe("Tick function, general tests", () => {
 const rule1 = "1. Each living cell that has less than 2 living neighbors, will die";
 const rule2 = "2. Each living cell that has 2 living neighbors, stays alive";
 const rule3 = "3. Each living cell that has 3 living neighbors, stays alive";
-const rule4 ="4. Each living cell that has 4 or more living neighbors, dies";
-const rule5 ="5. Each dead cell that has exactly 3 living neighbors, becomes alive";
+const rule4 = "4. Each living cell that has 4 or more living neighbors, dies";
+const rule5 = "5. Each dead cell that has exactly 3 living neighbors, becomes alive";
 
 describe("Tick function alters the cells", () => {
 
