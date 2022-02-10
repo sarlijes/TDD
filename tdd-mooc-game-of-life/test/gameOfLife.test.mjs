@@ -285,29 +285,23 @@ describe("The game function", () => {
     };
   });
 
-  // describe("returns the correct result for Glider pattern", async () => {
-  //   it("with one iteration", () => {
-  //     const result = await gameOfLife("glider.rle", 1);
-  //     console.log("🚀 ~ file:  result", result.result);
-  //     expect(true).to.equal(false);
-  //   });
-  // });
+  describe("returns the correct result for Glider pattern",  () => {
 
-  describe("returns the correct result for Glider pattern", () => {
     it("with one iteration", () => {
-      async () => {
-        try {
-          const result = gameOfLife("glider.rle", 1);
-          expect(result).to.equal(-1);
-          expect(true).to.equal(false);
-          // done();
-        } catch (err) {
-          return console.error("readFile() failed", err);
-        }
-      };
+      gameOfLife("glider.rle", 1)
+        .then((result) => expect(result).to.equal("??"))
+        .catch((err) => console.error("readFile() failed", err));
     });
-  });
+    // Initial:
+    // [0,1,0]
+    // [0,0,1]
+    // [1,1,1]
+    // After one iteration:
+    // [0,0,0]
+    // [0,0,1]
+    // [0,1,1]
 
+  });
 });
 
 describe("", () => {
