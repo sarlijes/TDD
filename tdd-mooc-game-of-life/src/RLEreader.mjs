@@ -6,9 +6,7 @@ export function readFile(fileName) {
   fs.readFile(".\\patterns\\" + fileName, "utf8" , (err, data) => {
     if (err) console.log(err);
     content = data;
-    console.log("🚀 ~ file: RLEreader.mjs ~ line 9 ~ fs.readFile ~ data", data);
   });
-  console.log("🚀 ~ file: RLEreader.mjs ~ line 13 ~ readFile ~ content", content);
 
   return content;
 }
