@@ -274,9 +274,15 @@ describe("The game function", () => {
     expect(() => gameOfLife([]).to.throw("undefined"));
   });
 
-
   it("returns a string", () => {
-    expect(typeof gameOfLife([], 1)).to.equal("string");
+    async () => {
+      try {
+        const result = await gameOfLife("glider.rle", 1);
+        expect(typeof result).to.equal("string");
+      } catch (err) {
+        return console.error("readFile() failed", err);
+      }
+    };
   });
 });
 

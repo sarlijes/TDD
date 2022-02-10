@@ -5,11 +5,19 @@ import { readFile, parseFile, decode, encode } from "./RLEreader.mjs";
 
 export function gameOfLife(fileName, iterations) {
 
+  async () => {
+    try {
+      const fileContent = await readFile("glider.rle");
+      const arr = parseFile(fileContent);
+      const result = play(arr, iterations);
+      const resultAsString = twoDimensionalArraytoString(result);
+      return encode(resultAsString);
+    } catch (err) {
+      return console.error("readFile() failed", err);
+    }
+  };
 
 
-  const result = play(arr, iterations);
-  const resultAsString = twoDimensionalArraytoString(result);
-  return encode(resultAsString);
 }
 
 export function play(arr, iterations) {
