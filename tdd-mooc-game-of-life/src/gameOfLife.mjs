@@ -1,8 +1,15 @@
 import _ from "lodash";
 import { getLivingNeighborCount } from "./utils.mjs";
 
-// TODO consider naming "arr" to board everywhere
+export function play(arr, iterations) {
+  if (arr === undefined || iterations === undefined) {
+    throw new Error ("undefined");
+  }
+  let copy = _.cloneDeep(arr);
+  return copy;
+}
 
+// TODO consider naming "arr" to board everywhere
 export function tick(arr) {
 
   if (arr === undefined) {

@@ -1,17 +1,26 @@
 import { expect } from "chai";
-import { tick } from "../src/gameOfLife.mjs";
+import { tick, play } from "../src/gameOfLife.mjs";
 import { readFile, parseFile, decode, encode } from "../src/RLEreader.mjs";
 
-describe("Tick function, general tests", () => {
 
-  it("Tick function returns an array", () => {
-    expect(tick([]) instanceof Array).to.be.true;
+
+describe("Game alters the cells", () => {
+
+  describe("play function, general tests", () => {
+
+    it("play function returns an array", () => {
+      expect(play([], 5) instanceof Array).to.be.true;
+    });
+
+    it("Undefined array parameter throws an Error", () => {
+      expect(() => play(undefined, 5).to.throw("undefined"));
+    });
+
+    it("Undefined iterations parameter throws an Error", () => {
+      expect(() => play([]).to.throw("undefined"));
+    });
+
   });
-
-  it("Undefined throws an Error", () => {
-    expect(() => tick(undefined).to.throw("undefined"));
-  });
-
 });
 
 const rule1 = "1. Each living cell that has less than 2 living neighbors, will die";
@@ -21,6 +30,18 @@ const rule4 = "4. Each living cell that has 4 or more living neighbors, dies";
 const rule5 = "5. Each dead cell that has exactly 3 living neighbors, becomes alive";
 
 describe("Tick function alters the cells", () => {
+
+  describe("Tick function, general tests", () => {
+
+    it("Tick function returns an array", () => {
+      expect(tick([]) instanceof Array).to.be.true;
+    });
+
+    it("Undefined throws an Error", () => {
+      expect(() => tick(undefined).to.throw("undefined"));
+    });
+
+  });
 
   describe("on a 1x1 board", () => {
 

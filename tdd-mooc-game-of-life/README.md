@@ -26,6 +26,8 @@ Code reformat
 |RLE|0.25|
 |RLE|1.25|
 |RLE reader + parser|1.5|
+|Gameplay logic for ticking|1|
+|?|---|
 |?|---|
 |?|---|
 |total|??|
