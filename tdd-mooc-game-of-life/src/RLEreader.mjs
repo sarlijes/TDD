@@ -9,28 +9,23 @@ export async function readFile(fileName) {
   return data.toString();
 }
 
-// TODO refactor into shorter functions
-// TODO use forEach more
+// TODO refactor into shorter functions or
+// TODO use forEach & find more
 export function parseFile(content) {
 
   let result = [];
 
   const fileRows = content.split("\n");
-
-  let x, y;
-  let sizeRow; // is this needed?
   let rleRow;
 
   for (let i = 0; i <= fileRows.length; i++) {
     const row = fileRows[i];
     if (row.startsWith("x")) {
-      sizeRow = row;
       // Find the actual RLE from it (ends with !)
       rleRow = fileRows[i + 1].trim().replace("!", "");
       break;
     }
   }
-
   const rleSplitted = rleRow.split("$");
 
   // Decode
@@ -46,10 +41,9 @@ export function parseFile(content) {
     decoded.push(s);
   }
   // Place the integers into 2-dimensional array (result)
-  for (let i = 0; i < decoded.length; i++) {
-    result.push(Array.from(decoded[i], x => parseInt(x)));
+  decoded.forEach(arr =>
+    result.push(Array.from(arr, x => parseInt(x))));
 
-  }
   return result;
 
 }

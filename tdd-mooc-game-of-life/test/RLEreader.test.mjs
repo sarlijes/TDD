@@ -33,18 +33,28 @@ describe("Can parse the RLE content into 2-dimensional array", () => {
       .catch((err) => console.error("readFile() failed", err));
   });
 
-  it("and then parsed into two-dimensional array with the correct values", () => {
-    return readFile("glider.rle")
-      .then(d => {
-        expect(parseFile(d)[0]).to.have.deep.members([0,1,0]);
-        expect(parseFile(d)[1]).to.have.deep.members([0,0,1]);
-        expect(parseFile(d)[2]).to.have.deep.members([1,1,1]);
-      })
-      .catch((err) => console.error("readFile() failed", err));
+  it("and then parsed into two-dimensional array with the correct values",
+    async () => {
+      try {
+        const d = await readFile("glider.rle");
+        expect(parseFile(d)[0]).to.have.deep.members([0, 1, 0]);
+        expect(parseFile(d)[1]).to.have.deep.members([0, 0, 1]);
+        expect(parseFile(d)[2]).to.have.deep.members([1, 1, 1]);
+      } catch (err) {
+        return console.error("readFile() failed", err);
+      }
+    });
 
-  });
-
-
+  it("and the parsed result contains the correct amount of cells",
+    async () => {
+      try {
+        const d = await readFile("glider.rle");
+        expect(parseFile(d).length).to.equal(3);
+        expect(parseFile(d)[0].length).to.equal(3);
+      } catch (err) {
+        return console.error("readFile() failed", err);
+      }
+    });
 
 });
 
