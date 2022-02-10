@@ -84,6 +84,32 @@ describe("Can read & parse RLE files - Blinker pattern", () => {
 
 });
 
+describe("Can read & parse RLE files - Block pattern", () => {
+
+  it("pattern is parsed into two-dimensional array with the correct values",
+    async () => {
+      try {
+        const d = await readFile("block.rle");
+        expect(parseFile(d)[0]).to.have.deep.members([1, 1]);
+        expect(parseFile(d)[1]).to.have.deep.members([1, 1]);
+      } catch (err) {
+        return console.error("readFile() failed", err);
+      }
+    });
+
+  it("and the parsed result contains the correct amount of cells",
+    async () => {
+      try {
+        const d = await readFile("block.rle");
+        expect(parseFile(d).length).to.equal(2);
+        expect(parseFile(d)[0].length).to.equal(2);
+      } catch (err) {
+        return console.error("readFile() failed", err);
+      }
+    });
+
+});
+
 describe("decode", () => {
 
   it("", () => {
